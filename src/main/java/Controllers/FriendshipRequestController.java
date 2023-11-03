@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @author Admin
  */
-@WebServlet(name = "FriendshipRequestController", urlPatterns = {"/"})
+@WebServlet(name = "FriendshipRequestController", urlPatterns = {"/friend/request"})
 public class FriendshipRequestController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
