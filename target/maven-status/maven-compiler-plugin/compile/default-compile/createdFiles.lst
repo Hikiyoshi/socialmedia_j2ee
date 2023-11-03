@@ -1,0 +1,11 @@
+Models\Friendship.class
+DAL\FriendshipDAL.class
+Models\Post.class
+Models\Profile.class
+com\mycompany\social_media\resources\JakartaEE10Resource.class
+Models\PostImage.class
+Models\PostComment.class
+Controllers\FriendshipRequestController.class
+Models\Reaction.class
+com\mycompany\social_media\JakartaRestConfiguration.class
+Controllers\FriendshipController.class
