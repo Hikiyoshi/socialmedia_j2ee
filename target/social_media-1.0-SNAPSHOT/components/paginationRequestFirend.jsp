@@ -16,14 +16,14 @@
         int prevPage= Integer.parseInt(request.getAttribute("prevPage").toString());
         if (currentPage>1 && totalPage >1) {
     %>
-            <a href="/social_media/?page=<%= currentPage -1 %>&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><</a>           
+            <a href="/social_media/friend/request?page=<%= currentPage -1 %>&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><</a>           
     <%
         }
     %>
     <%   
         if(currentPage>3 && totalPage >5) {
     %>
-            <a href="/social_media/?page=1&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none">1</a>
+            <a href="/social_media/friend/request?page=1&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none">1</a>
             <div style="padding: 8px 12px" >...</div>
     <%
         }
@@ -32,7 +32,7 @@
         if(currentPage>2 && currentPage<totalPage -2 && totalPage >1){
             for (int i=currentPage-2; i<=currentPage+2; i++) {
     %>
-            <a href="/social_media/?page=<%= i %>&limit=<%=perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><%= i %></a>
+            <a href="/social_media/friend/request?page=<%= i %>&limit=<%=perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><%= i %></a>
     <%
             }
         }else if(currentPage<=2 && totalPage >1){
@@ -43,7 +43,7 @@
             }
             for (int i=1; i<=crpage; i++) {
     %>
-            <a href="/social_media/?page=<%= i %>&limit=<%=perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><%= i %></a>
+            <a href="/social_media/friend/request?page=<%= i %>&limit=<%=perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><%= i %></a>
     <%
             }
         }else if(currentPage>=totalPage -2 && totalPage >1){
@@ -54,19 +54,19 @@
             }
             for (int i=crpage; i<=totalPage; i++) {
     %>
-            <a href="/social_media/?page=<%= i %>&limit=<%=perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><%= i %></a>
+            <a href="/social_media/friend/request?page=<%= i %>&limit=<%=perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"><%= i %></a>
     <%
             }
         }
         if(currentPage<totalPage- 2 && totalPage >5){
     %>
             <div style="padding: 8px 12px">...</div>
-            <a href="/social_media/?page=<%= totalPage%>&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"> <%= totalPage%></a>
+            <a href="/social_media/friend/request?page=<%= totalPage%>&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none"> <%= totalPage%></a>
     <%
         }
         if (currentPage<totalPage && totalPage >1) {
     %>          
-            <a href="/social_media/?page=<%= currentPage + 1 %>&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none">></a>
+            <a href="/social_media/friend/request?page=<%= currentPage + 1 %>&limit=<%= perPage%>" style="background-color: yellowgreen; padding: 8px 12px; border-radius: 4px; text-decoration: none">></a>
     <%
         }
     %>
