@@ -57,7 +57,8 @@ public class Profile {
     @OneToMany(mappedBy = "profile_acpect_friendships", fetch = FetchType.LAZY)
     private List<Friendship> acpect_friendships = new ArrayList<>();
     
-    
+    @OneToMany(mappedBy = "reactUsername", fetch = FetchType.LAZY)
+    private List<Reaction> reactions = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -130,4 +131,28 @@ public class Profile {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
+
+	public List<Friendship> getRequest_friendships() {
+		return request_friendships;
+	}
+
+	public void setRequest_friendships(List<Friendship> request_friendships) {
+		this.request_friendships = request_friendships;
+	}
+
+	public List<Friendship> getAcpect_friendships() {
+		return acpect_friendships;
+	}
+
+	public void setAcpect_friendships(List<Friendship> acpect_friendships) {
+		this.acpect_friendships = acpect_friendships;
+	}
+
+	public List<Reaction> getReactions() {
+		return reactions;
+	}
+
+	public void setReactions(List<Reaction> reactions) {
+		this.reactions = reactions;
+	}
 }

@@ -6,7 +6,10 @@ package Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,6 +36,70 @@ public class Reaction {
     
     @Column(name = "datecreated")
     private String datecreaed;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "username", insertable=false, updatable=false)
+    private Profile reactUsername;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPost", insertable=false, updatable=false)
+    private Post reactPost;
+
+	public int getIdReact() {
+		return idReact;
+	}
+
+	public void setIdReact(int idReact) {
+		this.idReact = idReact;
+	}
+
+	public String getIdPost() {
+		return idPost;
+	}
+
+	public void setIdPost(String idPost) {
+		this.idPost = idPost;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getDatecreaed() {
+		return datecreaed;
+	}
+
+	public void setDatecreaed(String datecreaed) {
+		this.datecreaed = datecreaed;
+	}
+
+	public Profile getReactUsername() {
+		return reactUsername;
+	}
+
+	public void setReactUsername(Profile reactUsername) {
+		this.reactUsername = reactUsername;
+	}
+
+	public Post getReactPost() {
+		return reactPost;
+	}
+
+	public void setReactPost(Post reactPost) {
+		this.reactPost = reactPost;
+	}
     
     
 }

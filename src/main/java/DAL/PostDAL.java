@@ -25,7 +25,6 @@ public class PostDAL {
             
             return true;
         } catch (Exception e) {
-
             em.getTransaction().rollback();
             return false;
         } finally{

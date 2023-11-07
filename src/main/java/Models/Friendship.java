@@ -43,7 +43,23 @@ public class Friendship {
         return userrequest;
     }
 
-    public void setUserrequest(String userrequest) {
+    public Profile getProfile_request_friendships() {
+		return profile_request_friendships;
+	}
+
+	public Profile getProfile_acpect_friendships() {
+		return profile_acpect_friendships;
+	}
+
+	public void setProfile_request_friendships(Profile profile_request_friendships) {
+		this.profile_request_friendships = profile_request_friendships;
+	}
+
+	public void setProfile_acpect_friendships(Profile profile_acpect_friendships) {
+		this.profile_acpect_friendships = profile_acpect_friendships;
+	}
+
+	public void setUserrequest(String userrequest) {
         this.userrequest = userrequest;
     }
 

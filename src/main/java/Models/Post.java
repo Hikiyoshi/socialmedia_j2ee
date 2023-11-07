@@ -6,9 +6,14 @@ package Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -29,6 +34,9 @@ public class Post {
     
     @Column(name="datecreated")
     private Date dateCreated;
+    
+    @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
+    private List<Reaction> reactions = new ArrayList<>();
 
     public String getIdPost() {
         return idPost;
@@ -61,6 +69,14 @@ public class Post {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+	public List<Reaction> getReactions() {
+		return reactions;
+	}
+
+	public void setReactions(List<Reaction> reactions) {
+		this.reactions = reactions;
+	}
     
     
 }
