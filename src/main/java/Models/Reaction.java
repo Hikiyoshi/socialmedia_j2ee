@@ -35,7 +35,7 @@ public class Reaction {
     private String content;
     
     @Column(name = "datecreated")
-    private String datecreaed;
+    private String datecreated;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", insertable=false, updatable=false)
@@ -77,12 +77,12 @@ public class Reaction {
 		this.content = content;
 	}
 
-	public String getDatecreaed() {
-		return datecreaed;
+	public String getDatecreated() {
+		return datecreated;
 	}
 
-	public void setDatecreaed(String datecreaed) {
-		this.datecreaed = datecreaed;
+	public void setDatecreated(String datecreated) {
+		this.datecreated = datecreated;
 	}
 
 	public Profile getReactUsername() {
