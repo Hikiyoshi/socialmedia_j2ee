@@ -1,0 +1,7 @@
+[Tt]arget/
+.[Ss]ettings/
+[Bb]in/
+web.xml
+
+/.project
+/.classpath

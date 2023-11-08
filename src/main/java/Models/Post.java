@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +50,9 @@ public class Post {
     @OneToMany(mappedBy = "img_post", fetch = FetchType.LAZY)
     private List<PostImage> post_img = new ArrayList<>();
 
+    @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
+    private List<Reaction> reactions = new ArrayList<>();
+    
     public String getIdPost() {
         return idPost;
     }
@@ -79,6 +84,14 @@ public class Post {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+    
+    public List<Reaction> getReactions() {
+		return reactions;
+	}
+
+	public void setReactions(List<Reaction> reactions) {
+		this.reactions = reactions;
+	}
     
     
 }
