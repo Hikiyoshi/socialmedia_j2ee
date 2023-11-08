@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -8,17 +9,21 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import lombok.Data;
 
 /**
  *
  * @author Admin
  */
+@Data
 @Entity
 @Table(name="post")
 public class Post {
@@ -35,9 +40,19 @@ public class Post {
     @Column(name="datecreated")
     private Date dateCreated;
     
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "username" , insertable = false , updatable = false)
+    private Profile profile_uploaded;
+    
+    @OneToMany(mappedBy = "post_commented", fetch = FetchType.LAZY)
+    private List<PostComment> post_comment = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "img_post", fetch = FetchType.LAZY)
+    private List<PostImage> post_img = new ArrayList<>();
+
     @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
     private List<Reaction> reactions = new ArrayList<>();
-
+    
     public String getIdPost() {
         return idPost;
     }
@@ -69,8 +84,8 @@ public class Post {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
-
-	public List<Reaction> getReactions() {
+    
+    public List<Reaction> getReactions() {
 		return reactions;
 	}
 

@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Date;
 import lombok.Data;
 
 @Data
@@ -19,7 +20,7 @@ import lombok.Data;
 public class PostComment {
     @Id
     @Column(name = "idComment")
-    private int idReact;
+    private int idComment;
     
     @Column(name = "idPost")
     private String idPost;
@@ -31,5 +32,13 @@ public class PostComment {
     private String content;
     
     @Column(name = "datecreated")
-    private String datecreaed;
+    private Date datecreated;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "username", insertable = false, updatable = false)
+    private Profile profile_commented;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPost", insertable = false, updatable = false)
+    private Post post_commented;
 }
