@@ -4,7 +4,6 @@ com\mycompany\social_media\resources\JakartaEE10Resource.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
 DAL\PostDAO.class
-DAL\test.class
 Controllers\FriendshipController.class
 DAL\JpaUtils.class
 Models\Friendship.class
