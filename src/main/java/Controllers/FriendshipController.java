@@ -5,8 +5,8 @@
 
 package Controllers;
 
-import DAL.FriendshipDAL;
-import static DAL.FriendshipDAL.totalPages;
+import DAO.FriendshipDAO;
+import static DAO.FriendshipDAO.totalPages;
 import Models.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,7 +57,7 @@ public class FriendshipController extends HttpServlet {
 //        if (method.equalsIgnoreCase("POST")) {
 //            String q = req.getParameter("q");
 //            try {
-//                list = FriendshipDAL.searchFriendShip(1, 10, q, "honggam", 1);
+//                list = FriendshipDAO.searchFriendShip(1, 10, q, "honggam", 1);
 //            } catch (Exception e) {
 //                req.setAttribute("message", "Lỗi!");
 //            }
@@ -75,7 +75,7 @@ public class FriendshipController extends HttpServlet {
                 req.setAttribute("message", "Lỗi!");
             } else {
                 try {
-                    String message = FriendshipDAL.deleteFriendShip(username, "honggam", 1);
+                    String message = FriendshipDAO.deleteFriendShip(username, "honggam", 1);
                     req.setAttribute("message", message);
                 } catch (Exception e) {
                     req.setAttribute("message", "Lỗi!");
@@ -109,7 +109,7 @@ public class FriendshipController extends HttpServlet {
             page = "1";
             limit = "10";
         }
-        List<Profile> users = FriendshipDAL.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), "honggam");
+        List<Profile> users = FriendshipDAO.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), "honggam");
         pagination(req, resp, users, page, limit);
         req.setAttribute("friends", users);
 //        String newUrl = req.getRequestURL() + "?q="+q+"&page=" + page + "&limit=" + limit;
