@@ -2,6 +2,7 @@ Models\Profile.class
 com\mycompany\social_media\resources\JakartaEE10Resource.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
+Controllers\AccountController.class
 DAO\PostDAO.class
 DAO\PostImgDAO.class
 DAO\ProfileDAO.class
