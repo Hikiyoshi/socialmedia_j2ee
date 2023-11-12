@@ -8,6 +8,7 @@ DAO\PostImgDAO.class
 DAO\ProfileDAO.class
 Controllers\FriendshipController.class
 DAO\PostCommentDAO.class
+Models\DBConnection.class
 Models\Friendship.class
 Models\Post.class
 DAO\FriendshipDAO.class

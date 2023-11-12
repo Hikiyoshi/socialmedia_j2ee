@@ -50,8 +50,8 @@
 						<input name="password" id="pass" type="password" class="input" data-type="password">
 					</div>
 					<div class="group">
-						<label for="pass" class="label">Repeat Password</label>
-						<input id="pass" type="password" class="input" data-type="password">
+						<label for="surname">Surname:</label>
+                                                <input type="text" id="surname" name="surname" required>
 					</div>
 					<div class="group">
 						<label for="pass" class="label">Email Address</label>
