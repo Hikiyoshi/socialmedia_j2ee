@@ -13,8 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="css/sign_in.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/path/to/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/sign_in.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/style.css">
 <!--    
     <style>
         
