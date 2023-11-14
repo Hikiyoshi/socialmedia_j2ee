@@ -1,0 +1,246 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 13, 2023, 1:41:10 AM
+    Author     : Admin
+*/
+
+/* body{
+    background-color: #efefef;
+} */
+.container-profile{
+    position: sticky;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 330px;
+    display: block;
+    justify-content: center;
+    padding: 13px 5%;
+    /* border: solid 1px #ff7f50; */
+    width: 800px;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 2%;
+}
+.profile-top{
+    padding: 15px 15px;
+    display: flex;
+    justify-content: center;
+   /* background-color: #B03060; */
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 100%;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    
+}
+.profile-avatar{
+    flex-basis: 30%;
+    /* border: 1px solid #ff7f50; */
+    float: left;
+}
+.profile-avatar img{
+    border-radius: 50%;
+  
+}
+.profile-right-block{
+    display: block;
+}
+.profile-user-settings{
+    flex-basis: 70%;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    height: 30%;
+    /* background-color: rgb(255, 0, 255); */
+}
+.profile-user-name{
+    margin-top: 0px;
+    margin-right: 10px;
+    
+    height: 30px;
+    /* background-color: #ff7f50; */
+    font-family: 'Karla', sans-serif;
+}
+.profile-user-name h1{
+   margin-top: 0px;   
+}
+.btn-profile-edit{
+    border: none;
+    font-weight: bolder;
+    height: 30px;
+    padding: 0 20px;
+    border-radius: 8px;
+    /* background-color: blue; */
+}
+.profile-user-status{
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: burlywood; */
+}
+
+.profile-user-status p:active{
+    opacity: 0.5;  
+    filter: alpha(opacity=50);
+}
+
+.profile-user-status span{
+    font-weight: bold;
+}
+.profile-user-status p:hover{
+    cursor: pointer;
+}
+
+.profile-mid{
+    /* background-color: chartreuse; */
+    justify-content: center;
+    display: block;
+   
+    flex-wrap: wrap;
+}
+.profile-mid ul{
+    padding-left: 0;
+}
+.profile-navtab{
+    /* background-color: rgb(78, 144, 24); */
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    height: 100%;
+    margin-left: 0;
+
+}
+
+.profile-navtab li{
+    display: flex;
+    padding: 5px 10px;  
+    margin-right: 10px;
+    width: auto;
+    background-color: #6CA6CD;
+    justify-content: center;
+    border-radius: 20px;
+   
+}
+.profile-navtab li:active{
+    opacity: 0.5;  
+    filter: alpha(opacity=50);
+}
+
+
+.profile-navtab li.selected{
+    background-color: #4A708B;
+    
+}
+
+.profile-navtab li:hover{
+    cursor: pointer;
+    transition: width 1s ease-in-out;
+    /* background-color: aqua; */
+  
+}
+
+.profile-navtab li a{
+    /* background-color: aquamarine; */
+    color: black;
+    height: 30px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #fff;
+    
+}
+/* .profile-navtab li :focus{
+    background-color: rgb(101, 68, 221);
+    font-weight: bolder;
+} */
+.content{
+    min-height: 500px;
+    background-color: blueviolet;
+    margin-top: 30px;
+}
+
+#all-picture-choose{
+    font-weight: bolder;
+}
+
+.user-all-post {
+    width: 100%;
+    background-color: cadetblue;
+    display: block;
+}
+.user-all-post img{
+    width: 300px;
+    height: 300px;
+    
+}
+.user-all-picture{
+    width: 100%;
+    background-color: rgb(43, 168, 226);
+    display: none;
+  
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.3s;*/
+} 
+.user-all-picture img{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(215, 133, 25);
+}
+/* .user-all-picture-toggle{
+    height: 400px;
+    background-color: antiquewhite;
+} */
+
+.wrap-friend{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    display: none;
+    z-index: 10;
+	background:rgba(0,0,0,0.6);
+}
+
+.all-friend-show{
+    height: 500px;
+	width: 900px;
+	border: slategray solid 3px;
+	background-color: #fff;
+	margin: 130px auto;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 50px 20px 20px;
+	position: relative;
+	z-index: 20;
+	box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+#btn-close-friend{
+    position: absolute;
+	right: 15px;
+	top: 0px;
+	font-size: 40px;
+	background-color: transparent;
+	cursor: pointer;
+    border: none;
+}
+#btn-close-friend:hover{
+    color: rosybrown;
+}
+/* chitietsanpham */
+/* .wrap{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    display: none;
+    z-index: 10;
+	background:rgba(0,0,0,0.6);
+} */
+

@@ -6,4 +6,22 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+         <display-name>MyWebApp</display-name>
+
+    <!-- Định nghĩa một servlet -->
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Controllers.Home</servlet-class>
+    </servlet>
+
+    <!-- Ánh xạ URL đến servlet -->
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <!-- Định nghĩa trang chào mừng -->
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
 </web-app>

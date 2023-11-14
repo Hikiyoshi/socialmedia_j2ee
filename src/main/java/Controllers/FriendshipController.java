@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package Controllers;
 
 import DAO.FriendshipDAO;
@@ -15,13 +14,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  *
- * @author Admin
+ * @author haidu
  */
 @WebServlet(name = "FriendshipController", urlPatterns = {"/friend"})
 public class FriendshipController extends HttpServlet {
@@ -109,6 +109,8 @@ public class FriendshipController extends HttpServlet {
             page = "1";
             limit = "10";
         }
+        String path= req.getRequestURI();
+        req.setAttribute("path", path);
         List<Profile> users = FriendshipDAO.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), "honggam");
         pagination(req, resp, users, page, limit);
         req.setAttribute("friends", users);
