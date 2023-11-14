@@ -1,4 +1,6 @@
+DAL\FriendshipDAL.class
 Models\Profile.class
+Controllers\sign_up.class
 com\mycompany\social_media\resources\JakartaEE10Resource.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/sign_up.css">
 </head>
 <body>
-    <form>
+    <form action="/social_media/sign_up" method="post">
         <h2>Đăng ký</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -29,16 +29,16 @@
         <input type="text" id="firstname" name="firstname" required>
 
         <label for="avatar">Avatar:</label>
-        <input type="file" id="avatar" name="avatar" accept="image/*">
+        <input type="file" id="avatar" name="imgAvatar" accept="image/*">
 
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+           
         </select>
 
         <label for="phoneNumber">Phone Number:</label>
@@ -47,7 +47,7 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
 
-        <button type="submit">Đăng ký</button>
+        <input type="submit" value="Đăng ký" />
     </form>
 </body>
 </html>
