@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/sign_in.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/style.css">
 <!--    
@@ -84,7 +85,7 @@ button:hover {
     
 </head>
 <body>
-    <form method="POST" action="/social_media/sign_in">
+    <form method="POST" action="sign_in">
         <h2>Đăng nhập</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" >
