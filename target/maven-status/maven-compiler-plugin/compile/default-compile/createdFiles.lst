@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Controllers\Home.class
-=======
-DAL\FriendshipDAL.class
->>>>>>> d8666e2e784a2891bdcfa38160411087ec7a843e
 Models\Profile.class
 Controllers\sign_up.class
 com\mycompany\social_media\resources\JakartaEE10Resource.class
