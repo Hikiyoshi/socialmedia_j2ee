@@ -43,14 +43,14 @@ public class postController extends HttpServlet {
         dir.mkdirs();
 }
         String content = request.getParameter("content");
-        
+        String username = request.getParameter("username");
          // Lấy hình ảnh từ trường input file
          Part filePart = request.getPart("image");
         File file = new File(dir, filePart.getSubmittedFileName());
         filePart.write(file.getAbsolutePath());
           Date currentDate = new Date();
          Post post = new Post();
-         post.setUsername("l");
+         post.setUsername(username);
         post.setContent(content);
        post.setDateCreated(currentDate);
          request.setAttribute("post", post);

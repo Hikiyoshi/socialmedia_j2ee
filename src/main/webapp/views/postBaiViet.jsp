@@ -63,6 +63,7 @@
         <section class="post">
           <header>Create Post</header>
           <form action="/social_media/postController" method="post" enctype="multipart/form-data" >
+              <input type="hidden" name="username" value="2">
             <div class="content">
               <img src="/social_media/icons/TD.jpg" alt="logo">
               <div class="details">
