@@ -1,3 +1,4 @@
+Controllers\postController.class
 DAL\FriendshipDAL.class
 Models\Profile.class
 Controllers\sign_up.class

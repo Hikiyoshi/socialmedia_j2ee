@@ -69,8 +69,8 @@ private static final long serialVersionUID = 1L;
                 profile.setEmail(email);
 
                 // Lưu thông tin vào cơ sở dữ liệu sử dụng ProfileDAO (giả sử bạn đã định nghĩa ProfileDAO)
-                ProfileDAO profileDAO = new ProfileDAO();
-                profileDAO.createProfile(profile);
+                
+                ProfileDAO.createProfile(profile);
 
                 return true;
 

@@ -20,20 +20,18 @@ import java.util.List;
  */
 public class PostDAO {
     
-    public static boolean createPost(Post p){
+    public static void createPost(Post p){
         EntityManager em = JpaUtils.createManager();
-        
         try {
             em.getTransaction().begin();
             em.persist(p);
             em.getTransaction().commit();
             System.out.println("Thêm thành công");
             
-            return true;
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Thêm thất bại");
-            return false;
+            
         } finally{
             JpaUtils.shutdown(em);
         }

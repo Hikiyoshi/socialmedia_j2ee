@@ -15,9 +15,7 @@ private static EntityManager _manager;
 
 		try {
 			_manager.getTransaction().begin();
-
 			_manager.persist(newProfile);
-
 			_manager.getTransaction().commit();
 			return true;
 		} catch (Exception e) {

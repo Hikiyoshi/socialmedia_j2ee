@@ -8,6 +8,8 @@ package Models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -29,7 +31,8 @@ import lombok.Data;
 public class Post {
     @Id
     @Column(name="idPost")
-    private String idPost;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPost;
     
     @Column(name="username") 
     private String username;
@@ -53,11 +56,11 @@ public class Post {
     @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
     private List<Reaction> reactions = new ArrayList<>();
     
-    public String getIdPost() {
+    public int getIdPost() {
         return idPost;
     }
 
-    public void setIdPost(String idPost) {
+    public void setIdPost(int idPost) {
         this.idPost = idPost;
     }
 
@@ -92,6 +95,18 @@ public class Post {
 	public void setReactions(List<Reaction> reactions) {
 		this.reactions = reactions;
 	}
+
+    public Post( String username, String content, Date dateCreated) {
+
+        this.username = username;
+        this.content = content;
+        this.dateCreated = dateCreated;
+        
+    }
+
+    public Post() {
+    }
+    
     
     
 }
