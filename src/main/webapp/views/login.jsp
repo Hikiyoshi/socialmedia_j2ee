@@ -109,12 +109,14 @@ button:hover {
     
     <form method="POST" action="/socialmedia_j2ee/login">
         <h2>Đăng nhập</h2>
+
         <div>
             <p class="alert alert-danger" >${error}</p>
         </div>
         <input type="text" id="username" name="username" placeholder="Tài khoản" >
       
         <input type="password" id="password" name="password" placeholder="Mật khẩu" >
+
 
         <button type="submit">Đăng nhập</button>
 
