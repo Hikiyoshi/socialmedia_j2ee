@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
 
             if (p != null && p.getPassword().equals(pw)) {
           
-                request.getSession().setAttribute("user", p);
+                request.setAttribute("user", p);
                 request.getRequestDispatcher("/views/Thanhcong.jsp").forward(request, response);
                 return; // Stop further processing
             } else {
