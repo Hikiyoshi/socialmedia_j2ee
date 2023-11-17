@@ -59,11 +59,11 @@ public class RegisterController extends HttpServlet {
                 
                     System.out.println("Loi: " + e);
                 }
+                response.sendRedirect(request.getContextPath() + "/views/login.jsp");
             }else {
                 request.setAttribute("message","Tài khoản đã tồn tại");
-            }
-        request.getRequestDispatcher("/views/register.jsp").forward(request, response);
-
+                request.getRequestDispatcher("/views/register.jsp").forward(request, response);
+            }       
         }
     
 

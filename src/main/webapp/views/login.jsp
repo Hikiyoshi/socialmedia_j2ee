@@ -85,6 +85,21 @@ button:hover {
 .signup-link a:hover {
     text-decoration: underline;
 }
+
+.alert-danger {
+    color: red;
+    
+    border-color: #f5c6cb;
+}
+.alert {
+    position: relative;
+    padding: .30rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-weight: 100; 
+    font-size: 14px;
+}
     </style>
     
 </head>
@@ -93,7 +108,9 @@ button:hover {
     
     <form method="POST" action="/socialmedia_j2ee/login">
         <h2>Đăng nhập</h2>
-        
+        <div>
+            <p class="alert alert-danger" >${error}</p>
+        </div>
         <input type="text" id="username" name="username" placeholder="Tài khoản" >
       
         <input type="password" id="password" name="password" placeholder="Mật khẩu" >
@@ -104,6 +121,6 @@ button:hover {
             Chưa có tài khoản? <a href="register.jsp">Đăng ký ngay</a>
         </div>
     </form>
-    <h2 style="color: red"> ${error}</h2>
+    
 </body>
 </html>

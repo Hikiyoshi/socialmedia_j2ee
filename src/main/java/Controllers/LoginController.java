@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author trand
  */
-@WebServlet("/login")
+@WebServlet(name = "LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
     
@@ -32,10 +32,11 @@ public class LoginController extends HttpServlet {
           
                 request.setAttribute("user", p);
                 request.getRequestDispatcher("/views/Thanhcong.jsp").forward(request, response);
-                return; // Stop further processing
+                
             } else {
                 // Incorrect username or password
                 request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
+                request.getRequestDispatcher("/views/login.jsp").forward(request, response);
             }
         } catch (Exception e) {
             // Exception occurred (e.g., database error)

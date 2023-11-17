@@ -90,6 +90,21 @@ button:hover {
 .signup-link a:hover {
     text-decoration: underline;
 }
+
+.alert-danger {
+    color: red;
+    
+    border-color: #f5c6cb;
+}
+.alert {
+    position: relative;
+    padding: .30rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-weight: 100; 
+    font-size: 14px;
+}
     </style>
 </head>
 <body>
@@ -98,7 +113,9 @@ button:hover {
         
         <input type="text" id="username" name="username" placeholder="Tài khoản" required >
         
-        <p style="color: red"> ${message} </p>
+        <div>
+            <p class="alert alert-danger" >${message}</p>
+        </div>
 
         <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
 
