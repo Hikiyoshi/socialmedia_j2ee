@@ -31,8 +31,8 @@ public class LoginController extends HttpServlet {
             if (p != null && p.getPassword().equals(pw)) {
           
                 request.setAttribute("user", p);
-                request.getRequestDispatcher("/views/Thanhcong.jsp").forward(request, response);
-                
+                request.getRequestDispatcher("/views/index.jsp").forward(request, response);
+
             } else {
                 // Incorrect username or password
                 request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
             // Exception occurred (e.g., database error)
             request.setAttribute("message", "Đã xảy ra lỗi khi đăng nhập!");
         }
-        request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        //request.getRequestDispatcher("/views/login.jsp").forward(request, response);
     }
 
     

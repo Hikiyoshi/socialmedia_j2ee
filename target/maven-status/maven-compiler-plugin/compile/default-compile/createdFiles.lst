@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 Controllers\Home.class
-=======
-Controllers\postController.class
-DAL\FriendshipDAL.class
-Models\Profile.class
->>>>>>> da50fa037d3a9803ac55671aeb53caeba654a0f4
 com\mycompany\social_media\resources\JakartaEE10Resource.class
 Controllers\RegisterController.class
 DAO\PostDAO.class
@@ -14,6 +8,7 @@ Controllers\LoginController.class
 Models\Post.class
 Models\PostComment.class
 Controllers\Profile.class
+Controllers\postController.class
 Models\Profile.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
