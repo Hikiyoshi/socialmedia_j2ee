@@ -1,4 +1,3 @@
-Controllers\Home.class
 com\mycompany\social_media\resources\JakartaEE10Resource.class
 Controllers\RegisterController.class
 DAO\PostDAO.class
@@ -12,6 +11,7 @@ Controllers\postController.class
 Models\Profile.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
+Controllers\HomeController.class
 Controllers\FriendListServlet.class
 DAO\ProfileDAO.class
 DAO\PostCommentDAO.class
