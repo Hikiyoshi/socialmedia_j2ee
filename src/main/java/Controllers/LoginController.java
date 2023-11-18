@@ -11,11 +11,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-/**
- *
- * @author trand
- */
 @WebServlet(name = "LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
@@ -29,7 +26,8 @@ public class LoginController extends HttpServlet {
             Profile p = ProfileDAO.selectByUsername(us);
 
             if (p != null && p.getPassword().equals(pw)) {
-          
+                HttpSession session = request.getSession();
+                session.setAttribute("user", p);
                 request.setAttribute("user", p);
                 request.getRequestDispatcher("/views/index.jsp").forward(request, response);
 
