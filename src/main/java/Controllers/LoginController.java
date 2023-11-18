@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", p);
                 request.setAttribute("user", p);
-                request.getRequestDispatcher("/views/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/").forward(request, response);
 
             } else {
                 // Incorrect username or password
