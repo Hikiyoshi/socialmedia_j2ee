@@ -56,7 +56,7 @@
                         <img src="images/profile-pic.png" alt="">
                         <div>
                             <p> Alex Carry</p>
-                            <a href="#">See your profile</a>
+                            <a href="/socialmedia_j2ee/profile">See your profile</a>
                         </div>
                     </div>
                     <div id="dark-button" onclick="darkModeON()">

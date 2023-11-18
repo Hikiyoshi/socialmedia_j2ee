@@ -17,23 +17,12 @@ import jakarta.servlet.http.HttpServletResponse;
  * @author haidu
  */
 @WebServlet(name = "Profile", urlPatterns = {"/profile"})
-public class Profile extends HttpServlet {
+public class ProfileController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Profile</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Profile at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -48,7 +37,7 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request,response);
     }
 
     /**
@@ -62,14 +51,15 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String username = request.getParameter("username");
-            if (username == null || username.isEmpty() || "".equals(username.trim())) {
-                request.setAttribute("message", "Lỗi!");
-            } else {
-                request.setAttribute("username", username);
-            }
-            System.out.println("abc");
-        request.getRequestDispatcher("views/profile.jsp").forward(request, response);
+//            String username = request.getParameter("username");
+//            if (username == null || username.isEmpty() || "".equals(username.trim())) {
+//                request.setAttribute("message", "Lỗi!");
+//            } else {
+//                request.setAttribute("username", username);
+//            }
+//            System.out.println("abc");
+//        request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
+        processRequest(request,response);
     }
 
     /**

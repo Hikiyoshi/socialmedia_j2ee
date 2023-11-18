@@ -1,6 +1,7 @@
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\HomeController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\PostImgDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\FriendshipController.java
+C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\ProfileController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\PostDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\ProfileDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\PostComment.java
@@ -8,7 +9,6 @@ C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\Friends
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\PostImage.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\Reaction.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\ReactionDAO.java
-C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\Profile.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\Post.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\LoginController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\postController.java
