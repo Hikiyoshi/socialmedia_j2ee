@@ -20,8 +20,9 @@ import java.util.List;
  *
  * @author Admin
  */
-@WebServlet(name = "Home", urlPatterns = {"/"})
+@WebServlet(name = "Home", urlPatterns = { "/" })
 public class HomeController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -33,6 +34,11 @@ public class HomeController extends HttpServlet {
             request.getRequestDispatcher("/views/login.jsp").forward(request, response);
         }
         else{
+            // merge from VQ
+            request.setAttribute("avatar", p.getImgAvatar().split("[.]")[0]);
+            request.setAttribute("username", p.getUsername());
+            request.setAttribute("fullname", p.getFirstname() + " " + p.getSurname());
+            //merge from DD
             List<Post> listPost = PostDAO.findByUsernamePages(p.getUsername(), 0, 5);
             request.setAttribute("ListPost", listPost);
             request.getRequestDispatcher("/views/index.jsp").forward(request, response);
