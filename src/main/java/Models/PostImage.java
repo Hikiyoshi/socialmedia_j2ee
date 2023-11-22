@@ -30,4 +30,28 @@ public class PostImage {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPost", insertable = false, updatable = false)
     private Post img_post;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getIdPost() {
+		return idPost;
+	}
+
+	public void setIdPost(String idPost) {
+		this.idPost = idPost;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 }
