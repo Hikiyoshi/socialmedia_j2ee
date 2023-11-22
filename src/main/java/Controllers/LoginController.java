@@ -29,8 +29,9 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", p);
                 request.setAttribute("user", p);
-                request.getRequestDispatcher("/").forward(request, response);
-
+                
+                response.sendRedirect("/socialmedia_j2ee/index");
+                //request.getRequestDispatcher("/index").forward(request, response);
             } else {
                 // Incorrect username or password
                 request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");

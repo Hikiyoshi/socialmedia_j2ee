@@ -294,7 +294,7 @@
         <footer id="footer">
             <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
         </footer>
-
+        <jsp:include page="../components/showpost.jsp" />
         <script src="<%=request.getContextPath()%>/templates/function.js"></script>
     </body>
 </html>

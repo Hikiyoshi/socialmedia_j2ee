@@ -181,4 +181,35 @@ public class PostDAO {
         
         return list;
     }
+    
+    public static List<Post> findByUsernamePages(String username,int page, int limit){
+        EntityManager em = JpaUtils.createManager();
+        List<Post> list = new ArrayList<>();
+        
+            try {
+                em.getTransaction().begin();
+                
+                String sqpl = "SELECT p FROM Post p WHERE p.username = :username ORDER BY p.dateCreated DESC";
+                
+                TypedQuery<Post> query = em.createQuery(sqpl, Post.class);
+                query.setParameter("username", username);
+                
+                //with page is the number of first position in list post, start with 0
+                //limit is the max number of post which we wanna read 
+                query.setFirstResult(page*limit);
+                query.setMaxResults(limit);
+                
+                list = query.getResultList();
+                
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                em.getTransaction().rollback();
+                System.out.println("Tim that bai");
+            } finally {
+                JpaUtils.shutdown(em);
+            }
+        
+        return list;
+    }
 }

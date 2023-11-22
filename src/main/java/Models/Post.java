@@ -107,6 +107,10 @@ public class Post {
     public Post() {
     }
     
+    @Override
+    public String toString(){
+        return "idPost: " + this.idPost + " username: " + this.username + " content: " + this.content + " datecreated: " + this.dateCreated;
+    }
     
     
 }

@@ -9,11 +9,24 @@
         <servlet-name>Home</servlet-name>
         <servlet-class>Controllers.HomeController</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>Controllers.LoginController</servlet-class>
+    </servlet>
+    
+    
     <!-- Ánh xạ URL đến servlet -->
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/sign-in</url-pattern>
+    </servlet-mapping>
+    
     <!-- Định nghĩa trang chào mừng -->
     <welcome-file-list>
         <welcome-file>index</welcome-file>

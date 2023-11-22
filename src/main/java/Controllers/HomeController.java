@@ -4,6 +4,8 @@
  */
 package Controllers;
 
+import DAO.PostDAO;
+import Models.Post;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpSession;
 import Models.Profile;
+import java.util.List;
 
 /**
  *
@@ -22,9 +25,18 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession session = request.getSession();
-            Profile p = (Profile)session.getAttribute("user");
+        Profile p = (Profile)session.getAttribute("user");
+        
+        if(p == null){
+            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        }
+        else{
+            List<Post> listPost = PostDAO.findByUsernamePages(p.getUsername(), 0, 5);
+            request.setAttribute("ListPost", listPost);
             request.getRequestDispatcher("/views/index.jsp").forward(request, response);
+        }
     }
     
     
