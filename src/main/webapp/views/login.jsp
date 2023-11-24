@@ -16,7 +16,6 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/sign_in.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/style.css">
-    
     <style>
     body {
     font-family: Arial, sans-serif;
@@ -107,7 +106,7 @@ button:hover {
 <body>
     
     
-    <form method="POST" action="/socialmedia_j2ee/login">
+    <form method="POST" action="/createPost/login">
         <h2>Đăng nhập</h2>
 
         <div>

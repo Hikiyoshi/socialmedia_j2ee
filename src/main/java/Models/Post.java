@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,7 +42,7 @@ public class Post {
     private String content;
     
     @Column(name="datecreated")
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username" , insertable = false , updatable = false)
@@ -80,11 +81,11 @@ public class Post {
         this.content = content;
     }
 
-    public Date getDateCreated() {
+     public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
     
@@ -96,7 +97,7 @@ public class Post {
 		this.reactions = reactions;
 	}
 
-    public Post( String username, String content, Date dateCreated) {
+    public Post( String username, String content, LocalDateTime dateCreated) {
 
         this.username = username;
         this.content = content;

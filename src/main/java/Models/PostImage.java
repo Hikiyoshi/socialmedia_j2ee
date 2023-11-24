@@ -22,7 +22,7 @@ public class PostImage {
     private int id;
     
     @Column(name = "idPost")
-    private String idPost;
+    private int idPost;
     
     @Column(name = "img")
     private String img;
@@ -31,27 +31,34 @@ public class PostImage {
     @JoinColumn(name = "idPost", insertable = false, updatable = false)
     private Post img_post;
 
-	public int getId() {
-		return id;
-	}
+    public PostImage(int idPost, String img) {
+        this.idPost = idPost;
+        this.img = img;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public PostImage() {
+    }
+    
+     public int getId() {
+        return id;
+    }
 
-	public String getIdPost() {
-		return idPost;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
+     public int getIdPost() {
+        return idPost;
+    }
 
-	public void setIdPost(String idPost) {
-		this.idPost = idPost;
-	}
+    public void setIdPost(int idPost) {
+        this.idPost = idPost;
+    }
+     public String getImg() {
+        return img;
+    }
 
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
+    public void setImg(String img) {
+        this.img = img;
+    }
+   
 }

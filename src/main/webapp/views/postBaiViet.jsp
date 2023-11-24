@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Nov 3, 2023, 1:47:21 PM
+    Document   : postBaiViet
+    Created on : Nov 19, 2023, 10:07:08 AM
     Author     : Admin
 --%>
 
@@ -14,28 +14,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FontAweome CDN Link for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="stylesheet" href="css/post.css" >
+    <link rel="stylesheet" href="/createPost/templates/post1.css" >
     
      <script>
-//        function chooseImage() {
-//    var fileInput = document.createElement("input");
-//    fileInput.type = "file";
-//    fileInput.accept = "image/*";
-//    
-//    fileInput.addEventListener("change", function () {
-//        if (fileInput.files && fileInput.files[0]) {
-//            var reader = new FileReader();
-//            
-//            reader.onload = function (e) {
-//                var selectedImage = document.getElementById("selectedImage");
-//                selectedImage.src = e.target.result;
-//            };
-//            
-//            reader.readAsDataURL(fileInput.files[0]);
-//        }
-//    });
-//    fileInput.click();
-//}
+        function chooseImage() {
+    var fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    
+    fileInput.addEventListener("change", function () {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                var selectedImage = document.getElementById("selectedImage");
+                selectedImage.src = e.target.result;
+            };
+            
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+    fileInput.click();
+}
 
     function displaySelectedImage(event) {
             var input = event.target;
@@ -57,15 +57,24 @@
     
   </head>
   <body>
+      <%    
+          String username =null;
+          HttpSession s = request.getSession();
+            if (s != null ) {
+             username = (String) session.getAttribute("user");
+             
+          }
+          
+      %>
      
       <div class="container">
       <div class="wrapper">
         <section class="post">
           <header>Create Post</header>
-          <form action="/social_media/postController" method="post" enctype="multipart/form-data" >
-              <input type="hidden" name="username" value="2">
+          <form action="/createPost/postController" method="post" enctype="multipart/form-data" >
+              <input type="hidden" name="username" value="<% if(username!=null) out.print(username);%>">
             <div class="content">
-              <img src="/social_media/icons/TD.jpg" alt="logo">
+              <img src="/createPost/images/TD.jpg" alt="logo">
               <div class="details">
                 
                 <div class="privacy">
@@ -79,19 +88,19 @@
              
               <img id="selectedImage" style="max-width: 450px; " src="" alt="" >
             <div class="theme-emoji">
-              <img src="/social_media/icons/theme.svg" alt="theme">
-              <img src="/social_media/icons/smile.svg" alt="smile">
+              <img src="/createPost/images/theme.svg" alt="theme">
+              <img src="/createPost/images/smile.svg" alt="smile">
             </div>
             <div class="options">
               <p>Add to Your Post</p>
               <ul class="list">
                   
                   <li><div class="gallery"><input name="image" type="file" id="imageInput" onchange="displaySelectedImage(event)" alt="Submit" ">
-                          <img src="/social_media/icons/gallery.svg" alt="gallery"><!-- comment --></div></li>
+                          <img src="/createPost/images/gallery.svg" alt="gallery"><!-- comment --></div></li>
 
-                  <li><img src="/social_media/icons/emoji.svg" alt="gallery"></li>
-                <li><img src="/social_media/icons/mic.svg" alt="gallery"></li>
-                <li><img src="/social_media/icons/more.svg" alt="gallery"></li>
+                  <li><img src="/createPost/images/emoji.svg" alt="gallery"></li>
+                <li><img src="/createPost/images/mic.svg" alt="gallery"></li>
+                <li><img src="/createPost/images/more.svg" alt="gallery"></li>
               </ul>
             </div>
                   <button type="submit">Post</button>

@@ -5,7 +5,13 @@
 --%>
 
 
-
+<%@ page import="DAO.PostDAO" %>
+<%@ page import="Models.Post" %>
+<%@ page import="Models.PostImage" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,320 +19,281 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-        <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
-        <script src="views/js/showpost.js"></script>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post.css">
+        <!--        <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>-->
         <title>social</title>
     </head>
     <body>
-        <nav class="navbar">
-            <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
-                <ul class="navlogo">
-                    <li class="circle"><img class="icon" src="images/notification_1.png"></li>
-                    <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="images/friends_1.png"></li>
-                    <li class="circle"><img class="icon" src="images/messenger.png"></li>
-                  
-
-                </ul>
-
-
-            </div>
-
-            <div class="friend-requests">
-                <div class="request">
-                    <img src="images/friend.png">
-                    <p>kết bạn</p>
-                    <p>kết bạn</p>
-                    <p>kết bạn</p>
-                    <p>ket ban</p>
-                </div>
-            </div>
-
-            <div class="nav-right">
-                <div class="search-box">
-                    <img src="images/search.png" alt="">
-                    <input type="text" placeholder="Search">
-                </div>
-                <div class="profile-image online" onclick="UserSettingToggle()">
-                    <img src="images/${avatar}.png" alt="">
-                </div>
-
-            </div>
-            <div class="user-settings">
-                <div class="profile-darkButton">
-                    <div class="user-profile">
-                        <img src="images/${avatar}.png" alt="">
-                        <div>
-                            <p> ${fullname}</p>
-                            <a href="/socialmedia_j2ee/profile?username=${username}">See your profile</a>
+        
+        <%    
+          String username =null;
+          HttpSession s = request.getSession();
+            if (s != null ) {
+             username = (String) session.getAttribute("user");
+             
+          }
+          
+      %>
+        
+        <!--class="hidden post"-->
+        <div id="modal-background" style="background: rgba(0, 0, 0, 0.5); width: 100%; position: absolute; height: 100%; z-index: 10; display: none"></div>
+        <div id="newForm1"  style="position: absolute; z-index: 20;display: none; width: 50%; height: 500px; top: 25%; left: 30%">
+            <div class="container">
+                <div class="wrapper">
+                    <section class="post">
+                        <div style="display: flex; justify-content: space-between"> 
+                            <h2 style="margin-left: 20px; background-color: white">Create Post</h2>
+                            <div onclick="toggleForms(false)" style=" margin-right: 0px; padding: 8px 16px; cursor: pointer; background-color: white">X</div>                                   
                         </div>
-                    </div>
-                    <div id="dark-button" onclick="darkModeON()">
-                        <span></span>
-                    </div>
-                </div>
-                <hr>
-                <div class="user-profile">
-                    <img src="images/feedback.png" alt="">
-                    <div>
-                        <p> Give Feedback</p>
-                        <a href="#">Help us to improve</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="settings-links">
-                    <img src="images/setting.png" alt="" class="settings-icon">
-                    <a href="#">Settings & Privary <img src="images/arrow.png" alt=""></a>
-                </div>
+                        <form action="/createPost/postController" method="post" enctype="multipart/form-data" >
+                            <input type="hidden" name="username" value="<% if(username!=null) out.print(username);%>">
+                            <div class="content">
+                                <img src="/createPost/images/TD.jpg" alt="logo">
+                                <div class="details">
 
-                <div class="settings-links">
-                    <img src="images/help.png" alt="" class="settings-icon">
-                    <a href="#">Help & Support <img src="images/arrow.png" alt=""></a>
-                </div>
-
-                <div class="settings-links">
-                    <img src="images/Display.png" alt="" class="settings-icon">
-                    <a href="#">Display & Accessibility <img src="images/arrow.png" alt=""></a>
-                </div>
-
-                <div class="settings-links">
-                    <img src="images/logout.png" alt="" class="settings-icon">
-                    <a href="#">Logout <img src="images/arrow.png" alt=""></a>
-                </div>
-
-            </div>
-        </nav>
-
-        <!-- content-area------------ -->
-
-        <div class="container">
-<!--            <div class="left-sidebar">
-                <div class="important-links">
-                    <a href="#"><img src="images/news.png" alt="">Latest News</a>
-                    <a href="#"><img src="images/friends.png" alt="">Friends</a>
-                    <a href="#"><img src="images/group.png" alt="">Groups</a>
-                    <a href="#"><img src="images/watch.png" alt="">Watch</a>
-                    <a href="#">Xem thêm</a>
-                </div>
-
-                <div class="shortcut-links">
-                    <p>Lối tắt của bạn</p>
-                    <a href="#"> <img src="images/supercity.png" alt="">Supercity</a>
-                    <a href="#"> <img src="images/monster-legends.png" alt="">Monster Legends</a>
-                    <a href="#"> <img src="images/sguJ2EE.png" alt="">SGU-J2EE</a>
-                    <a href="#"> <img src="images/snake.png" alt="">snake.io</a>
-                </div>
-            </div>-->
-
-            <!-- main-content------- -->
-
-            <div class="content-area">
-                <div class="write-post-container">
-                    <div class="user-profile">
-                        <img src="images/${avatar}.png" alt="">
-                        <div>
-                            <p> ${fullname}</p>
-                            <small>Public <i class="fas fa-caret-down"></i></small>
-                        </div>
-                    </div>
-
-                    <div class="post-upload-textarea">
-                        <textarea name="" placeholder="What's on your mind, Alex?" id="" cols="30" rows="3"></textarea>
-                        <div class="add-post-links">
-                            <a href="#"><img src="images/live-video.png" alt="">Live Video</a>
-                            <a href="#"><img src="images/photo.png" alt="">Photo/Video</a>
-                            <a href="#"><img src="images/feeling.png" alt="">Feeling Activity</a>
-                        </div>
-                    </div>
-                </div>
-
-                            
-                <div id="post-container">
-                    <div id="load_posts"></div>
-                    <div id="load_message"></div>
-                </div>
-                            
-                            
-<!--                <div class="status-field-container write-post-container">
-                    <div class="user-profile-box">
-                        <div class="user-profile">
-                            <img src="images/${avatar}.png" alt="">
-                            <div>
-                                <p> ${fullname}</p>
-                                <small>August 13 1999, 09.18 pm</small>
+                                    <div class="privacy">
+                                        <i class="fas fa-user-friends"></i>
+                                        <span>Friends</span>
+                                        <i class="fas fa-caret-down"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                        </div>
-                    </div>
-                    <div class="status-field">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolores praesentium dicta
-                            laborum nihil accusantium odit laboriosam, sed sit autem! <a
-                                href="#">#This_Post_is_Better!!!!</a> </p>
-                        <img src="images/feed-image-1.png" alt="">
+                            <textarea id="content" name="content" placeholder="Bạn đang nghĩ gì?" spellcheck="false" required ></textarea>
 
-                    </div>
-                    <div class="post-reaction">
-                        <div class="activity-icons">
-                            <div><img src="images/like-blue.png" alt="">120</div>
-                            <div><img src="images/comments.png" alt="">52</div>
-                            <div><img src="images/share.png" alt="">35</div>
-                        </div>
-                        <div class="post-profile-picture">
-                            <img src="images/${avatar}.png " alt=""> <i class=" fas fa-caret-down"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="status-field-container write-post-container">
-                    <div class="user-profile-box">
-                        <div class="user-profile">
-                            <img src="images/${avatar}.png" alt="">
-                            <div>
-                                <p> ${fullname}</p>
-                                <small>August 13 1999, 09.18 pm</small>
+                            <img id="selectedImage" style="max-width: 450px; " src="" alt="" >
+                            <div class="theme-emoji">
+                                <img src="/createPost/images/theme.svg" alt="theme">
+                                <img src="/createPost/images/smile.svg" alt="smile">
                             </div>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                        </div>
-                    </div>
-                    <div class="status-field">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolores praesentium dicta
-                            laborum nihil accusantium odit laboriosam, sed sit autem! <a
-                                href="#">#This_Post_is_Bigger!!!!</a> </p>
-                        <img src="images/feed-image-2.png" alt="">
+                            <div class="options">
+                                <p>Add to Your Post</p>
+                                <ul class="list">
 
-                    </div>
-                    <div class="post-reaction">
-                        <div class="activity-icons">
-                            <div><img src="images/like-blue.png" alt="">120</div>
-                            <div><img src="images/comments.png" alt="">52</div>
-                            <div><img src="images/share.png" alt="">35</div>
-                        </div>
-                        <div class="post-profile-picture">
-                            <img src="images/${avatar}.png " alt=""> <i class=" fas fa-caret-down"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="status-field-container write-post-container">
-                    <div class="user-profile-box">
-                        <div class="user-profile">
-                            <img src="images/${avatar}.png" alt="">
-                            <div>
-                                <p> ${fullname}</p>
-                                <small>August 13 1999, 09.18 pm</small>
+                                    <li><div class="gallery"><input name="image" type="file" id="imageInput" onchange="displaySelectedImage(event)" alt="Submit" ">
+                                            <img src="/createPost/images/gallery.svg" alt="gallery">  </div></li>
+
+                                    <li><img src="/createPost/images/emoji.svg" alt="gallery"></li>
+                                    <li><img src="/createPost/images/mic.svg" alt="gallery"></li>
+                                    <li><img src="/createPost/images/more.svg" alt="gallery"></li>
+                                </ul>
                             </div>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                        </div>
-                    </div>
-                    <div class="status-field">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolores praesentium dicta
-                            laborum nihil accusantium odit laboriosam, sed sit autem! <a
-                                href="#">#This_Post_is_faster!!!!</a> </p>
-                        <img src="images/feed-image-3.png" alt="">
+                            <button type="submit" onclick="toggleForms(false)">Post</button>
+                        </form>
 
-                    </div>
-                    <div class="post-reaction">
-                        <div class="activity-icons">
-                            <div><img src="images/like-blue.png" alt="">120</div>
-                            <div><img src="images/comments.png" alt="">52</div>
-                            <div><img src="images/share.png" alt="">35</div>
-                        </div>
-                        <div class="post-profile-picture">
-                            <img src="images/${avatar}.png " alt=""> <i class=" fas fa-caret-down"></i>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-                <div class="status-field-container write-post-container">
-                    <div class="user-profile-box">
-                        <div class="user-profile">
-                            <img src="images/${avatar}.png" alt="">
-                            <div>
-                                <p> ${fullname}</p>
-                                <small>August 13 1999, 09.18 pm</small>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                        </div>
-                    </div>
-                    <div class="status-field">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolores praesentium dicta
-                            laborum nihil accusantium odit laboriosam, sed sit autem! <a
-                                href="#">#This_Post_is_perfect!!!!</a> </p>
-                        <img src="images/feed-image-4.png" alt="">
-
-                    </div>
-                    <div class="post-reaction">
-                        <div class="activity-icons">
-                            <div><img src="images/like-blue.png" alt="">120</div>
-                            <div><img src="images/comments.png" alt="">52</div>
-                            <div><img src="images/share.png" alt="">35</div>
-                        </div>
-                        <div class="post-profile-picture">
-                            <img src="images/${avatar}.png " alt=""> <i class=" fas fa-caret-down"></i>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-LoadMore" onclick="LoadMoreToggle()">Load More</button>
-            </div>-->
-
-           
             </div>
         </div>
-        <footer id="footer">
-            <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
-        </footer>
-        <jsp:include page="../components/showpost.jsp" />
-        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                var max = '<%= request.getAttribute("maxPage") %>';
-                var start = 0;
-                var action = 'inactive';
-                function load_data_post(start){
-                    $.ajax({
-                       url: "/socialmedia_j2ee/ShowPost",
-                       metod: "GET",
-                       data: {
-                           startpage: start,
-                           username: "${user.username}"
-                       },
-                       success: function (data) {
-                        $('#load_posts').append(data);
+        <div id="wrapper-main">
+            <nav class="navbar index">
+                <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
+                    <ul class="navlogo">
+                        <li class="circle"><img class="icon" src="/createPost/images/notification_1.png"></li>
+                        <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="/createPost/images/friends_1.png"></li>
+                        <li class="circle"><img class="icon" src="/createPost/images/messenger.png"></li>
+
+
+                    </ul>
+
+
+                </div>
+
+                <div class="friend-requests">
+                    <div class="request">
+                        <img src="/createPost/images/friend.png">
+                        <p>kết bạn</p>
+                        <p>kết bạn</p>
+                        <p>kết bạn</p>
+                        <p>ket ban</p>
+                    </div>
+                </div>
+
+                <div class="nav-right">
+                    <div class="search-box">
+                        <img src="/createPost/images/search.png" alt="">
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <div class="profile-image online" onclick="UserSettingToggle()">
+                        <img src="/createPost/images/profile-pic.png" alt="">
+                    </div>
+
+                </div>
+                <div class="user-settings">
+                    <div class="profile-darkButton">
+                        <div class="user-profile">
+                            <img src="/createPost/images/profile-pic.png" alt="">
+                            <div>
+                                <p> Alex Carry</p>
+                                <a href="#">See your profile</a>
+                            </div>
+                        </div>
+                        <div id="dark-button" onclick="darkModeON()">
+                            <span></span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="user-profile">
+                        <img src="/createPost/images/feedback.png" alt="">
+                        <div>
+                            <p> Give Feedback</p>
+                            <a href="#">Help us to improve</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="settings-links">
+                        <img src="/createPost/images/setting.png" alt="" class="settings-icon">
+                        <a href="#">Settings & Privary <img src="/createPost/images/arrow.png" alt=""></a>
+                    </div>
+
+                    <div class="settings-links">
+                        <img src="/createPost/images/help.png" alt="" class="settings-icon">
+                        <a href="#">Help & Support <img src="/createPost/images/arrow.png" alt=""></a>
+                    </div>
+
+                    <div class="settings-links">
+                        <img src="/createPost/images/Display.png" alt="" class="settings-icon">
+                        <a href="#">Display & Accessibility <img src="/createPost/images/arrow.png" alt=""></a>
+                    </div>
+
+                    <div class="settings-links">
+                        <img src="/createPost/images/logout.png" alt="" class="settings-icon">
+                        <a href="#">Logout <img src="images/arrow.png" alt=""></a>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="container">
+  
+                <div class="content-area">
+
+                    <div class="write-post-container" id="existingForm">
+                        <div class="user-profile">
+                            <img src="/createPost/images/profile-pic.png" alt="">
+                            <div  onclick="toggleForms(true)" style="cursor: pointer">
+                                <button name="post" class="postContent">Bạn đang nghĩ gì?</button>
+                            </div>
+                        </div>
+
+                        <div class="post-upload-textarea">
+
+
+
+                            <div class="add-post-links">
+                                <a href="#"><img src="/createPost/images/live-video.png" alt="">Live Video</a>
+                                <a href="#"><img src="/createPost/images/photo.png" alt="">Photo/Video</a>
+                                <a href="#"><img src="/createPost/images/feeling.png" alt="">Feeling Activity</a>
+                            </div>
+                        </div>
                         
-                        if(data.toString().trim() === ''){
-                            $('#load_message').html("<button>You Read All Post</button>");
-                            action = 'active';
-                        }
-                        else{
-                            $('#load_message').html("<button>Please Wait</button>");
-                            action = 'inactive';
-                        }console.log(data);
-                    }
-                    });
+                        
+                        <% 
+                            List<Post> list = PostDAO.readAllPost();
+                            
+                        if(list !=null){
+                           for(Post p : list){
+                           List<PostImage> lpi = PostDAO.findImageById(p.getIdPost());
+                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        String formattedDateTime = p.getDateCreated().format(formatter);
+                             out.print("<div class='status-field-container write-post-container'>");
+                    out.print("<div class='user-profile-box'>");
+                        out.print("<div class='user-profile'>");
+                        
+                            out.print("<img src='/createPost/images/profile-pic.png' alt=''>");
+                            out.print("<div>");
+                                out.print("<p>"+ p.getUsername()+ "</p>");
+                                out.print("<small>"+formattedDateTime+"</small>");
+                            out.print("</div>");
+                        out.print("</div>");
+                        out.print("<div>");
+                            out.print("<a href='#'><i class='fas fa-ellipsis-v'></i></a>");
+                        out.print("</div>");
+                    out.print("</div>");
+                    out.print("<div class='status-field'>");
+                        out.print("<p>"+p.getContent()+ " </p>");
+                        for(PostImage pi : lpi){
+                            out.print("<img src='/createPost/images/"+pi.getImg()+"' alt=''>");
+                            }
+                        
+
+                    out.print("</div>");
+                    out.print("<div class='post-reaction'>");
+                        out.print("<div class='activity-icons'>");
+                            out.print("<div><img src='/createPost/images/like-blue.png' alt=''>120</div>");
+                            out.print("<div><img src='/createPost/images/comments.png' alt=''>52</div>");
+                            out.print("<div><img src='/createPost/images/share.png' alt=''>35</div>");
+                        out.print("</div>");
+                        out.print("<div class='post-profile-picture'>");
+                            out.print("<img src='/createPost/images/profile-pic.png ' alt=''> <i class=' fas fa-caret-down'></i>");
+                            out.print("</div>");
+                        out.print("</div>");
+                        out.print("</div>");
+ 
+                            }
+                            
+                            
+                            }else{
+                            out.print("rong");
+                            }
+                       %>
+
+            <footer id="footer">
+                <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
+            </footer>
+        </div>
+
+        <script>
+            function toggleForms(isShow) {            
+                var form = document.getElementById("newForm1");
+                const modal = document.getElementById("modal-background");
+                const wrapper = document.getElementById("wrapper-main");
+                let display = "none";
+                let overflow = "auto";
+                let height = "100%";
+                if (isShow) {
+                    display = "block";
+                    overflow = "hidden";
+                    height = "100vh";
                 }
                 
-                if(action === 'inactive'){
-                    action = 'active';
-                    load_data_post(start);
-                }
-                $(window).scroll(function(){
-                    if($(window).scrollTop() + $(window).height() > $("#load_posts").height() && action === 'inactive')
-                    {
-                        action = 'active';
-                        start = start + 1;console.log(start);
-                        if(start <= max){
-                            setTimeout(function(){
-                                load_data_post(start); 
-                            }, 1000);
-                        }
-                    }
-                });
+                form.style.display = display;
+                modal.style.display = display;
+                wrapper.style.height = height;
+                wrapper.style.overflow = overflow;
+            }
+            
+            function chooseImage() {
+                var fileInput = document.createElement("input");
+                fileInput.type = "file";
+                fileInput.accept = "image/*";
+                fileInput.addEventListener("change", function () {
+                if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                var selectedImage = document.getElementById("selectedImage");
+                selectedImage.src = e.target.result;
+                };
+            
+                reader.readAsDataURL(fileInput.files[0]);
+            }
             });
+            fileInput.click();
+        }
+
+            function displaySelectedImage(event) {
+                var input = event.target;
+                var reader = new FileReader();
+
+                reader.onload = function () {
+                var image = document.getElementById('selectedImage');
+                image.src = reader.result; // Đặt nguồn hình ảnh là dữ liệu đã đọc
+                  };
+
+                   // Đọc dữ liệu của tệp hình ảnh khi nó được chọn
+                reader.readAsDataURL(input.files[0]);
+              }
+            
         </script>
+        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
     </body>
 </html>
