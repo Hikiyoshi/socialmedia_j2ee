@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
+        <script src="views/js/showpost.js"></script>
         <title>social</title>
     </head>
     <body>
@@ -119,29 +120,6 @@
             <!-- main-content------- -->
 
             <div class="content-area">
-                <!-- <div class="story-gallery">
-                    <div class="story story1">
-                        <img src="images/upload.png" alt="">
-                        <p>Post Story</p>
-                    </div>
-                    <div class="story story2">
-                        <img src="images/member-1.png" alt="">
-                        <p>Alison</p>
-                    </div>
-                    <div class="story story3">
-                        <img src="images/member-2.png" alt="">
-                        <p>Jackson</p>
-                    </div>
-                    <div class="story story4">
-                        <img src="images/member-3.png" alt="">
-                        <p>Samona</p>
-                    </div>
-                    <div class="story story5">
-                        <img src="images/member-4.png" alt="">
-                        <p>John</p>
-                    </div>
-                </div> -->
-
                 <div class="write-post-container">
                     <div class="user-profile">
                         <img src="images/${avatar}.png" alt="">
@@ -161,7 +139,14 @@
                     </div>
                 </div>
 
-                <div class="status-field-container write-post-container">
+                            
+                <div id="post-container">
+                    <div id="load_posts"></div>
+                    <div id="load_message"></div>
+                </div>
+                            
+                            
+<!--                <div class="status-field-container write-post-container">
                     <div class="user-profile-box">
                         <div class="user-profile">
                             <img src="images/${avatar}.png" alt="">
@@ -286,7 +271,7 @@
                     </div>
                 </div>
                 <button type="button" class="btn-LoadMore" onclick="LoadMoreToggle()">Load More</button>
-            </div>
+            </div>-->
 
            
             </div>
@@ -296,5 +281,52 @@
         </footer>
         <jsp:include page="../components/showpost.jsp" />
         <script src="<%=request.getContextPath()%>/templates/function.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var max = '<%= request.getAttribute("maxPage") %>';
+                var start = 0;
+                var action = 'inactive';
+                function load_data_post(start){
+                    $.ajax({
+                       url: "/socialmedia_j2ee/ShowPost",
+                       metod: "GET",
+                       data: {
+                           startpage: start,
+                           username: "${user.username}"
+                       },
+                       success: function (data) {
+                        $('#load_posts').append(data);
+                        
+                        if(data.toString().trim() === ''){
+                            $('#load_message').html("<button>You Read All Post</button>");
+                            action = 'active';
+                        }
+                        else{
+                            $('#load_message').html("<button>Please Wait</button>");
+                            action = 'inactive';
+                        }console.log(data);
+                    }
+                    });
+                }
+                
+                if(action === 'inactive'){
+                    action = 'active';
+                    load_data_post(start);
+                }
+                $(window).scroll(function(){
+                    if($(window).scrollTop() + $(window).height() > $("#load_posts").height() && action === 'inactive')
+                    {
+                        action = 'active';
+                        start = start + 1;console.log(start);
+                        if(start <= max){
+                            setTimeout(function(){
+                                load_data_post(start); 
+                            }, 1000);
+                        }
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

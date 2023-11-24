@@ -38,9 +38,9 @@ public class HomeController extends HttpServlet {
             request.setAttribute("avatar", p.getImgAvatar().split("[.]")[0]);
             request.setAttribute("username", p.getUsername());
             request.setAttribute("fullname", p.getFirstname() + " " + p.getSurname());
-            //merge from DD
-            List<Post> listPost = PostDAO.findByUsernamePages(p.getUsername(), 0, 5);
-            request.setAttribute("ListPost", listPost);
+            
+            int maxPages = PostDAO.countMaxPagefindByUsernamePages(p.getUsername(), 5);
+            request.setAttribute("maxPage", maxPages);
             request.getRequestDispatcher("/views/index.jsp").forward(request, response);
         }
     }

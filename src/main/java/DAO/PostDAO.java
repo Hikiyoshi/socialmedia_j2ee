@@ -212,4 +212,31 @@ public class PostDAO {
         
         return list;
     }
+    
+    public static int countMaxPagefindByUsernamePages(String username,int limited){
+        EntityManager em = JpaUtils.createManager();
+        int result = 0;
+        
+            try {
+                em.getTransaction().begin();
+                
+                String sqpl = "SELECT COUNT(p) FROM Post p WHERE p.username = :username";
+                
+                TypedQuery<Long> query = em.createQuery(sqpl, Long.class);
+                query.setParameter("username", username);
+                
+                Long TotalAmuont = query.getSingleResult();
+                result = (int) Math.ceil((double)TotalAmuont/limited);
+                
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                em.getTransaction().rollback();
+                System.out.println("Dem that bai");
+            } finally {
+                JpaUtils.shutdown(em);
+            }
+        
+        return result;
+    }
 }
