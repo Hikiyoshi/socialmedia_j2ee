@@ -4,13 +4,15 @@
  */
 package DAO;
 
-import Models.Post;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TemporalType;
-import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import Models.Post;
+import Models.Profile;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.TypedQuery;
 
 
 
@@ -152,6 +154,33 @@ public class PostDAO {
         }
     }
     
+    public static List<Post> findByUsername(String username){
+        EntityManager em = JpaUtils.createManager();
+        List<Post> posts = new ArrayList<>();
+        
+        try {
+            em.getTransaction().begin();
+            
+            String jpql = "SELECT p FROM Post p WHERE p.username = :username";
+            
+            TypedQuery<Post> query = em.createQuery(jpql, Post.class);
+            query.setParameter(":username", username);
+            
+            posts = query.getResultList();
+            
+            em.getTransaction().commit();
+            System.out.println("Tim kiem bang username thanh cong!");         
+            
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("Tim kiem bang username that bai!");
+        } finally {
+            JpaUtils.shutdown(em);
+        }
+        
+        return posts;
+    }
+    
     public static List<Post> findByDate(Date start, Date end){
         List<Post> list = new ArrayList<>();
         EntityManager em = JpaUtils.createManager();
@@ -180,5 +209,18 @@ public class PostDAO {
         }
         
         return list;
+    }
+    
+    public List<Post> findAllFriendsPosts(String username, int page, int limit){
+    	List<Post> allPosts = new ArrayList<>();
+    	
+    	List<Profile> friends = FriendshipDAO.getListFriendship(0, Integer.MAX_VALUE, username);
+    	
+    	for (Profile friend : friends) {
+    		List<Post> friendPosts = findByUsername(friend.getUsername());
+    		allPosts.addAll(friendPosts);
+    	}
+    	
+    	return allPosts;
     }
 }

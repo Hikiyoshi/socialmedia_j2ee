@@ -95,6 +95,9 @@
                 <div class="profile-avatar">
                     <img src="images/${avatar}.png" alt="">
                 </div>
+                <div class="profile-editting">
+                	<input name="fullname" type="text" placeholder="Fullname?" /><br>
+                </div>
                 <div class="profile-right-block">
                     <div class="profile-user-settings" align="center">
                         <h2 class="profile-user-name"><b>${fullname}</b></h2> <br>
