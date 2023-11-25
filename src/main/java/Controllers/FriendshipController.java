@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @author haidu
  */
-@WebServlet(name = "FriendshipController", urlPatterns = {"/friend"})
+@WebServlet(name = "FriendshipController", urlPatterns = {"/profile"})
 public class FriendshipController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -111,12 +111,14 @@ public class FriendshipController extends HttpServlet {
         }
         String path= req.getRequestURI();
         req.setAttribute("path", path);
+        req.getSession().getAttribute("user");
+        System.out.println(">>>"+req.getSession().getAttribute("user"));
         List<Profile> users = FriendshipDAO.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), "honggam");
         pagination(req, resp, users, page, limit);
         req.setAttribute("friends", users);
 //        String newUrl = req.getRequestURL() + "?q="+q+"&page=" + page + "&limit=" + limit;
 //        resp.sendRedirect(newUrl);
-        req.getRequestDispatcher("/views/friend.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/profile.jsp").forward(req, resp);
     }
 
     public Map<String, Object> pagination(HttpServletRequest request, HttpServletResponse response, List<Profile> users, String page, String limit) {

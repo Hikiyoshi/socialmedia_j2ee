@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author haidu
  */
-@WebServlet(name = "Profile", urlPatterns = {"/profile"})
+@WebServlet(name = "Profile", urlPatterns = {"/a"})
 public class Profile extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

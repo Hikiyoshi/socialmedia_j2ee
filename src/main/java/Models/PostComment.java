@@ -34,11 +34,11 @@ public class PostComment {
     @Column(name = "datecreated")
     private Date datecreated;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "username", insertable = false, updatable = false)
-    private Profile profile_commented;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idPost", insertable = false, updatable = false)
-    private Post post_commented;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "username", insertable = false, updatable = false)
+//    private Profile profile_commented;
+//    
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "idPost", insertable = false, updatable = false)
+//    private Post post_commented;
 }

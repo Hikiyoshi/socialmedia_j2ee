@@ -1,6 +1,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@page import="Models.Profile" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,14 +10,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>profile</title>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200&display=swap" rel="stylesheet">
 
     </head>
     <body>
@@ -96,12 +98,13 @@
         <div class="container-profile">
             <div class="profile-top">
                 <div class="profile-avatar">
-                    <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
+                    <img src="https://i.pinimg.com/564x/a4/02/ed/a402ed2fc0a66d42192749729176d417.jpg"
                          alt="">
+
                 </div>
                 <div class="profile-right-block">
                     <div class="profile-user-settings">
-                        <h2 class="profile-user-name">honggam</h2>
+                      
                         <button class="btn-profile-edit">Chỉnh sửa trang cá nhân</button>
                     </div>
                     <div class="profile-user-status">
@@ -110,14 +113,44 @@
                         <p  onclick="showFriend()"><span id="all-friend">3</span> bạn bè</p>
                     </div>
                     <div class="profile-introduce">
-                        <p class="introduce">hi <3< /p>
+                        <p class="introduce">hi <3 duong</p>
                     </div>
+                </div>
+                <div class="full-name-user">
+                    Bé Cu Te
                 </div>
             </div>
 
             <div class="wrap-friend">
                 <div class="all-friend-show">
                     <button id="btn-close-friend" onclick="closeFriend()">x</button>
+                    <div class="wrap-info">
+                        <%
+List<Profile> users = (List<Profile>) request.getAttribute("friends");
+String pages= request.getAttribute("currentPage").toString();
+String limits= request.getAttribute("perPage").toString();
+if (users != null) {
+for (Profile user : users) {
+// Sử dụng đối tượng User ở đây
+String username = user.getUsername();
+String surname = user.getSurname();
+String firstname = user.getFirstname();
+String imgavatar = user.getImgAvatar();
+                        %>
+                        <div class="info-item">
+
+                            <img class="avatar-friend" src="images/<%= imgavatar%>" >
+
+                            <div>
+                                <%=firstname + " " + surname %> 
+                            </div>               
+                        </div>
+                        <%
+                                                }
+                                            }
+                        %>
+                    </div>
+
                 </div>
 
             </div>

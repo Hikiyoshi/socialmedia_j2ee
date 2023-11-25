@@ -27,7 +27,7 @@ public class PostImage {
     @Column(name = "img")
     private String img;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idPost", insertable = false, updatable = false)
-    private Post img_post;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "idPost", insertable = false, updatable = false)
+//    private Post img_post;
 }
