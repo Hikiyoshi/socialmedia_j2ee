@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.Profile;
+import Utilities.JpaUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
@@ -36,14 +37,10 @@ private static EntityManager _manager;
 			Profile entity = _manager.find(Profile.class, updatedProfile.getUsername());
 			_manager.getTransaction().begin();
 			
-			entity.setPassword(updatedProfile.getPassword());
-			entity.setSurname(updatedProfile.getSurname());
 			entity.setFirstname(updatedProfile.getFirstname());
+			entity.setSurname(updatedProfile.getSurname());
 			entity.setImgAvatar(updatedProfile.getImgAvatar());
-			entity.setDateBirth(updatedProfile.getDateBirth());
-			entity.setGender(updatedProfile.getGender());
-			entity.setEmail(updatedProfile.getEmail());
-			entity.setPhonenumber(updatedProfile.getPhonenumber());
+			entity.setIntroduction(updatedProfile.getIntroduction());
 
 			_manager.getTransaction().commit();
 			return true;
@@ -128,6 +125,4 @@ private static EntityManager _manager;
 		
 		return profile;
 	}
-
-    
 }

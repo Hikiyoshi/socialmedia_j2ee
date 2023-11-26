@@ -5,6 +5,7 @@
 package DAO;
 
 import Models.PostComment;
+import Utilities.JpaUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.TypedQuery;

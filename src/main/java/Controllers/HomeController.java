@@ -9,13 +9,19 @@ import Models.Post;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpSession;
 import Models.Profile;
 import java.util.List;
-
+import Utilities.AvatarUtils;
 /**
  *
  * @author Admin
@@ -35,9 +41,11 @@ public class HomeController extends HttpServlet {
         }
         else{
             // merge from VQ
-            request.setAttribute("avatar", p.getImgAvatar().split("[.]")[0]);
+            String avatarImage = AvatarUtils.verifyAvatarDeployment(request, p.getImgAvatar());
+
+            request.setAttribute("avatarImage", avatarImage);
             request.setAttribute("username", p.getUsername());
-            request.setAttribute("fullname", p.getFirstname() + " " + p.getSurname());
+            request.setAttribute("fullName", p.getFullname());
             //merge from DD
             List<Post> listPost = PostDAO.findByUsernamePages(p.getUsername(), 0, 5);
             request.setAttribute("ListPost", listPost);
