@@ -7,11 +7,18 @@ package Controllers;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpSession;
 import Models.Profile;
+import Utilities.AvatarUtils;
 
 /**
  *
@@ -24,10 +31,12 @@ public class HomeController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		Profile p = (Profile) session.getAttribute("user");
+		
+		String avatarImage = AvatarUtils.verifyAvatarDeployment(request, p.getImgAvatar());
 
-		request.setAttribute("avatar", p.getImgAvatar().split("[.]")[0]);
+		request.setAttribute("avatarImage", avatarImage);
 		request.setAttribute("username", p.getUsername());
-		request.setAttribute("fullname", p.getFirstname() + " " + p.getSurname());
+		request.setAttribute("fullName", p.getFullname());
 		
 		request.getRequestDispatcher("/views/index.jsp").forward(request, response);
 	}

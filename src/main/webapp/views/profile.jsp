@@ -9,11 +9,20 @@
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>profile</title>
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200&display=swap" rel="stylesheet">
 
+	<style>
+		#profile-editing {
+  			width: 100%;
+			padding: 20px 0;
+			text-align: left;
+			margin-top: 20px;
+		}
+	</style>
+	<script type="text/javascript" src="templates/function.js"></script>
+    <script type="text/javascript" src="templates/profile.js?v=1"></script>
     </head>
     <body>
         <nav class="navbar">
@@ -41,16 +50,16 @@
                     <input type="text" placeholder="Search">
                 </div>
                 <div class="profile-image online" onclick="UserSettingToggle()">
-                    <img src="images/${avatar}.png" alt="">
+                    <img src="images/${avatarImage}" alt="">
                 </div>
 
             </div>
             <div class="user-settings">
                 <div class="profile-darkButton">
                     <div class="user-profile">
-                        <img src="images/${avatar}.png" alt="">
+                        <img src="images/${avatarImage}" alt="">
                         <div>
-                            <p> ${fullname}</p>
+                            <p> ${fullName}</p>
                             <a href="#">See your profile</a>
                         </div>
                     </div>
@@ -78,7 +87,7 @@
                 </div>
 
                 <div class="settings-links">
-                    <img src="images/Display.png" alt="" class="settings-icon">
+                    <img src="images/display.png" alt="" class="settings-icon">
                     <a href="#">Display & Accessibility <img src="images/arrow.png" alt=""></a>
                 </div>
 
@@ -91,27 +100,43 @@
         </nav>
 
         <div class="container-profile">
+        	<button class="btn-profile-edit" id="editButton" onclick="toggleProfileEditing(true)">Chỉnh sửa trang cá nhân</button><br>
+        	<div id="profile-editing" style="display:none;">
+                <form action="" method="post" enctype="multipart/form-data">
+                	<input name="username" type="hidden" value="${username}">
+	                <b> Ảnh Hồ Sơ: </b>
+	                <img src="images/${avatarImage}" id="avatarPreview" height="100">
+	                <input name="avatarInput" id="avatarInput" type="file" accept="image/*" onchange="previewAvatar()">
+	                <br>
+	                <b> Tên: </b>
+	                <input name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
+	                <b> Họ: </b>
+	                <input name="surname" size="25" placeholder="Họ bạn là gì?" value="${surname}">
+	                <br>
+	                <b> Giới thiệu: </b>
+	                <textarea name="introduction" rows="5" cols="50" placeholder="Nói thêm về bản thân bạn...">${introduction}</textarea>
+	                <br>
+	                <button class="btn-profile-edit" name="saveButton" type="submit" value="save">Lưu</button>
+	                <button class="btn-profile-edit" onclick="toggleProfileEditing(false)">Hủy</button>
+				</form>
+            </div>
             <div class="profile-top">
                 <div class="profile-avatar">
-                    <img src="images/${avatar}.png" alt="">
-                </div>
-                <div class="profile-editting">
-                	<input name="fullname" type="text" placeholder="Fullname?" /><br>
+                    <img src="images/${avatarImage}" alt="" height="250">
                 </div>
                 <div class="profile-right-block">
-                    <div class="profile-user-settings" align="center">
-                        <h2 class="profile-user-name"><b>${fullname}</b></h2> <br>
-                        <button class="btn-profile-edit">Chỉnh sửa trang cá nhân</button><br>
+                    <div class="profile-user-settings">
+                        <h2 class="profile-user-name"><b>${fullName}</b></h2>
                     </div>
                     <div class="profile-user-status" align="left">
                         <p><span class="number-post">0</span> Bài viết </p>
                         <p><span class="number-follower"></span>2 Người theo dõi </p>
                         <p  onclick="showFriend()"><span id="all-friend">3</span> Bạn bè </p>
                     </div>
-                    <div class="profile-introduce">
-                    	<b>Introduction:</b><br>
-                        <p class="introduce">hi </p>
-                    </div>
+                </div>
+                <div class="profile-introduce" align="left">
+                    <b>Giới thiệu:</b><br>
+                    <p class="introduce">${introduction}</p>
                 </div>
             </div>
 
@@ -156,7 +181,5 @@
         <footer id="footer">
             <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
         </footer>
-        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
-        <script src="<%=request.getContextPath()%>/templates/profile.js"></script>
     </body>
 </html>

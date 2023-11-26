@@ -10,6 +10,7 @@ import java.util.List;
 
 import Models.Post;
 import Models.Profile;
+import Utilities.JpaUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.TypedQuery;

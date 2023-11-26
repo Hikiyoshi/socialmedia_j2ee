@@ -1,11 +1,13 @@
 
 package Controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 import DAO.ProfileDAO;
 import Models.Profile;
-
-import java.io.IOException;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,10 +17,9 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
-
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {    	
         response.setContentType("text/html;charset=UTF-8");
         String us = request.getParameter("username");
         String pw = request.getParameter("password");
@@ -40,10 +41,8 @@ public class LoginController extends HttpServlet {
             // Exception occurred (e.g., database error)
             request.setAttribute("message", "Đã xảy ra lỗi khi đăng nhập!");
         }
-        //request.getRequestDispatcher("/views/login.jsp").forward(request, response);
     }
-
-    
+     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
