@@ -20,9 +20,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post1.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
-        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
         <title>social</title>
     </head>
     <body>
@@ -50,7 +49,7 @@
                         <form action="/socialmedia_j2ee/postController" method="post" enctype="multipart/form-data" >
                             <input type="hidden" name="username" value="<% if(username!=null) out.print(username);%>">
                             <div class="content">
-                                <img src="/socialmedia_j2ee/images/TD.jpg" alt="logo">
+                                <img src="images/${avatar}.png" alt="logo">
                                 <div class="details">
 
                                     <div class="privacy">
@@ -64,19 +63,19 @@
 
                             <img id="selectedImage" style="max-width: 450px; " src="" alt="" >
                             <div class="theme-emoji">
-                                <img src="/socialmedia_j2ee/images/theme.svg" alt="theme">
-                                <img src="/socialmedia_j2ee/images/smile.svg" alt="smile">
+                                <img src="/socialmedia_j2ee/icons/theme.svg" alt="theme">
+                                <img src="/socialmedia_j2ee/icons/smile.svg" alt="smile">
                             </div>
                             <div class="options">
                                 <p>Add to Your Post</p>
                                 <ul class="list">
 
                                     <li><div class="gallery"><input name="image" type="file" id="imageInput" onchange="displaySelectedImage(event)" alt="Submit" ">
-                                            <img src="/socialmedia_j2ee/images/gallery.svg" alt="gallery">  </div></li>
+                                            <img src="/socialmedia_j2ee/icons/gallery.svg" alt="gallery">  </div></li>
 
-                                    <li><img src="/socialmedia_j2ee/images/emoji.svg" alt="gallery"></li>
-                                    <li><img src="/socialmedia_j2ee/images/mic.svg" alt="gallery"></li>
-                                    <li><img src="/socialmedia_j2ee/images/more.svg" alt="gallery"></li>
+                                    <li><img src="/socialmedia_j2ee/icons/emoji.svg" alt="gallery"></li>
+                                    <li><img src="/socialmedia_j2ee/icons/mic.svg" alt="gallery"></li>
+                                    <li><img src="/socialmedia_j2ee/icons/more.svg" alt="gallery"></li>
                                 </ul>
                             </div>
                             <button type="submit" onclick="toggleForms(false)">Post</button>
@@ -116,17 +115,17 @@
                         <input type="text" placeholder="Search">
                     </div>
                     <div class="profile-image online" onclick="UserSettingToggle()">
-                        <img src="/socialmedia_j2ee/images/profile-pic.png" alt="">
+                        <img src="images/${avatar}.png" alt="">
                     </div>
 
                 </div>
                 <div class="user-settings">
                     <div class="profile-darkButton">
                         <div class="user-profile">
-                            <img src="/socialmedia_j2ee/images/profile-pic.png" alt="">
+                            <img src="images/${avatar}.png" alt="">
                             <div>
-                                <p> Alex Carry</p>
-                                <a href="#">See your profile</a>
+                                <p> ${fullname}</p>
+                                <a href="/socialmedia_j2ee/profile?username=${username}">See your profile</a>
                             </div>
                         </div>
                         <div id="dark-button" onclick="darkModeON()">
@@ -172,16 +171,14 @@
 
                     <div class="write-post-container" id="existingForm">
                         <div class="user-profile">
-                            <img src="/socialmedia_j2ee/images/profile-pic.png" alt="">
+                            <img src="images/${avatar}.png" alt="">
                             <div  onclick="toggleForms(true)" style="cursor: pointer">
                                 <button name="post" class="postContent">Bạn đang nghĩ gì?</button>
                             </div>
                         </div>
 
                         <div class="post-upload-textarea">
-
-
-
+                            
                             <div class="add-post-links">
                                 <a href="#"><img src="/socialmedia_j2ee/images/live-video.png" alt="">Live Video</a>
                                 <a href="#"><img src="/socialmedia_j2ee/images/photo.png" alt="">Photo/Video</a>
@@ -202,7 +199,7 @@
                     out.print("<div class='user-profile-box'>");
                         out.print("<div class='user-profile'>");
                         
-                            out.print("<img src='images/${avatar}.png' alt=''>");
+                            out.print("<img src='images/" + request.getAttribute("avatar") +".png' alt=''>");
                             out.print("<div>");
                                 out.print("<p>"+ p.getUsername()+ "</p>");
                                 out.print("<small>"+formattedDateTime+"</small>");
@@ -227,7 +224,7 @@
                             out.print("<div><img src='/socialmedia_j2ee/images/share.png' alt=''>35</div>");
                         out.print("</div>");
                         out.print("<div class='post-profile-picture'>");
-                            out.print("<img src='images/${avatar}' alt=''> <i class=' fas fa-caret-down'></i>");
+                            out.print("<img src='images/" + request.getAttribute("avatar") + ".png' alt=''> <i class=' fas fa-caret-down'></i>");
                             out.print("</div>");
                         out.print("</div>");
                         out.print("</div>");
@@ -299,5 +296,6 @@
               }
             
         </script>
+        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
     </body>
 </html>
