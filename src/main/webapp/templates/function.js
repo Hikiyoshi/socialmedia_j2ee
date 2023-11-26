@@ -4,7 +4,7 @@
  */
 var userSettings = document.querySelector(".user-settings");
 var darkBtn = document.getElementById("dark-button");
-var LoadMoreBackground =document.querySelector(".btn-LoadMore");
+var LoadMoreBackground = document.querySelector(".btn-LoadMore");
 var friendRequests = document.querySelector(".friend-requests");
 function UserSettingToggle(){
     userSettings.classList.toggle("user-setting-showup-toggle");

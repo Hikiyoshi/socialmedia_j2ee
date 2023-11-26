@@ -45,17 +45,17 @@ public class Profile {
     @Column(name = "gender")
     private int gender;
     
-    @Column(name = "phonenumber")
+    @Column(name = "phoneNumber")
     private String phonenumber;
     
     @Column(name = "email")
     private String email;
     
-//    @OneToMany(mappedBy = "profile_request_friendships", fetch = FetchType.LAZY)
-//    private List<Friendship> request_friendships = new ArrayList<>();
-//    
-//    @OneToMany(mappedBy = "profile_acpect_friendships", fetch = FetchType.LAZY)
-//    private List<Friendship> acpect_friendships = new ArrayList<>();
+    @Column(name = "introduction")
+    private String introduction;
+    
+    @OneToMany(mappedBy = "profile_request_friendships", fetch = FetchType.LAZY)
+    private List<Friendship> request_friendships = new ArrayList<>();
     
 //    @OneToMany(mappedBy = "profile_uploaded", fetch = FetchType.LAZY)
 //    private List<Post> profile_post = new ArrayList<>();
@@ -130,7 +130,15 @@ public class Profile {
         this.email = email;
     }
     
-    public String getPhonenumber() {
+    public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	public String getPhonenumber() {
         return phonenumber;
     }
 
@@ -138,28 +146,32 @@ public class Profile {
         this.phonenumber = phonenumber;
     }
     
-//    public List<Friendship> getRequest_friendships() {
-//		return request_friendships;
-//	}
-//
-//	public void setRequest_friendships(List<Friendship> request_friendships) {
-//		this.request_friendships = request_friendships;
-//	}
-//
-//	public List<Friendship> getAcpect_friendships() {
-//		return acpect_friendships;
-//	}
-//
-//	public void setAcpect_friendships(List<Friendship> acpect_friendships) {
-//		this.acpect_friendships = acpect_friendships;
-//	}
-//
-//	public List<Reaction> getReactions() {
-//		return reactions;
-//	}
-//
-//	public void setReactions(List<Reaction> reactions) {
-//		this.reactions = reactions;
-//	}
+    public List<Friendship> getRequest_friendships() {
+		return request_friendships;
+	}
+
+	public void setRequest_friendships(List<Friendship> request_friendships) {
+		this.request_friendships = request_friendships;
+	}
+
+	public List<Friendship> getAcpect_friendships() {
+		return acpect_friendships;
+	}
+
+	public void setAcpect_friendships(List<Friendship> acpect_friendships) {
+		this.acpect_friendships = acpect_friendships;
+	}
+
+	public List<Reaction> getReactions() {
+		return reactions;
+	}
+
+	public void setReactions(List<Reaction> reactions) {
+		this.reactions = reactions;
+	}
+	
+	public String getFullname() {
+		return firstname + " " + surname;
+	}
 }
 
