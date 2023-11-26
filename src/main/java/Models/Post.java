@@ -8,11 +8,14 @@ package Models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,7 +32,8 @@ import lombok.Data;
 public class Post {
     @Id
     @Column(name="idPost")
-    private String idPost;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPost;
     
     @Column(name="username") 
     private String username;
@@ -38,7 +42,7 @@ public class Post {
     private String content;
     
     @Column(name="datecreated")
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
     
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "username" , insertable = false , updatable = false)
@@ -53,11 +57,11 @@ public class Post {
 //    @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
 //    private List<Reaction> reactions = new ArrayList<>();
     
-    public String getIdPost() {
+    public int getIdPost() {
         return idPost;
     }
 
-    public void setIdPost(String idPost) {
+    public void setIdPost(int idPost) {
         this.idPost = idPost;
     }
 
@@ -77,21 +81,37 @@ public class Post {
         this.content = content;
     }
 
-    public Date getDateCreated() {
+     public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
     
-//    public List<Reaction> getReactions() {
-//		return reactions;
-//	}
-//
-//	public void setReactions(List<Reaction> reactions) {
-//		this.reactions = reactions;
-//	}
-//    
+    public List<Reaction> getReactions() {
+		return reactions;
+	}
+
+	public void setReactions(List<Reaction> reactions) {
+		this.reactions = reactions;
+	}
+
+    public Post( String username, String content, LocalDateTime dateCreated) {
+
+        this.username = username;
+        this.content = content;
+        this.dateCreated = dateCreated;
+        
+    }
+
+    public Post() {
+    }
+    
+    @Override
+    public String toString(){
+        return "idPost: " + this.idPost + " username: " + this.username + " content: " + this.content + " datecreated: " + this.dateCreated;
+    }
+    
     
 }

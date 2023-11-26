@@ -22,11 +22,11 @@
     </head>
     <body>
         <nav class="navbar">
-            <div class="nav-left"><img class="logo" src="<%=request.getContextPath()%>/images/logo_1.png" alt="">
+            <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
                 <ul class="navlogo">
-                    <li class="circle"><img class="icon" src="<%=request.getContextPath()%>/images/notification_1.png"></li>
-                    <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="<%=request.getContextPath()%>/images/friends_1.png"></li>
-                    <li class="circle"><img class="icon" src="<%=request.getContextPath()%>/images/messenger.png"></li>
+                    <li class="circle"><img class="icon" src="images/notification_1.png"></li>
+                    <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="images/friends_1.png"></li>
+                    <li class="circle"><img class="icon" src="images/messenger.png"></li>
                 </ul>
             </div>
 
@@ -42,20 +42,20 @@
 
             <div class="nav-right">
                 <div class="search-box">
-                    <img src="<%=request.getContextPath()%>/images/search.png" alt="">
+                    <img src="images/search.png" alt="">
                     <input type="text" placeholder="Search">
                 </div>
                 <div class="profile-image online" onclick="UserSettingToggle()">
-                    <img src="<%=request.getContextPath()%>/images/profile-pic.png" alt="">
+                    <img src="images/${avatar}.png" alt="">
                 </div>
 
             </div>
             <div class="user-settings">
                 <div class="profile-darkButton">
                     <div class="user-profile">
-                        <img src="<%=request.getContextPath()%>/images/profile-pic.png" alt="">
+                        <img src="images/${avatar}.png" alt="">
                         <div>
-                            <p> Alex Carry</p>
+                            <p> ${fullname}</p>
                             <a href="#">See your profile</a>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                 </div>
                 <hr>
                 <div class="user-profile">
-                    <img src="<%=request.getContextPath()%>/images/feedback.png" alt="">
+                    <img src="images/feedback.png" alt="">
                     <div>
                         <p> Give Feedback</p>
                         <a href="#">Help us to improve</a>
@@ -73,22 +73,22 @@
                 </div>
                 <hr>
                 <div class="settings-links">
-                    <img src="<%=request.getContextPath()%>/images/setting.png" alt="" class="settings-icon">
+                    <img src="images/setting.png" alt="" class="settings-icon">
                     <a href="#">Settings & Privary <img src="images/arrow.png" alt=""></a>
                 </div>
 
                 <div class="settings-links">
-                    <img src="<%=request.getContextPath()%>/images/help.png" alt="" class="settings-icon">
+                    <img src="images/help.png" alt="" class="settings-icon">
                     <a href="#">Help & Support <img src="images/arrow.png" alt=""></a>
                 </div>
 
                 <div class="settings-links">
-                    <img src="<%=request.getContextPath()%>/images/Display.png" alt="" class="settings-icon">
+                    <img src="images/Display.png" alt="" class="settings-icon">
                     <a href="#">Display & Accessibility <img src="images/arrow.png" alt=""></a>
                 </div>
 
                 <div class="settings-links">
-                    <img src="<%=request.getContextPath()%>/images/logout.png" alt="" class="settings-icon">
+                    <img src="images/logout.png" alt="" class="settings-icon">
                     <a href="#">Logout <img src="images/arrow.png" alt=""></a>
                 </div>
 
@@ -106,14 +106,21 @@
                     <div class="profile-user-settings">
                       
                         <button class="btn-profile-edit">Chỉnh sửa trang cá nhân</button>
+                    <img src="images/${avatar}.png" alt="">
+                </div>
+                <div class="profile-right-block">
+                    <div class="profile-user-settings" align="center">
+                        <h2 class="profile-user-name"><b>${fullname}</b></h2> <br>
+                        <button class="btn-profile-edit">Chỉnh sửa trang cá nhân</button><br>
                     </div>
-                    <div class="profile-user-status">
-                        <p ><span class="number-post">0</span> bài viết</p>
-                        <p><span class="number-follower">2</span> người theo dõi</p>
-                        <p  onclick="showFriend()"><span id="all-friend">3</span> bạn bè</p>
+                    <div class="profile-user-status" align="left">
+                        <p><span class="number-post">0</span> Bài viết </p>
+                        <p><span class="number-follower"></span>2 Người theo dõi </p>
+                        <p  onclick="showFriend()"><span id="all-friend">3</span> Bạn bè </p>
                     </div>
                     <div class="profile-introduce">
-                        <p class="introduce">hi <3 duong</p>
+                    	<b>Introduction:</b><br>
+                        <p class="introduce">hi </p>
                     </div>
                 </div>
                 <div class="full-name-user">

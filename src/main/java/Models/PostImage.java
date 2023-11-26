@@ -22,12 +22,43 @@ public class PostImage {
     private int id;
     
     @Column(name = "idPost")
-    private String idPost;
+    private int idPost;
     
     @Column(name = "img")
     private String img;
     
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "idPost", insertable = false, updatable = false)
-//    private Post img_post;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPost", insertable = false, updatable = false)
+    private Post img_post;
+
+    public PostImage(int idPost, String img) {
+        this.idPost = idPost;
+        this.img = img;
+    }
+
+    public PostImage() {
+    }
+    
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+     public int getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(int idPost) {
+        this.idPost = idPost;
+    }
+     public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+   
 }
