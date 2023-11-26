@@ -89,13 +89,13 @@ public class Post {
         this.dateCreated = dateCreated;
     }
     
-    public List<Reaction> getReactions() {
-		return reactions;
-	}
-
-	public void setReactions(List<Reaction> reactions) {
-		this.reactions = reactions;
-	}
+//    public List<Reaction> getReactions() {
+//		return reactions;
+//	}
+//
+//	public void setReactions(List<Reaction> reactions) {
+//		this.reactions = reactions;
+//	}
 
     public Post( String username, String content, LocalDateTime dateCreated) {
 
