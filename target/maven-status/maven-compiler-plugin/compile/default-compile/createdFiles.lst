@@ -1,12 +1,12 @@
 Controllers\postController.class
 Controllers\ProfileController.class
 Models\Profile.class
+com\mycompany\social_media\resources\JakartaEE10Resource.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
 Controllers\HomeController.class
 Controllers\FriendListServlet.class
 Controllers\RegisterController.class
-Controllers\ShowPostController.class
 DAO\PostDAO.class
 DAO\PostImgDAO.class
 DAO\ProfileDAO.class
@@ -18,5 +18,6 @@ Models\Post.class
 DAO\FriendshipDAO.class
 Models\PostComment.class
 Models\Reaction.class
+com\mycompany\social_media\JakartaRestConfiguration.class
 DAO\JpaUtils.class
 DAO\ReactionDAO.class

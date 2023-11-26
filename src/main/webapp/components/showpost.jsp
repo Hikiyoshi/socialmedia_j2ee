@@ -2,10 +2,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Models.Post" %>
 <%@page import="java.util.List" %>
+
 <% 
     List<Post> listP = (List<Post>) request.getAttribute("ListPost");
 %>
+
 <c:set var="posts" value="${requestScope.ListPost}"></c:set>
+
 <c:if test="${posts!=null}">
     <c:forEach items="${posts}" var="p" >
         <div class="status-field-container write-post-container">

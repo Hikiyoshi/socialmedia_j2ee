@@ -274,7 +274,7 @@ public class PostDAO {
                 System.out.println("Dem that bai");
             } finally {
                 JpaUtils.shutdown(em);
-            }
+}
         
         return result;
     }

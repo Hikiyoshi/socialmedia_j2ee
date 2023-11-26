@@ -21,7 +21,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post1.css">
-<!--                <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>-->
+        <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
+        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
         <title>social</title>
     </head>
     <body>
@@ -163,6 +164,7 @@
 
                 </div>
             </nav>
+        
 
             <div class="container">
   
@@ -186,8 +188,8 @@
                                 <a href="#"><img src="/socialmedia_j2ee/images/feeling.png" alt="">Feeling Activity</a>
                             </div>
                         </div>
-                        
-                        
+                    </div>
+                    
                         <% 
                             List<Post> list = PostDAO.readAllPost();
                             
@@ -200,7 +202,7 @@
                     out.print("<div class='user-profile-box'>");
                         out.print("<div class='user-profile'>");
                         
-                            out.print("<img src='/socialmedia_j2ee/images/profile-pic.png' alt=''>");
+                            out.print("<img src='images/${avatar}.png' alt=''>");
                             out.print("<div>");
                                 out.print("<p>"+ p.getUsername()+ "</p>");
                                 out.print("<small>"+formattedDateTime+"</small>");
@@ -225,7 +227,7 @@
                             out.print("<div><img src='/socialmedia_j2ee/images/share.png' alt=''>35</div>");
                         out.print("</div>");
                         out.print("<div class='post-profile-picture'>");
-                            out.print("<img src='/socialmedia_j2ee/images/profile-pic.png ' alt=''> <i class=' fas fa-caret-down'></i>");
+                            out.print("<img src='images/${avatar}' alt=''> <i class=' fas fa-caret-down'></i>");
                             out.print("</div>");
                         out.print("</div>");
                         out.print("</div>");
@@ -237,7 +239,9 @@
                             out.print("rong");
                             }
                        %>
-
+                </div>
+            </div>
+                
             <footer id="footer">
                 <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
             </footer>
@@ -295,6 +299,5 @@
               }
             
         </script>
-        <script src="<%=request.getContextPath()%>/templates/function.js"></script>
     </body>
 </html>
