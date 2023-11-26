@@ -7,6 +7,7 @@
 
 <%@ page import="DAO.PostDAO" %>
 <%@ page import="Models.Post" %>
+<%@ page import="Models.Profile" %>
 <%@ page import="Models.PostImage" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
@@ -19,8 +20,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post.css">
-        <!--        <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>-->
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post1.css">
+<!--                <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>-->
         <title>social</title>
     </head>
     <body>
@@ -29,7 +30,7 @@
           String username =null;
           HttpSession s = request.getSession();
             if (s != null ) {
-             username = (String) session.getAttribute("user");
+             username = ((Profile) session.getAttribute("user")).getUsername();
              
           }
           
@@ -45,10 +46,10 @@
                             <h2 style="margin-left: 20px; background-color: white">Create Post</h2>
                             <div onclick="toggleForms(false)" style=" margin-right: 0px; padding: 8px 16px; cursor: pointer; background-color: white">X</div>                                   
                         </div>
-                        <form action="/createPost/postController" method="post" enctype="multipart/form-data" >
+                        <form action="/socialmedia_j2ee/postController" method="post" enctype="multipart/form-data" >
                             <input type="hidden" name="username" value="<% if(username!=null) out.print(username);%>">
                             <div class="content">
-                                <img src="/createPost/images/TD.jpg" alt="logo">
+                                <img src="/socialmedia_j2ee/images/TD.jpg" alt="logo">
                                 <div class="details">
 
                                     <div class="privacy">
@@ -62,19 +63,19 @@
 
                             <img id="selectedImage" style="max-width: 450px; " src="" alt="" >
                             <div class="theme-emoji">
-                                <img src="/createPost/images/theme.svg" alt="theme">
-                                <img src="/createPost/images/smile.svg" alt="smile">
+                                <img src="/socialmedia_j2ee/images/theme.svg" alt="theme">
+                                <img src="/socialmedia_j2ee/images/smile.svg" alt="smile">
                             </div>
                             <div class="options">
                                 <p>Add to Your Post</p>
                                 <ul class="list">
 
                                     <li><div class="gallery"><input name="image" type="file" id="imageInput" onchange="displaySelectedImage(event)" alt="Submit" ">
-                                            <img src="/createPost/images/gallery.svg" alt="gallery">  </div></li>
+                                            <img src="/socialmedia_j2ee/images/gallery.svg" alt="gallery">  </div></li>
 
-                                    <li><img src="/createPost/images/emoji.svg" alt="gallery"></li>
-                                    <li><img src="/createPost/images/mic.svg" alt="gallery"></li>
-                                    <li><img src="/createPost/images/more.svg" alt="gallery"></li>
+                                    <li><img src="/socialmedia_j2ee/images/emoji.svg" alt="gallery"></li>
+                                    <li><img src="/socialmedia_j2ee/images/mic.svg" alt="gallery"></li>
+                                    <li><img src="/socialmedia_j2ee/images/more.svg" alt="gallery"></li>
                                 </ul>
                             </div>
                             <button type="submit" onclick="toggleForms(false)">Post</button>
@@ -88,9 +89,9 @@
             <nav class="navbar index">
                 <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
                     <ul class="navlogo">
-                        <li class="circle"><img class="icon" src="/createPost/images/notification_1.png"></li>
-                        <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="/createPost/images/friends_1.png"></li>
-                        <li class="circle"><img class="icon" src="/createPost/images/messenger.png"></li>
+                        <li class="circle"><img class="icon" src="/socialmedia_j2ee/images/notification_1.png"></li>
+                        <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="/socialmedia_j2ee/images/friends_1.png"></li>
+                        <li class="circle"><img class="icon" src="/socialmedia_j2ee/images/messenger.png"></li>
 
 
                     </ul>
@@ -100,7 +101,7 @@
 
                 <div class="friend-requests">
                     <div class="request">
-                        <img src="/createPost/images/friend.png">
+                        <img src="/socialmedia_j2ee/images/friend.png">
                         <p>kết bạn</p>
                         <p>kết bạn</p>
                         <p>kết bạn</p>
@@ -110,18 +111,18 @@
 
                 <div class="nav-right">
                     <div class="search-box">
-                        <img src="/createPost/images/search.png" alt="">
+                        <img src="/socialmedia_j2ee/images/search.png" alt="">
                         <input type="text" placeholder="Search">
                     </div>
                     <div class="profile-image online" onclick="UserSettingToggle()">
-                        <img src="/createPost/images/profile-pic.png" alt="">
+                        <img src="/socialmedia_j2ee/images/profile-pic.png" alt="">
                     </div>
 
                 </div>
                 <div class="user-settings">
                     <div class="profile-darkButton">
                         <div class="user-profile">
-                            <img src="/createPost/images/profile-pic.png" alt="">
+                            <img src="/socialmedia_j2ee/images/profile-pic.png" alt="">
                             <div>
                                 <p> Alex Carry</p>
                                 <a href="#">See your profile</a>
@@ -133,7 +134,7 @@
                     </div>
                     <hr>
                     <div class="user-profile">
-                        <img src="/createPost/images/feedback.png" alt="">
+                        <img src="/socialmedia_j2ee/images/feedback.png" alt="">
                         <div>
                             <p> Give Feedback</p>
                             <a href="#">Help us to improve</a>
@@ -141,22 +142,22 @@
                     </div>
                     <hr>
                     <div class="settings-links">
-                        <img src="/createPost/images/setting.png" alt="" class="settings-icon">
-                        <a href="#">Settings & Privary <img src="/createPost/images/arrow.png" alt=""></a>
+                        <img src="/socialmedia_j2ee/images/setting.png" alt="" class="settings-icon">
+                        <a href="#">Settings & Privary <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
                     </div>
 
                     <div class="settings-links">
-                        <img src="/createPost/images/help.png" alt="" class="settings-icon">
-                        <a href="#">Help & Support <img src="/createPost/images/arrow.png" alt=""></a>
+                        <img src="/socialmedia_j2ee/images/help.png" alt="" class="settings-icon">
+                        <a href="#">Help & Support <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
                     </div>
 
                     <div class="settings-links">
-                        <img src="/createPost/images/Display.png" alt="" class="settings-icon">
-                        <a href="#">Display & Accessibility <img src="/createPost/images/arrow.png" alt=""></a>
+                        <img src="/socialmedia_j2ee/images/Display.png" alt="" class="settings-icon">
+                        <a href="#">Display & Accessibility <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
                     </div>
 
                     <div class="settings-links">
-                        <img src="/createPost/images/logout.png" alt="" class="settings-icon">
+                        <img src="/socialmedia_j2ee/images/logout.png" alt="" class="settings-icon">
                         <a href="#">Logout <img src="images/arrow.png" alt=""></a>
                     </div>
 
@@ -169,7 +170,7 @@
 
                     <div class="write-post-container" id="existingForm">
                         <div class="user-profile">
-                            <img src="/createPost/images/profile-pic.png" alt="">
+                            <img src="/socialmedia_j2ee/images/profile-pic.png" alt="">
                             <div  onclick="toggleForms(true)" style="cursor: pointer">
                                 <button name="post" class="postContent">Bạn đang nghĩ gì?</button>
                             </div>
@@ -180,9 +181,9 @@
 
 
                             <div class="add-post-links">
-                                <a href="#"><img src="/createPost/images/live-video.png" alt="">Live Video</a>
-                                <a href="#"><img src="/createPost/images/photo.png" alt="">Photo/Video</a>
-                                <a href="#"><img src="/createPost/images/feeling.png" alt="">Feeling Activity</a>
+                                <a href="#"><img src="/socialmedia_j2ee/images/live-video.png" alt="">Live Video</a>
+                                <a href="#"><img src="/socialmedia_j2ee/images/photo.png" alt="">Photo/Video</a>
+                                <a href="#"><img src="/socialmedia_j2ee/images/feeling.png" alt="">Feeling Activity</a>
                             </div>
                         </div>
                         
@@ -199,7 +200,7 @@
                     out.print("<div class='user-profile-box'>");
                         out.print("<div class='user-profile'>");
                         
-                            out.print("<img src='/createPost/images/profile-pic.png' alt=''>");
+                            out.print("<img src='/socialmedia_j2ee/images/profile-pic.png' alt=''>");
                             out.print("<div>");
                                 out.print("<p>"+ p.getUsername()+ "</p>");
                                 out.print("<small>"+formattedDateTime+"</small>");
@@ -212,19 +213,19 @@
                     out.print("<div class='status-field'>");
                         out.print("<p>"+p.getContent()+ " </p>");
                         for(PostImage pi : lpi){
-                            out.print("<img src='/createPost/images/"+pi.getImg()+"' alt=''>");
+                            out.print("<img src='/socialmedia_j2ee/images/"+pi.getImg()+"' alt=''>");
                             }
                         
 
                     out.print("</div>");
                     out.print("<div class='post-reaction'>");
                         out.print("<div class='activity-icons'>");
-                            out.print("<div><img src='/createPost/images/like-blue.png' alt=''>120</div>");
-                            out.print("<div><img src='/createPost/images/comments.png' alt=''>52</div>");
-                            out.print("<div><img src='/createPost/images/share.png' alt=''>35</div>");
+                            out.print("<div><img src='/socialmedia_j2ee/images/like-blue.png' alt=''>120</div>");
+                            out.print("<div><img src='/socialmedia_j2ee/images/comments.png' alt=''>52</div>");
+                            out.print("<div><img src='/socialmedia_j2ee/images/share.png' alt=''>35</div>");
                         out.print("</div>");
                         out.print("<div class='post-profile-picture'>");
-                            out.print("<img src='/createPost/images/profile-pic.png ' alt=''> <i class=' fas fa-caret-down'></i>");
+                            out.print("<img src='/socialmedia_j2ee/images/profile-pic.png ' alt=''> <i class=' fas fa-caret-down'></i>");
                             out.print("</div>");
                         out.print("</div>");
                         out.print("</div>");

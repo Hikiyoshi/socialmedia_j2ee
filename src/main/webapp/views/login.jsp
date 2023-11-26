@@ -106,7 +106,7 @@ button:hover {
 <body>
     
     
-    <form method="POST" action="/createPost/login">
+    <form method="POST" action="/socialmedia_j2ee/login">
         <h2>Đăng nhập</h2>
 
         <div>
