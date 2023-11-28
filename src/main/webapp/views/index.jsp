@@ -44,14 +44,13 @@
                     <section class="post">
                         <div style="display: flex; justify-content: space-between"> 
                             <h2 style="margin-left: 20px; background-color: white">Create Post</h2>
-                            <div onclick="toggleForms(false)" style=" margin-right: 0px; padding: 8px 16px; cursor: pointer; background-color: white">X</div>                                   
+                            <div onclick="toggleForms(false)" style=" margin-right: 0px; padding: 8px 16px; cursor: pointer; background-color: white">x</div>
                         </div>
                         <form action="/socialmedia_j2ee/postController" method="post" enctype="multipart/form-data" >
                             <input type="hidden" name="username" value="<% if(username!=null) out.print(username);%>">
                             <div class="content">
-                                <img src="images/${avatar}.png" alt="logo">
+                                <img src="images/${avatarImage}" alt="logo">
                                 <div class="details">
-
                                     <div class="privacy">
                                         <i class="fas fa-user-friends"></i>
                                         <span>Friends</span>
@@ -59,17 +58,18 @@
                                     </div>
                                 </div>
                             </div>
+                                
                             <textarea id="content" name="content" placeholder="Bạn đang nghĩ gì?" spellcheck="false" required ></textarea>
-
                             <img id="selectedImage" style="max-width: 450px; " src="" alt="" >
+                            
                             <div class="theme-emoji">
                                 <img src="/socialmedia_j2ee/icons/theme.svg" alt="theme">
                                 <img src="/socialmedia_j2ee/icons/smile.svg" alt="smile">
                             </div>
+                            
                             <div class="options">
                                 <p>Add to Your Post</p>
                                 <ul class="list">
-
                                     <li><div class="gallery"><input name="image" type="file" id="imageInput" onchange="displaySelectedImage(event)" alt="Submit" ">
                                             <img src="/socialmedia_j2ee/icons/gallery.svg" alt="gallery">  </div></li>
 
@@ -78,9 +78,9 @@
                                     <li><img src="/socialmedia_j2ee/icons/more.svg" alt="gallery"></li>
                                 </ul>
                             </div>
+                            
                             <button type="submit" onclick="toggleForms(false)">Post</button>
                         </form>
-
                     </section>
                 </div>
             </div>
@@ -115,14 +115,14 @@
                         <input type="text" placeholder="Search">
                     </div>
                     <div class="profile-image online" onclick="UserSettingToggle()">
-                        <img src="images/${avatar}.png" alt="">
+                        <img src="images/${avatarImage}" alt="">
                     </div>
 
                 </div>
                 <div class="user-settings">
                     <div class="profile-darkButton">
                         <div class="user-profile">
-                            <img src="images/${avatar}.png" alt="">
+                            <img src="images/${avatarImage}" alt="">
                             <div>
                                 <p> ${fullname}</p>
                                 <a href="/socialmedia_j2ee/profile?username=${username}">See your profile</a>
@@ -171,7 +171,7 @@
 
                     <div class="write-post-container" id="existingForm">
                         <div class="user-profile">
-                            <img src="images/${avatar}.png" alt="">
+                            <img src="images/${avatarImage}" alt="">
                             <div  onclick="toggleForms(true)" style="cursor: pointer">
                                 <button name="post" class="postContent">Bạn đang nghĩ gì?</button>
                             </div>
@@ -199,7 +199,7 @@
                     out.print("<div class='user-profile-box'>");
                         out.print("<div class='user-profile'>");
                         
-                            out.print("<img src='images/" + request.getAttribute("avatar") +".png' alt=''>");
+                            out.print("<img src='images/" + p.getProfile_uploaded().getImgAvatar() +"' alt=''>");
                             out.print("<div>");
                                 out.print("<p>"+ p.getUsername()+ "</p>");
                                 out.print("<small>"+formattedDateTime+"</small>");
@@ -224,7 +224,7 @@
                             out.print("<div><img src='/socialmedia_j2ee/images/share.png' alt=''>35</div>");
                         out.print("</div>");
                         out.print("<div class='post-profile-picture'>");
-                            out.print("<img src='images/" + request.getAttribute("avatar") + ".png' alt=''> <i class=' fas fa-caret-down'></i>");
+                            out.print("<img src='images/" + p.getProfile_uploaded().getImgAvatar() + "' alt=''> <i class=' fas fa-caret-down'></i>");
                             out.print("</div>");
                         out.print("</div>");
                         out.print("</div>");

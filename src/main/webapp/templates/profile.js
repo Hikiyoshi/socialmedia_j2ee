@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-var allPicture = document.getElementById('all-picture')
+var allPicture = document.getElementById('all-picture');
 
 var userAllPicture = document.querySelector(".user-all-picture");
 allPicture.addEventListener('click',function(){
@@ -34,7 +34,7 @@ function selectListItem(element) {
 
     // Thêm class 'selected' cho phần tử được chọn
     element.classList.add('selected');
-  }
+}
 
 
 var wrapFriend = document.querySelector(".wrap-friend");
@@ -76,5 +76,24 @@ function LoadMoreToggle(){
 //};
 function FriendRequestToggle() {
     friendRequests.classList.toggle("friend-request-showup-toggle");
-}
+};
 
+function toggleProfileEditing(state) {
+	var div = document.getElementById("profile-editing");
+	var editButton = document.getElementById("editButton");
+	
+	if (state) {
+		editButton.disabled = true;
+    	div.style.display = "block";
+  	} else {
+		editButton.disabled = false;
+    	div.style.display = "none";
+  	}
+};
+
+function previewAvatar() {
+	const file = document.getElementById("avatarInput").files[0];
+	if (file) {
+		document.getElementById("avatarPreview").src = URL.createObjectURL(file);
+	}
+};

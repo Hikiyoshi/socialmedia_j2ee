@@ -1,6 +1,7 @@
 Controllers\postController.class
 Controllers\ProfileController.class
 Models\Profile.class
+Utilities\AvatarUtils.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
 Controllers\HomeController.class
@@ -14,8 +15,8 @@ Controllers\LoginController.class
 DAO\PostCommentDAO.class
 Models\Friendship.class
 Models\Post.class
+Utilities\JpaUtils.class
 DAO\FriendshipDAO.class
 Models\PostComment.class
 Models\Reaction.class
-DAO\JpaUtils.class
 DAO\ReactionDAO.class

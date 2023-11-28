@@ -6,6 +6,7 @@ package DAO;
 
 import Models.PostComment;
 import Models.PostImage;
+import Utilities.JpaUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.List;

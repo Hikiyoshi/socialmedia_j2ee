@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import Models.Reaction;
+import Utilities.JpaUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.TypedQuery;

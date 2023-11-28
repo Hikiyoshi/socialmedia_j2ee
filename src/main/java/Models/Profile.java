@@ -45,11 +45,14 @@ public class Profile {
     @Column(name = "gender")
     private int gender;
     
-    @Column(name = "phonenumber")
+    @Column(name = "phoneNumber")
     private String phonenumber;
     
     @Column(name = "email")
     private String email;
+    
+    @Column(name = "introduction")
+    private String introduction;
     
     @OneToMany(mappedBy = "profile_request_friendships", fetch = FetchType.LAZY)
     private List<Friendship> request_friendships = new ArrayList<>();
@@ -130,7 +133,15 @@ public class Profile {
         this.email = email;
     }
     
-    public String getPhonenumber() {
+    public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	public String getPhonenumber() {
         return phonenumber;
     }
 
@@ -160,6 +171,10 @@ public class Profile {
 
 	public void setReactions(List<Reaction> reactions) {
 		this.reactions = reactions;
+	}
+	
+	public String getFullname() {
+		return firstname + " " + surname;
 	}
 }
 
