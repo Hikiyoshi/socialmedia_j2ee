@@ -7,6 +7,7 @@ C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\Profile
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\PostComment.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\FriendshipDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\PostImage.java
+C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\ShowPostServlet.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\Reaction.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\ReactionDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\Post.java
@@ -14,8 +15,9 @@ C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\postController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\Friendship.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\FriendshipRequestController.java
-C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\JpaUtils.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\FriendListServlet.java
+C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Utilities\AvatarUtils.java
+C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Utilities\JpaUtils.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\PostCommentDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\RegisterController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Models\Profile.java

@@ -157,7 +157,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 } */
 .content{
     min-height: 500px;
-    background-color: blueviolet;
     margin-top: 30px;
 }
 
@@ -167,7 +166,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .user-all-post {
     width: 100%;
-    background-color: cadetblue;
     display: block;
 }
 .user-all-post img{

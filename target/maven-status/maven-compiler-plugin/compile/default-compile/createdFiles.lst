@@ -19,4 +19,5 @@ Utilities\JpaUtils.class
 DAO\FriendshipDAO.class
 Models\PostComment.class
 Models\Reaction.class
+Controllers\ShowPostServlet.class
 DAO\ReactionDAO.class

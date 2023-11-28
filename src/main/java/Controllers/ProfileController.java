@@ -4,6 +4,7 @@
  */
 package Controllers;
 
+import DAO.PostDAO;
 import java.io.IOException;
 
 import DAO.ProfileDAO;
@@ -37,6 +38,10 @@ public class ProfileController extends HttpServlet {
 			request.setAttribute("surname", p.getSurname());
 			request.setAttribute("fullName", p.getFullname());
 			request.setAttribute("introduction", p.getIntroduction());
+                        
+                        //getMaxpages for showPost
+                        int maxPages = PostDAO.countMaxPagefindByUsernamePages(p.getUsername(), 2);
+                        request.setAttribute("maxPage", maxPages);
 		}
 
 		request.getRequestDispatcher("/views/profile.jsp").forward(request, response);

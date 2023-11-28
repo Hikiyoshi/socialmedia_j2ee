@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>profile</title>
 
@@ -159,12 +159,15 @@
                     </li>
 
                 </ul>
-                <div class="content">
-                    <div class="user-all-post">
-                        <div class="post-item">
-                            <p>//bai viet</p>
-                        </div>
-
+                
+                <div id="content">
+                    <div id="load_posts"></div>
+                    <div class="load_message" id="load_message"></div>
+                </div>
+<!--                <div id="content">
+                    <div class="user-all-post" id="load_posts">
+                        <div class="post-item" ></div>
+                        <div id="#load_message"></div>
                     </div>
                     <div class="user-all-picture">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9QkIpNqACZvVETdaSJmg5VYJub4Mqq8aKJkRhFn-9ZLDObSAO05OPgyhDZ8S_gTDZDQ&usqp=CAU"
@@ -172,7 +175,7 @@
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV_UksJyUT1y4AbEpE5fAEbzYHmsk8JzsNKA&usqp=CAU"
                              alt="">
                     </div>
-                </div>
+                </div>-->
 
             </div>
 
@@ -181,5 +184,54 @@
         <footer id="footer">
             <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
         </footer>
+                
+        <!--add show posts on profile-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var max = '<%= request.getAttribute("maxPage") %>';console.log(max);
+                var start = 0;
+                var action = 'inactive';
+                function load_data_post(start){
+                    $.ajax({
+                       url: "/socialmedia_j2ee/ShowPost",
+                       metod: "GET",
+                       data: {
+                           startpage: start,
+                           username: "${username}"
+                       },
+                       success: function (data) {
+                        $('#load_posts').append(data);
+                        
+                        if(data.toString().trim() === ''){
+                            $('#load_message').html("<button>You Read All Post</button>");
+                            action = 'active';
+                        }
+                        else{
+                            $('#load_message').html("<button>Please Wait</button>");
+                            action = 'inactive';
+                        }console.log(data);
+                    }
+                    });
+                }
+                
+                if(action === 'inactive'){
+                    action = 'active';
+                    load_data_post(start);
+                }
+                $(window).scroll(function(){
+                    if($(window).scrollTop() + $(window).height() > $("#load_posts").height() && action === 'inactive')
+                    {
+                        action = 'active';
+                        start = start + 1;console.log(start);
+                        if(start <= max){
+                            setTimeout(function(){
+                                load_data_post(start); 
+                            }, 1000);
+                        }
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
