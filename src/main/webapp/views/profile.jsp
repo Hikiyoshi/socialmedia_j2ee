@@ -160,9 +160,9 @@
 
                 </ul>
                 
-                <div id="content">
+                <div id="content" class="content">
                     <div id="load_posts"></div>
-                    <div class="load_message" id="load_message"></div>
+                    <div id="load_message"></div>
                 </div>
 <!--                <div id="content">
                     <div class="user-all-post" id="load_posts">

@@ -242,3 +242,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 	background:rgba(0,0,0,0.6);
 } */
 
+
+#load_message{
+    font-size: 100%;
+    width: 100%;        
+}
+#load_message button{
+    border: none;
+    border-radius: 12px;
+    font-size: 100%;
+    background: #fff; 
+}
