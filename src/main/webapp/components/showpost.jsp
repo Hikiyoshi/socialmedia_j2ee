@@ -14,9 +14,9 @@
         <div class="status-field-container write-post-container">
             <div class="user-profile-box">
                 <div class="user-profile">
-                    <img src="images/profile-pic.png" alt="">
+                    <img src="images/${p.profile_uploaded.imgAvatar}" alt="">
                     <div>
-                        <p> ${p.username}</p>
+                        <p> ${p.profile_uploaded.firstname} ${p.profile_uploaded.surname} </p>
                         <small>${p.dateCreated}</small>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div><img src="images/share.png" alt="">35</div>
                 </div>
                 <div class="post-profile-picture">
-                    <img src="images/profile-pic.png " alt=""> <i class=" fas fa-caret-down"></i>
+                    <img src="images/${p.profile_uploaded.imgAvatar}" alt=""> <i class=" fas fa-caret-down"></i>
                 </div>
             </div>
         </div>
