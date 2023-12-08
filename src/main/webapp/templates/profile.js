@@ -37,16 +37,6 @@ function selectListItem(element) {
 }
 
 
-var wrapFriend = document.querySelector(".wrap-friend");
-function showFriend(){
-    wrapFriend.style.display= 'block'
-}
-
-function closeFriend(){
-    wrapFriend.style.display='none';
-}
-
-
 
 
 var userSettings = document.querySelector(".user-settings");

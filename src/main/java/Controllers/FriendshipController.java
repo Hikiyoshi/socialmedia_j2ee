@@ -116,7 +116,7 @@ public class FriendshipController extends HttpServlet {
         req.setAttribute("friends", users);
 //        String newUrl = req.getRequestURL() + "?q="+q+"&page=" + page + "&limit=" + limit;
 //        resp.sendRedirect(newUrl);
-        req.getRequestDispatcher("/views/friend.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/profile.jsp").forward(req, resp);
     }
 
     public Map<String, Object> pagination(HttpServletRequest request, HttpServletResponse response, List<Profile> users, String page, String limit) {
