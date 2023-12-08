@@ -113,12 +113,12 @@ public class Post {
         return "idPost: " + this.idPost + " username: " + this.username + " content: " + this.content + " datecreated: " + this.dateCreated;
     }
     
-    public Profile getProfile_uploaded() {
-        return this.profile_uploaded;
-    }
-
-    public void setContent(Profile profile_uploaded) {
-        this.profile_uploaded = profile_uploaded;
-    }
+//    public Profile getProfile_uploaded() {
+//        return this.profile_uploaded;
+//    }
+//
+//    public void setContent(Profile profile_uploaded) {
+//        this.profile_uploaded = profile_uploaded;
+//    }
     
 }
