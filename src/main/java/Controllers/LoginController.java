@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String us = request.getParameter("username");
         String pw = request.getParameter("password");
-        try {       
+        try {      
             Profile p = ProfileDAO.selectByUsername(us);
 
             if (p != null && p.getPassword().equals(pw)) {

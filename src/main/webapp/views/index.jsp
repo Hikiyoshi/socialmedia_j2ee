@@ -119,7 +119,7 @@
                     </div>
 
                 </div>
-                <div class="user-settings">
+                    <div class="user-settings" style="z-index: 100">
                     <div class="profile-darkButton">
                         <div class="user-profile">
                             <img src="images/${avatarImage}" alt="">
