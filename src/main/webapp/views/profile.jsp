@@ -1,3 +1,8 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="Models.Profile" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -5,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>profile</title>
 
@@ -138,11 +143,41 @@
                     <b>Giới thiệu:</b><br>
                     <p class="introduce">${introduction}</p>
                 </div>
+                <div class="full-name-user">
+                    Bé Cu Te
+                </div>
             </div>
 
             <div class="wrap-friend">
                 <div class="all-friend-show">
                     <button id="btn-close-friend" onclick="closeFriend()">x</button>
+                    <div class="wrap-info">
+                        <%
+List<Profile> users = (List<Profile>) request.getAttribute("friends");
+String pages= request.getAttribute("currentPage").toString();
+String limits= request.getAttribute("perPage").toString();
+if (users != null) {
+for (Profile user : users) {
+// Sử dụng đối tượng User ở đây
+String username = user.getUsername();
+String surname = user.getSurname();
+String firstname = user.getFirstname();
+String imgavatar = user.getImgAvatar();
+                        %>
+                        <div class="info-item">
+
+                            <img class="avatar-friend" src="images/<%= imgavatar%>" >
+
+                            <div>
+                                <%=firstname + " " + surname %> 
+                            </div>               
+                        </div>
+                        <%
+                                                }
+                                            }
+                        %>
+                    </div>
+
                 </div>
 
             </div>

@@ -44,18 +44,18 @@ public class Post {
     @Column(name="datecreated")
     private LocalDateTime dateCreated;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "username" , insertable = false , updatable = false)
-    private Profile profile_uploaded;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "username" , insertable = false , updatable = false)
+//    private Profile profile_uploaded;
     
-    @OneToMany(mappedBy = "post_commented", fetch = FetchType.LAZY)
-    private List<PostComment> post_comment = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "img_post", fetch = FetchType.LAZY)
-    private List<PostImage> post_img = new ArrayList<>();
-
-    @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
-    private List<Reaction> reactions = new ArrayList<>();
+//    @OneToMany(mappedBy = "post_commented", fetch = FetchType.LAZY)
+//    private List<PostComment> post_comment = new ArrayList<>();
+//    
+//    @OneToMany(mappedBy = "img_post", fetch = FetchType.LAZY)
+//    private List<PostImage> post_img = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
+//    private List<Reaction> reactions = new ArrayList<>();
     
     public int getIdPost() {
         return idPost;
@@ -89,13 +89,13 @@ public class Post {
         this.dateCreated = dateCreated;
     }
     
-    public List<Reaction> getReactions() {
-		return reactions;
-	}
-
-	public void setReactions(List<Reaction> reactions) {
-		this.reactions = reactions;
-	}
+//    public List<Reaction> getReactions() {
+//		return reactions;
+//	}
+//
+//	public void setReactions(List<Reaction> reactions) {
+//		this.reactions = reactions;
+//	}
 
     public Post( String username, String content, LocalDateTime dateCreated) {
 

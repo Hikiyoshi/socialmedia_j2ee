@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("user", p);
                 request.setAttribute("user", p);
                 
-                response.sendRedirect("/socialmedia_j2ee/index");
+                response.sendRedirect("/views/index.jsp");
                 //request.getRequestDispatcher("/index").forward(request, response);
             } else {
                 // Incorrect username or password

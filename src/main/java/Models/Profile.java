@@ -57,17 +57,14 @@ public class Profile {
     @OneToMany(mappedBy = "profile_request_friendships", fetch = FetchType.LAZY)
     private List<Friendship> request_friendships = new ArrayList<>();
     
-    @OneToMany(mappedBy = "profile_acpect_friendships", fetch = FetchType.LAZY)
-    private List<Friendship> acpect_friendships = new ArrayList<>();
+//    @OneToMany(mappedBy = "profile_uploaded", fetch = FetchType.LAZY)
+//    private List<Post> profile_post = new ArrayList<>();
     
-    @OneToMany(mappedBy = "profile_uploaded", fetch = FetchType.LAZY)
-    private List<Post> profile_post = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "reactUsername", fetch = FetchType.LAZY)
-    private List<Reaction> reactions = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "profile_commented", fetch = FetchType.LAZY)
-    private List<PostComment> profile_commented = new ArrayList<>();
+//    @OneToMany(mappedBy = "reactUsername", fetch = FetchType.LAZY)
+//    private List<Reaction> reactions = new ArrayList<>();
+//    
+//    @OneToMany(mappedBy = "profile_commented", fetch = FetchType.LAZY)
+//    private List<PostComment> profile_commented = new ArrayList<>();
 
     public String getUsername() {
         return username;

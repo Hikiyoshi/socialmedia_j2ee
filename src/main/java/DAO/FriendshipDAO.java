@@ -171,8 +171,8 @@ public class FriendshipDAO {
 
             TypedQuery<Friendship> query = em.createQuery(jpql, Friendship.class);
             query.setParameter("userName", userName);
-            query.setFirstResult((page - 1) * limit);
-            query.setMaxResults(limit);
+//            query.setFirstResult((page - 1) * limit);
+//            query.setMaxResults(limit);
             
             String countjpql = "SELECT COUNT(o) FROM Friendship o WHERE (o.userrequest=:userName OR o.useraccept=:userName) AND o.state=1";
 

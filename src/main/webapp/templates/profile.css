@@ -17,6 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     margin-left: 330px;
     display: block;
     justify-content: center;
+  
     padding: 13px 5%;
     /* border: solid 1px #ff7f50; */
     width: 800px;
@@ -25,10 +26,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 2%;
 }
 .profile-top{
+   
     padding: 15px 15px;
     display: flex;
     justify-content: center;
-   /* background-color: #B03060; */
+    background-color: #B03060; 
     margin-top: 50px;
     margin-bottom: 50px;
     height: 100%;
@@ -38,42 +40,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 .profile-avatar{
     flex-basis: 30%;
+    height: 160px;
     /* border: 1px solid #ff7f50; */
     float: left;
+    background-color: aquamarine;
+    
+
 }
 .profile-avatar img{
+    width: 150px;
+    height: 150px;
+    
     border-radius: 50%;
-  
+    border: 2px dashed #41db51;
+
 }
+
 .profile-right-block{
+    flex-basis: 60%;
+ background-color: #1161ee;
     display: block;
 }
 .profile-user-settings{
-    flex-basis: 70%;
+    
     padding: 0px;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     height: 30%;
+    flex-wrap: wrap;
     /* background-color: rgb(255, 0, 255); */
 }
-.profile-user-name{
-    margin-top: 0px;
-    margin-right: 10px;
-    
-    height: 30px;
-    /* background-color: #ff7f50; */
-    font-family: 'Karla', sans-serif;
-}
-.profile-user-name h1{
-   margin-top: 0px;   
-}
+
+
 .btn-profile-edit{
+    float: right;
     border: none;
     font-weight: bolder;
     height: 30px;
     padding: 0 20px;
     border-radius: 8px;
-    /* background-color: blue; */
+/*     background-color: blue; */
+}
+.btn-profile-edit:hover{
+    cursor: pointer;
+}
+.btn-profile-edit:active{
+     opacity: 0.5;  
+    filter: alpha(opacity=50);
 }
 .profile-user-status{
     height: 30%;
@@ -93,7 +106,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .profile-user-status p:hover{
     cursor: pointer;
 }
-
+.full-name-user{
+    background-color: #41db51;   
+    align-self: flex-start;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    flex-basis: 90%;  
+/*    flex-grow: 0;*/
+    height: 100px;
+ 
+}
 .profile-mid{
     /* background-color: chartreuse; */
     justify-content: center;
@@ -209,7 +231,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .all-friend-show{
     height: 500px;
-	width: 900px;
+	width: 1000px;
 	border: slategray solid 3px;
 	background-color: #fff;
 	margin: 130px auto;
@@ -231,6 +253,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 #btn-close-friend:hover{
     color: rosybrown;
+}
+.wrap-info{
+    padding: 15px 30px;
+    margin-top:10px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    right: 0;
+    overflow-y:scroll;
+    border: 1px solid #9a9a9a;
+   
+}
+.info-item{
+    display: flex;
+    background-color: #6CA6CD;
+    flex-basis: 48%;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 10px 10px;
+}
+.avatar-friend{
+   width: 80px;
+   height: 80px;
+   border-radius: 15px;
+   margin-right: 10px;
 }
 /* chitietsanpham */
 /* .wrap{
