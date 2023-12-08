@@ -37,13 +37,13 @@ public class Reaction {
     @Column(name = "datecreated")
     private String datecreated;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "username", insertable=false, updatable=false)
-    private Profile reactUsername;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idPost", insertable=false, updatable=false)
-    private Post reactPost;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "username", insertable=false, updatable=false)
+//    private Profile reactUsername;
+//    
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "idPost", insertable=false, updatable=false)
+//    private Post reactPost;
 
 	public int getIdReact() {
 		return idReact;
@@ -85,21 +85,21 @@ public class Reaction {
 		this.datecreated = datecreated;
 	}
 
-	public Profile getReactUsername() {
-		return reactUsername;
-	}
-
-	public void setReactUsername(Profile reactUsername) {
-		this.reactUsername = reactUsername;
-	}
-
-	public Post getReactPost() {
-		return reactPost;
-	}
-
-	public void setReactPost(Post reactPost) {
-		this.reactPost = reactPost;
-	}
+//	public Profile getReactUsername() {
+//		return reactUsername;
+//	}
+//
+//	public void setReactUsername(Profile reactUsername) {
+//		this.reactUsername = reactUsername;
+//	}
+//
+//	public Post getReactPost() {
+//		return reactPost;
+//	}
+//
+//	public void setReactPost(Post reactPost) {
+//		this.reactPost = reactPost;
+//	}
     
     
 }

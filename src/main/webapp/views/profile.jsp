@@ -1,3 +1,8 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="Models.Profile" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Models.Profile" %>
 <%@page import="java.util.List" %>
@@ -79,7 +84,78 @@
                         }
                     %>
                 </div>
+                <div class="full-name-user">
+                    Bé Cu Te
+                </div>
             </div>
+<<<<<<< HEAD
+=======
+
+            <div class="wrap-friend">
+                <div class="all-friend-show">
+                    <button id="btn-close-friend" onclick="closeFriend()">x</button>
+                    <div class="wrap-info">
+                        <%
+List<Profile> users = (List<Profile>) request.getAttribute("friends");
+String pages= request.getAttribute("currentPage").toString();
+String limits= request.getAttribute("perPage").toString();
+if (users != null) {
+for (Profile user : users) {
+// Sử dụng đối tượng User ở đây
+String username = user.getUsername();
+String surname = user.getSurname();
+String firstname = user.getFirstname();
+String imgavatar = user.getImgAvatar();
+                        %>
+                        <div class="info-item">
+
+                            <img class="avatar-friend" src="images/<%= imgavatar%>" >
+
+                            <div>
+                                <%=firstname + " " + surname %> 
+                            </div>               
+                        </div>
+                        <%
+                                                }
+                                            }
+                        %>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="profile-mid">
+                <ul class="profile-navtab">
+                    <li class="profile-nav-item" onclick="selectListItem(this)">
+                        <a id="all-post" href="#">Bài viết</a>
+                    </li>
+
+                    <li class="profile-nav-item" onclick="selectListItem(this)">
+                        <a id="all-picture" href="#">Tất cả ảnh</a>
+                    </li>
+
+                </ul>
+                <div class="content">
+                    <div class="user-all-post">
+                        <div class="post-item">
+                            <p>//bai viet</p>
+                        </div>
+
+                    </div>
+                    <div class="user-all-picture">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9QkIpNqACZvVETdaSJmg5VYJub4Mqq8aKJkRhFn-9ZLDObSAO05OPgyhDZ8S_gTDZDQ&usqp=CAU"
+                             alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV_UksJyUT1y4AbEpE5fAEbzYHmsk8JzsNKA&usqp=CAU"
+                             alt="">
+                    </div>
+                </div>
+
+            </div>
+
+
+>>>>>>> f5d23e1849f42332f7dd545c1933f21759ebd469
         </div>
         <div class="hidden-scroll" style="overflow: auto">
             <nav class="navbar">

@@ -24,14 +24,15 @@ public class LoginController extends HttpServlet {
         String us = request.getParameter("username");
         String pw = request.getParameter("password");
         try {      
+            System.out.println(">>>>>> check2");
             Profile p = ProfileDAO.selectByUsername(us);
-
+            System.out.println(">>>>>> check");
             if (p != null && p.getPassword().equals(pw)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", p);
                 request.setAttribute("user", p);
                 
-                response.sendRedirect("/socialmedia_j2ee/index");
+                response.sendRedirect("/views/index.jsp");
                 //request.getRequestDispatcher("/index").forward(request, response);
             } else {
                 // Incorrect username or password
