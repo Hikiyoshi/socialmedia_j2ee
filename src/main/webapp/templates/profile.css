@@ -232,6 +232,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 #btn-close-friend:hover{
     color: rosybrown;
 }
+
+.profile-form {
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+#hoso {
+   margin-top: 15px;
+   margin-bottom: 15px;
+   list-style-type: none;
+}
+
+#khoangcach1{
+    margin-left: 60px
+}
+#khoangcach2{
+    margin-left: 69px;
+}
+#khoangcach3{
+   margin-left: 11px;
+}
 /* chitietsanpham */
 /* .wrap{
     height: 100%;

@@ -7,6 +7,7 @@ package Utilities;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.sql.Connection;
 
 /**
  *
@@ -27,5 +28,6 @@ public class JpaUtils {
         manager.close();
         factory.close();
     }
+
     
 }

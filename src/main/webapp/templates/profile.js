@@ -81,14 +81,15 @@ function FriendRequestToggle() {
 function toggleProfileEditing(state) {
 	var div = document.getElementById("profile-editing");
 	var editButton = document.getElementById("editButton");
-	
+       
+    
 	if (state) {
 		editButton.disabled = true;
     	div.style.display = "block";
   	} else {
 		editButton.disabled = false;
-    	div.style.display = "none";
-  	}
+   	div.style.display = "none";
+  	}    
 };
 
 function previewAvatar() {
