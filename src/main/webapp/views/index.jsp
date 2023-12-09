@@ -152,7 +152,7 @@
                     </div>
 
                     <div class="settings-links">
-                        <img src="/socialmedia_j2ee/images/Display.png" alt="" class="settings-icon">
+                        <img src="/socialmedia_j2ee/images/display.png" alt="" class="settings-icon">
                         <a href="#">Display & Accessibility <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
                     </div>
 

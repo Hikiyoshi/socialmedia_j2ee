@@ -69,6 +69,11 @@ public class Profile {
     @OneToMany(mappedBy = "profile_commented", fetch = FetchType.LAZY)
     private List<PostComment> profile_commented = new ArrayList<>();
 
+    public Profile() {
+    	imgAvatar = "avatar_default.png";
+    	introduction = "";
+    }
+    
     public String getUsername() {
         return username;
     }

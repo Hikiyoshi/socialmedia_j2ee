@@ -47,14 +47,12 @@ public class RegisterController extends HttpServlet {
                     profile.setPassword(password);
                     profile.setSurname(surname);
                     profile.setFirstname(firstname);
-                    profile.setImgAvatar(imgAvatar);
                     profile.setDateBirth(dateBirt);
                     profile.setGender(gender);
                     profile.setPhonenumber(phoneNumber);
                     profile.setEmail(email);
                 
-                    ProfileDAO profileDAO = new ProfileDAO();
-                    profileDAO.createProfile(profile);              
+                    ProfileDAO.createProfile(profile);              
                 } catch (Exception e) {
                 
                     System.out.println("Loi: " + e);

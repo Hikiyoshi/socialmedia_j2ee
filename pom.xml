@@ -8,17 +8,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jakartaee>10.0.0</jakartaee>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>${jakartaee}</version>
-			<scope>provided</scope>
-		</dependency>
-		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -48,13 +40,6 @@
                 <dependency>
                     <groupId>jakarta.servlet.jsp.jstl</groupId>
                     <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-                    <version>3.0.0</version>
-                </dependency>
-                
-                <!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
-                <dependency>
-                    <groupId>org.glassfish.web</groupId>
-                    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
                     <version>3.0.0</version>
                 </dependency>
 

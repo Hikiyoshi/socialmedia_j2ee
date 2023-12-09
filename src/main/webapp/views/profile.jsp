@@ -106,7 +106,7 @@
                 	<input name="username" type="hidden" value="${username}">
 	                <b> Ảnh Hồ Sơ: </b>
 	                <img src="images/${avatarImage}" id="avatarPreview" height="100">
-	                <input name="avatarInput" id="avatarInput" type="file" accept="image/*" onchange="previewAvatar()">
+	                <input name="avatarInput" id="avatarInput" type="file" accept="image/png, image/jpg, image/jpeg, image/bmp" onchange="previewAvatar()">
 	                <br>
 	                <b> Tên: </b>
 	                <input name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
@@ -122,7 +122,7 @@
             </div>
             <div class="profile-top">
                 <div class="profile-avatar">
-                    <img src="images/${avatarImage}" alt="" height="250">
+                    <img src="images/${avatarImage}" alt="" height="250" width="250">
                 </div>
                 <div class="profile-right-block">
                     <div class="profile-user-settings">

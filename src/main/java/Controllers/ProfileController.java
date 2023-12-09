@@ -37,6 +37,8 @@ public class ProfileController extends HttpServlet {
 			request.setAttribute("surname", p.getSurname());
 			request.setAttribute("fullName", p.getFullname());
 			request.setAttribute("introduction", p.getIntroduction());
+			
+			System.out.println("Set profile attributes complete!");
 		}
 
 		request.getRequestDispatcher("/views/profile.jsp").forward(request, response);

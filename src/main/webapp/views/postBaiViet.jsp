@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FontAweome CDN Link for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="stylesheet" href="/socialmedia_j2ee/templates/post1.css" >
+    <link rel="stylesheet" href="templates/post1.css" >
     
      <script>
         function chooseImage() {
@@ -71,10 +71,10 @@
       <div class="wrapper">
         <section class="post">
           <header>Create Post</header>
-          <form action="/socialmedia_j2ee/postController" method="post" enctype="multipart/form-data" >
+          <form method="post">
               <input type="hidden" name="username" value="<% if(username!=null) out.print(username);%>">
             <div class="content">
-              <img src="/socialmedia_j2ee/images/TD.jpg" alt="logo">
+              <img src="images/TD.jpg" alt="logo">
               <div class="details">
                 
                 <div class="privacy">
@@ -88,19 +88,19 @@
              
               <img id="selectedImage" style="max-width: 450px; " src="" alt="" >
             <div class="theme-emoji">
-              <img src="/socialmedia_j2ee/images/theme.svg" alt="theme">
-              <img src="/socialmedia_j2ee/images/smile.svg" alt="smile">
+              <img src="images/theme.svg" alt="theme">
+              <img src="images/smile.svg" alt="smile">
             </div>
             <div class="options">
               <p>Add to Your Post</p>
               <ul class="list">
                   
                   <li><div class="gallery"><input name="image" type="file" id="imageInput" onchange="displaySelectedImage(event)" alt="Submit" ">
-                          <img src="/socialmedia_j2ee/images/gallery.svg" alt="gallery"><!-- comment --></div></li>
+                          <img src="images/gallery.svg" alt="gallery"><!-- comment --></div></li>
 
-                  <li><img src="/socialmedia_j2ee/images/emoji.svg" alt="gallery"></li>
-                <li><img src="/socialmedia_j2ee/images/mic.svg" alt="gallery"></li>
-                <li><img src="/socialmedia_j2ee/images/more.svg" alt="gallery"></li>
+                  <li><img src="images/emoji.svg" alt="gallery"></li>
+                <li><img src="images/mic.svg" alt="gallery"></li>
+                <li><img src="images/more.svg" alt="gallery"></li>
               </ul>
             </div>
                   <button type="submit">Post</button>
