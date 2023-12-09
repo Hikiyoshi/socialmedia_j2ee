@@ -19,22 +19,34 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.Random;
+
+import Models.Profile;
+import DAO.ProfileDAO;
+
 @WebServlet(urlPatterns = {"/SendEmailServlet"})
 public class SendEmailServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String toEmail = request.getParameter("toEmail");
-       
-
-        // Gửi email
-        sendEmail(toEmail);
-
-        // Chuyển hướng đến trang thông báo hoặc có thể thực hiện các xử lý khác
-        
+        String user = request.getParameter("username");
+        try {
+            Profile p = ProfileDAO.selectByUsername(user);
+            if (p != null) {
+                String email = p.getEmail();
+                String password = p.getPassword();
+                sendEmail(email, password);
+                request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+            }
+            else{
+                request.setAttribute("error", "Tài khoản không tồn tại!");
+                request.getRequestDispatcher("/views/forgotpass.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            System.out.println("Loi: " + e);
+        }
     }
 
-    private void sendEmail(String toEmail) {
+    private void sendEmail(String toEmail, String getpass) {
         final String username = "trandinhtoan2610@gmail.com"; // Thay bằng địa chỉ email của bạn
         final String password = "jdjnxdygippcsotg"; // Thay bằng mật khẩu của bạn
 
@@ -54,20 +66,15 @@ public class SendEmailServlet extends HttpServlet {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            message.setSubject("confirm");
-            message.setText("Confirm code: " + getRandom());
+            message.setSubject("Lấy lại mật khẩu");
+            message.setText("Your pass: " + getpass);
 
             Transport.send(message);
 
             System.out.println("Email sent successfully!");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
     }
-    public String getRandom() {
-        Random rnd = new Random();
-        int number = rnd.nextInt(999999);
-        return String.format("%06d", number);
-    }
+
 }
