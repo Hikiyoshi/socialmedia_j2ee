@@ -42,6 +42,8 @@ public class ProfileController extends HttpServlet {
                         //getMaxpages for showPost
                         int maxPages = PostDAO.countMaxPagefindByUsernamePages(p.getUsername(), 2);
                         request.setAttribute("maxPage", maxPages);
+			
+			System.out.println("Set profile attributes complete!");
 		}
 
 		request.getRequestDispatcher("/views/profile.jsp").forward(request, response);

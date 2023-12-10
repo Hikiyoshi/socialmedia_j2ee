@@ -152,7 +152,7 @@
             <div class="profile-top">
                 <div class="profile-top">
                     <div class="profile-avatar">
-                        <img src="images/${avatarImage}" alt="" height="250">
+                        <img src="images/${avatarImage}" alt="" height="250" width="250">
                     </div>
                     <div class="profile-right-block">
                         <div class="profile-user-settings">

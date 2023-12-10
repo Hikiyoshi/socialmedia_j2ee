@@ -132,7 +132,7 @@ button:hover {
 
         <button type="submit">Đăng ký</button>
         <div class="signup-link">
-            Có tài khoản rồi? <a href="login.jsp">Đăng nhập ngay</a>
+            Có tài khoản rồi? <a href="index">Đăng nhập ngay</a>
         </div>
     </form>
 </body>
