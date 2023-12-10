@@ -1,0 +1,21 @@
+#Comment-Contain{
+    display: none;
+    width: 50%;
+    height: 400px;
+    background: #ffffff;
+    margin: auto;
+    z-index: 2;
+    border-radius: 15px;
+    position: fixed;
+    left: 25%;
+}
+
+.head-Comment{
+    text-align: center;
+}
+
+#close-comment{
+    color: red;
+    float: right;
+    font-size: 25px;
+}

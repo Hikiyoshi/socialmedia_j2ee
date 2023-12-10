@@ -34,9 +34,9 @@
 
             <div class="post-reaction">
                 <div class="activity-icons">
-                    <div><img src="images/like-blue.png" alt="">120</div>
-                    <div><img src="images/comments.png" alt="">52</div>
-                    <div><img src="images/share.png" alt="">35</div>
+                    <div><img src="images/like-blue.png" alt=""></div>
+                    <div id="btn_show_comments" onclick="showComment(true);"><img src="images/comments.png" alt=""></div>
+                    <div><img src="images/share.png" alt=""></div>
                 </div>
                 <div class="post-profile-picture">
                     <img src="images/${p.profile_uploaded.imgAvatar}" alt=""> <i class=" fas fa-caret-down"></i>
@@ -45,3 +45,15 @@
         </div>
     </c:forEach>
 </c:if>
+<script>
+    function showComment(state){
+    var comment = document.getElementById("Comment-Contain");
+    
+    if(state === true){
+        comment.style.display = "block"; 
+    }
+    if(state === false){
+        comment.style.display = "none";
+    }
+}
+</script>

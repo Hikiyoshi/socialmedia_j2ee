@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
+        <link rel="stylesheet" href="templates/commentcss.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>profile</title>
 
@@ -100,6 +101,14 @@
         </nav>
 
         <div class="container-profile">
+
+            
+            <!--Comment-->
+            <div id="Comment-Contain">
+                <jsp:include page="../components/postComment.jsp" />
+            </div>
+            
+            
         	<button class="btn-profile-edit" id="editButton" onclick="toggleProfileEditing(true)">Chỉnh sửa trang cá nhân</button><br>
         	<div id="profile-editing" style="display:none;">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -178,9 +187,9 @@
                 </div>-->
 
             </div>
-
-
-        </div>
+            
+            
+        </div>      
         <footer id="footer">
             <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
         </footer>
@@ -233,5 +242,6 @@
                 });
             });
         </script>
+        <script src="../templates/postcomment.js"></script>
     </body>
 </html>

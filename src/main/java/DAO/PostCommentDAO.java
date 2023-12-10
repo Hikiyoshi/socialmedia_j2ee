@@ -179,4 +179,31 @@ public class PostCommentDAO {
         
         return list;
     }
+    
+    public static List<PostComment> findByPost(String idPost){
+        List<PostComment> result = new ArrayList<>();
+        EntityManager em = JpaUtils.createManager();
+        
+        try {
+            em.getTransaction().begin();
+            
+            String spql = "SELECT pm FROM PostComment pm WHERE pm.idPost = :isPost";
+            
+            TypedQuery<PostComment> query = em.createQuery(spql, PostComment.class);
+            query.setParameter("idPost", idPost);
+            
+            result = query.getResultList();
+            
+            em.getTransaction().commit();
+            System.out.println("Tim thanh cong!");
+            
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("Tim that bai!");
+        } finally {
+            JpaUtils.shutdown(em);
+        }
+        
+        return result;
+    }
 }
