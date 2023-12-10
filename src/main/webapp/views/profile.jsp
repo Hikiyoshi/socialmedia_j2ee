@@ -111,25 +111,42 @@
             
             
         	<button class="btn-profile-edit" id="editButton" onclick="toggleProfileEditing(true)">Chỉnh sửa trang cá nhân</button><br>
-        	<div id="profile-editing" style="display:none;">
-                <form action="" method="post" enctype="multipart/form-data">
-                	<input name="username" type="hidden" value="${username}">
-	                <b> Ảnh Hồ Sơ: </b>
-	                <img src="images/${avatarImage}" id="avatarPreview" height="100">
-	                <input name="avatarInput" id="avatarInput" type="file" accept="image/*" onchange="previewAvatar()">
-	                <br>
-	                <b> Tên: </b>
-	                <input name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
-	                <b> Họ: </b>
-	                <input name="surname" size="25" placeholder="Họ bạn là gì?" value="${surname}">
-	                <br>
-	                <b> Giới thiệu: </b>
-	                <textarea name="introduction" rows="5" cols="50" placeholder="Nói thêm về bản thân bạn...">${introduction}</textarea>
-	                <br>
-	                <button class="btn-profile-edit" name="saveButton" type="submit" value="save">Lưu</button>
-	                <button class="btn-profile-edit" onclick="toggleProfileEditing(false)">Hủy</button>
-				</form>
-            </div>
+        	
+                
+                <div id="profile-editing" style="position: fixed; z-index: 20;display: none; width: 50%; height: 1000px; top: 35%; left: 23.4%">
+                    <div id="newForm" style="display: block; margin: 10px 0; padding: 10px 100px; background-color: #fff; border-width: 1px; border-style: solid; border-color: #000; border-radius: 3%">
+                        <form action="" method="post" enctype="multipart/form-data" class="profile-form">
+                            <input name="username" type="hidden" value="${username}">
+                                
+                            <li id="hoso">
+                                <b> Ảnh Hồ Sơ: </b>
+                                <img src="images/${avatarImage}" id="avatarPreview" height="100">                  
+                                <input name="avatarInput" id="avatarInput" type="file" accept="image/*" onchange="previewAvatar()">
+                            </li>
+                                
+                            <li id="hoso">
+                                <b> Tên: </b>
+                                <input id="khoangcach1" name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
+                            </li>
+                                
+                            <li id="hoso">
+                                <b> Họ: </b>
+                                <input id="khoangcach2" name="surname" size="25" placeholder="Họ bạn là gì?" value="${surname}">
+                            </li>
+                                
+                            <li id="hoso">
+                                <b> Giới thiệu: </b>
+                                <textarea id="khoangcach3" name="introduction" rows="5" cols="50" placeholder="Nói thêm về bản thân bạn...">${introduction}</textarea>
+                            </li>
+                                
+                            <li id="hoso">
+                                <button class="btn-profile-edit" name="saveButton" type="submit" value="save">Lưu</button>
+                                <button class="btn-profile-edit" onclick="toggleProfileEditing(false)">Hủy</button>
+                            </li>
+                                
+                        </form>
+                    </div>            
+                </div>
         
         <div class="modal-background">                
             <div class="profile-top">
@@ -196,40 +213,7 @@
             
         </div>      
               
-                    <div id="profile-editing" style="position: fixed; z-index: 20;display: none; width: 50%; height: 1000px; top: 35%; left: 23.4%">
-                        <div id="newForm" style="display: block; margin: 10px 0; padding: 10px 100px; background-color: #fff; border-width: 1px; border-style: solid; border-color: #000; border-radius: 3%">
-                            <form action="" method="post" enctype="multipart/form-data" class="profile-form">
-                                <input name="username" type="hidden" value="${username}">
-                                
-                                <li id="hoso">
-                                <b> Ảnh Hồ Sơ: </b>
-                                <img src="images/${avatarImage}" id="avatarPreview" height="100">                  
-                                <input name="avatarInput" id="avatarInput" type="file" accept="image/*" onchange="previewAvatar()">
-                                </li>
-                                
-                                <li id="hoso">
-                                <b> Tên: </b>
-                                <input id="khoangcach1" name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
-                                </li>
-                                
-                                <li id="hoso">
-                                <b> Họ: </b>
-                                <input id="khoangcach2" name="surname" size="25" placeholder="Họ bạn là gì?" value="${surname}">
-                                </li>
-                                
-                                <li id="hoso">
-                                <b> Giới thiệu: </b>
-                                <textarea id="khoangcach3" name="introduction" rows="5" cols="50" placeholder="Nói thêm về bản thân bạn...">${introduction}</textarea>
-                                </li>
-                                
-                                <li id="hoso">
-                                <button class="btn-profile-edit" name="saveButton" type="submit" value="save">Lưu</button>
-                                <button class="btn-profile-edit" onclick="toggleProfileEditing(false)">Hủy</button>
-                                </li>
-                                
-                            </form>
-                        </div>            
-                    </div>
+                    
                 
         <footer id="footer">
             <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
