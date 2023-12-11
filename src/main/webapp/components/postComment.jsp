@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Models.PostComment" %>
+<%@page import="Models.Profile" %>
 <%@page import="java.util.List" %>
 <%@page import="Utilities.FormatUtils" %>
 <%@page import="java.time.LocalDateTime" %>
@@ -19,23 +20,29 @@
     <c:if test="${comments != null}">
         <c:forEach items="${comments}" var="cmt">
             <div class="box-comment">
-                <div class="avatar-comment" class="user-profile">
+                <div class="avatar-comment">
                     <img src="images/${cmt.commented_profile.imgAvatar}" alt="" >
                 </div>
-                <div class="name-comment">
-                    <p>${cmt.commented_profile.firstname} ${cmt.commented_profile.surname}</p>
+                <div class="content-box-comment">
+                    <div class="name-comment">
+                        <p>${cmt.commented_profile.firstname} ${cmt.commented_profile.surname}</p>
+                    </div>
+                    <div class="content-comment">
+                        <form method="POST">
+                            <textarea disabled="true" cols="70">${cmt.content}</textarea>
+                        </form>
+                    </div>
+                        
+                    <div class="date-comment">
+                        <c:set var="datecreatedComment" value="${cmt.datecreated}"></c:set>
+                        <%
+                            LocalDateTime tempDatecreate = (LocalDateTime) pageContext.getAttribute("datecreatedComment");
+                            String dateCreateComment = FormatUtils.FormatDateTime(tempDatecreate);
+                        %>
+                        <small><%=dateCreateComment%></small>
+                    </div>    
                 </div>
-                <div class="content-comment">
-                    <p>${cmt.content}</p>
-                </div>
-                <div class="date-comment">
-                    <c:set var="datecreatedComment" value="${cmt.datecreated}"></c:set>
-                    <%
-                        LocalDateTime tempDatecreate = (LocalDateTime) pageContext.getAttribute("datecreatedComment");
-                        String dateCreateComment = FormatUtils.FormatDateTime(tempDatecreate);
-                    %>
-                    <small><%=dateCreateComment%></small>
-                </div>
+                
             </div>
         </c:forEach>
     </c:if>
@@ -47,8 +54,14 @@
 </div>
 
 <div id="comment">
+    <div id="comment-img">
+        <c:if test="${sessionScope.user != null}">
+            <c:set var="user" value="${sessionScope.user}"></c:set>
+            <img src="images/${user.imgAvatar}" alt="alt"/>
+        </c:if>
+    </div>
     <form action="" method="POST" id="WriteComment">
-        <input type="text" placeholder="Viết bình luận..." class="content_write_comment" value=""/>
+        <textarea cols="55" rows="2" placeholder="Viết bình luận..." class="content_write_comment"></textarea>
         <input type="submit"/>
     </form>
 </div>
