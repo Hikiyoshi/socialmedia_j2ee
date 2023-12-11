@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Models.Profile" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -106,7 +107,6 @@
             
             <!--Comment-->
             <div id="Comment-Contain">
-                <jsp:include page="../components/postComment.jsp" />
             </div>
             
             
@@ -223,6 +223,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
+                    //Xử lý ajax cho load bài viết
                 var max = '<%= request.getAttribute("maxPage") %>';console.log(max);
                 var start = 0;
                 var action = 'inactive';
@@ -265,8 +266,71 @@
                         }
                     }
                 });
+                
+//                    Xử lý Hiển thị bình luận
+                <%
+                    Profile currentUser = (Profile)session.getAttribute("user");
+                    String currentUsername = currentUser.getUsername();
+                %>
+                        
+                function load_data_comments(idpost){
+                    $.ajax({
+                        url: "/socialmedia_j2ee/comment",
+                        method: "POST",
+                        data:{
+                            idPost: idpost
+                        },
+                        success: function(data){
+                            $("#Comment-Contain").html(data);console.log(data);
+                        }
+                    });
+                }
+                
+                var idpost;
+                $(document).on('click', '.btn_show_comments', function() {
+                    idpost = $(this).data('idpost');
+                    
+                    load_data_comments(idpost);
+                    
+                    $("#Comment-Contain").toggle();
+                });
+                
+                $(document).on('click', '#close-comment', function() {
+                    $("#Comment-Contain").toggle();
+                    $("#Comment-Contain").html("");
+                    idpost = "";
+                });
+                
+//                    Xử lý Đăng bình luận
+                $(document).on('submit', '#WriteComment',function(event) {
+                    //Ngăn không cho submit form reload trang
+                    event.preventDefault();
+                    
+                    var userComment = "<%=currentUsername%>";
+                    var content = $(".content_write_comment").val();
+                    
+                    if(content === ""){
+                        alert("Phải nhập bình luận ");
+                        return;
+                    }
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/comment",
+                        method: "POST",
+                        data:{
+                            idPost: idpost,
+                            userComment: userComment,
+                            add: "true",
+                            content: content
+                        },
+                        success: function(data){
+                            $(".content_write_comment").val("");
+                            load_data_comments(idpost);
+                        }
+                    });
+                });
             });
         </script>
-        <script src="../templates/postcomment.js"></script>
+        <script src="templates/postcomment.js"></script>
     </body>
 </html>

@@ -157,9 +157,9 @@ public class PostCommentDAO {
         try {
             em.getTransaction().begin();
             
-            String spql = "SELECT pm FROM PostComment pm WHERE pm.datecreated between :startDate and :endDate";
+            String jpql = "SELECT pm FROM PostComment pm WHERE pm.datecreated between :startDate and :endDate";
             
-            TypedQuery<PostComment> query = em.createQuery(spql,PostComment.class);
+            TypedQuery<PostComment> query = em.createQuery(jpql,PostComment.class);
             query.setParameter("startDate", start, TemporalType.DATE);
             query.setParameter("endDate", end, TemporalType.DATE);
             
@@ -187,9 +187,9 @@ public class PostCommentDAO {
         try {
             em.getTransaction().begin();
             
-            String spql = "SELECT pm FROM PostComment pm WHERE pm.idPost = :isPost";
+            String jpql = "SELECT pc FROM PostComment pc WHERE pc.idPost = :idPost";
             
-            TypedQuery<PostComment> query = em.createQuery(spql, PostComment.class);
+            TypedQuery<PostComment> query = em.createQuery(jpql, PostComment.class);
             query.setParameter("idPost", idPost);
             
             result = query.getResultList();
@@ -198,6 +198,7 @@ public class PostCommentDAO {
             System.out.println("Tim thanh cong!");
             
         } catch (Exception e) {
+            e.printStackTrace();
             em.getTransaction().rollback();
             System.out.println("Tim that bai!");
         } finally {

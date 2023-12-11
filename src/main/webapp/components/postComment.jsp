@@ -1,20 +1,54 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Models.PostComment" %>
+<%@page import="java.util.List" %>
+<%@page import="Utilities.FormatUtils" %>
+<%@page import="java.time.LocalDateTime" %>
 
 
 <div class="head-Comment">
-    <div id="close-comment" onclick="showComment(false)">x</div><br>
+    <div id="close-comment">x</div><br>
     <h2>Bình luận</h2>
     <hr>
 </div>
 
 <div id="comment-content">
-    <div>Danh sách bình luận</div>
+        <!--Get List Comments from request-->
+    <c:set var="comments" value="${requestScope.listComments}"></c:set>
+        <!--    Processing List Comments when not null-->
+    <c:if test="${comments != null}">
+        <c:forEach items="${comments}" var="cmt">
+            <div class="box-comment">
+                <div class="avatar-comment" class="user-profile">
+                    <img src="images/${cmt.commented_profile.imgAvatar}" alt="" >
+                </div>
+                <div class="name-comment">
+                    <p>${cmt.commented_profile.firstname} ${cmt.commented_profile.surname}</p>
+                </div>
+                <div class="content-comment">
+                    <p>${cmt.content}</p>
+                </div>
+                <div class="date-comment">
+                    <c:set var="datecreatedComment" value="${cmt.datecreated}"></c:set>
+                    <%
+                        LocalDateTime tempDatecreate = (LocalDateTime) pageContext.getAttribute("datecreatedComment");
+                        String dateCreateComment = FormatUtils.FormatDateTime(tempDatecreate);
+                    %>
+                    <small><%=dateCreateComment%></small>
+                </div>
+            </div>
+        </c:forEach>
+    </c:if>
+        <!--    Processing List Comments when null-->
+    <c:if test="${comments == []}">
+        <div><p>Hãy là người đâu tiên bình luận</p></div>
+    </c:if>
     <hr>
 </div>
 
 <div id="comment">
-<!--    <form action="" method="">
-        <input type="text" placeholder="Viết bình luận..." class="" value=""/>
+    <form action="" method="POST" id="WriteComment">
+        <input type="text" placeholder="Viết bình luận..." class="content_write_comment" value=""/>
         <input type="submit"/>
-    </form>-->
+    </form>
 </div>

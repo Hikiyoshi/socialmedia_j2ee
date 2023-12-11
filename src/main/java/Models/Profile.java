@@ -67,7 +67,7 @@ public class Profile {
     @OneToMany(mappedBy = "reactUsername", fetch = FetchType.LAZY)
     private List<Reaction> reactions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "profile_commented", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "commented_profile", fetch = FetchType.LAZY)
     private List<PostComment> profile_commented = new ArrayList<>();
 
     public Profile() {

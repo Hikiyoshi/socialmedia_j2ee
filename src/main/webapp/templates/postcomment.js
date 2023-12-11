@@ -1,12 +1,10 @@
-function showComment(){
-    const comment = document.getElementById("Comment-Contain");
+function showComment(state){
+    var comment = document.getElementById("Comment-Contain");
     
-    var check = comment.style.display;
-    
-    if(check === "none"){
-        comment.style.display = "block";
+    if(state === true){
+        comment.style.display = "block"; 
     }
-    if(check === "block"){
+    if(state === false){
         comment.style.display = "none";
     }
 }

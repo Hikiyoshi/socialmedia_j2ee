@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
@@ -24,7 +25,7 @@ public class PostComment {
     private int idComment;
     
     @Column(name = "idPost")
-    private String idPost;
+    private int idPost;
     
     @Column(name = "username")
     private String username;
@@ -33,15 +34,15 @@ public class PostComment {
     private String content;
     
     @Column(name = "datecreated")
-    private Date datecreated;
+    private LocalDateTime datecreated;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", insertable = false, updatable = false)
-    private Profile profile_commented;
+    private Profile commented_profile;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPost", insertable = false, updatable = false)
-    private Post post_commented;
+    private Post commented_post;
 
 	public int getIdComment() {
 		return idComment;
@@ -51,11 +52,11 @@ public class PostComment {
 		this.idComment = idComment;
 	}
 
-	public String getIdPost() {
+	public int getIdPost() {
 		return idPost;
 	}
 
-	public void setIdPost(String idPost) {
+	public void setIdPost(int idPost) {
 		this.idPost = idPost;
 	}
 
@@ -75,11 +76,15 @@ public class PostComment {
 		this.content = content;
 	}
 
-	public Date getDatecreated() {
+	public LocalDateTime getDatecreated() {
 		return datecreated;
 	}
 
-	public void setDatecreated(Date datecreated) {
+	public void setDatecreated(LocalDateTime datecreated) {
 		this.datecreated = datecreated;
 	}
+        
+        public String toString(){
+            return "IdComment: " + idComment + " IdPost: " + idPost + " Username: " + username + " Content: " + content +" DateCreated: " + datecreated;
+        }
 }

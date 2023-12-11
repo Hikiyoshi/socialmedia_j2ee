@@ -48,10 +48,10 @@ public class Post {
     @JoinColumn(name = "username" , insertable = false , updatable = false)
     private Profile profile_uploaded;
     
-    @OneToMany(mappedBy = "post_commented", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "commented_post", fetch = FetchType.LAZY)
     private List<PostComment> post_comment = new ArrayList<>();
     
-    @OneToMany(mappedBy = "img_post", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "img_post", fetch = FetchType.EAGER)
     private List<PostImage> post_img = new ArrayList<>();
 
     @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)

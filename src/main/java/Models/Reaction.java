@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
@@ -35,7 +36,7 @@ public class Reaction {
     private String content;
     
     @Column(name = "datecreated")
-    private String datecreated;
+    private LocalDateTime datecreated;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", insertable=false, updatable=false)
@@ -77,11 +78,11 @@ public class Reaction {
 		this.content = content;
 	}
 
-	public String getDatecreated() {
+	public LocalDateTime getDatecreated() {
 		return datecreated;
 	}
 
-	public void setDatecreated(String datecreated) {
+	public void setDatecreated(LocalDateTime datecreated) {
 		this.datecreated = datecreated;
 	}
 
