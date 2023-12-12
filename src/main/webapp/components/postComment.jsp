@@ -7,17 +7,20 @@
 <%@page import="java.time.LocalDateTime" %>
 
 
+
 <div class="head-Comment">
     <div id="close-comment">x</div><br>
     <h2>Bình luận</h2>
     <hr>
 </div>
-
-<div id="comment-content">
+<div id="container-comment-scroll">
+<div  id="comment-content" >
         <!--Get List Comments from request-->
     <c:set var="comments" value="${requestScope.listComments}"></c:set>
         <!--    Processing List Comments when not null-->
+        
     <c:if test="${comments != null}">
+        
         <c:forEach items="${comments}" var="cmt">
             <div class="box-comment">
                 <div class="avatar-comment">
@@ -51,8 +54,9 @@
         <div><p>Hãy là người đâu tiên bình luận</p></div>
     </c:if>
     <hr>
+   
 </div>
-
+</div>
 <div id="comment">
     <div id="comment-img">
         <c:if test="${sessionScope.user != null}">
