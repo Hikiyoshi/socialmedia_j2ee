@@ -22,7 +22,7 @@ import java.util.List;
  * @author Admin
  */
 @WebServlet(name="ShowPostServlet", urlPatterns={"/ShowPost"})
-public class ShowPostServlet extends HttpServlet {
+public class ShowPostController extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {

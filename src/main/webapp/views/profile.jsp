@@ -50,7 +50,9 @@
             <div class="nav-right">
                 <div class="search-box">
                     <img src="images/search.png" alt="">
-                    <input type="text" placeholder="Search">
+                    <form action="" method="POST" id="search_form">
+                        <input type="text" placeholder="Search" name="search_content" id="search_content">
+                    </form>
                 </div>
                 <div class="profile-image online" onclick="UserSettingToggle()">
                     <img src="images/${avatarImage}" alt="">
@@ -102,7 +104,7 @@
             </div>
         </nav>
                 
-        <div class="container-profile">
+        <div class="container-profile" id="container-profile">
 
             
             <!--Comment-->
@@ -213,7 +215,8 @@
             
         </div>      
               
-                    
+        </div>            
+                
                 
         <footer id="footer">
             <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
@@ -326,6 +329,24 @@
                         success: function(data){
                             $(".content_write_comment").val("");
                             load_data_comments(idpost);
+                        }
+                    });
+                });
+                
+//                Xử lý search
+                $(document).on('submit','#search_form',function(event) {
+                    event.preventDefault();
+                    var searchtxt = $('#search_content').val();
+
+                    $.ajax({
+                        url: "/socialmedia_j2ee/SearchController",
+                        method: "POST",
+                        data:{
+                            searchContent: searchtxt
+                        },
+                        success: function(data){
+                            $("#container-profile").html(data);console.log(data);
+                            $('#search_content').val("");
                         }
                     });
                 });

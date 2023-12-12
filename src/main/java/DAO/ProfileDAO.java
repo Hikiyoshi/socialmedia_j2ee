@@ -125,4 +125,30 @@ private static EntityManager _manager;
 		
 		return profile;
 	}
+        
+        public static List<Profile> searchName(String name){
+            _manager = JpaUtils.createManager();
+            List<Profile> result = new ArrayList<>();
+            
+            try {
+                _manager.getTransaction().begin();
+                
+                String jpql = "SELECT p FROM Profile p WHERE p.surname like :surname or p.firstname like :firstname";
+                TypedQuery<Profile> query = _manager.createQuery(jpql, Profile.class);
+                query.setParameter("surname", "%"+ name +"%");
+                query.setParameter("firstname", "%"+ name +"%");
+                result = query.getResultList();
+                
+                _manager.getTransaction().commit();
+                System.out.println("Transaction completed successfully!");	
+            } catch (Exception e) {
+                _manager.getTransaction().rollback();
+		System.out.println("Failed to commit the transaction! Roll-back to the previous state.");
+		e.printStackTrace();
+            } finally {
+                JpaUtils.shutdown(_manager);
+            }
+            
+            return result;
+        }
 }

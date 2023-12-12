@@ -111,8 +111,10 @@
 
                 <div class="nav-right">
                     <div class="search-box">
-                        <img src="/socialmedia_j2ee/images/search.png" alt="">
-                        <input type="text" placeholder="Search">
+                        <img src="images/search.png" alt="">
+                        <form action="" method="POST" id="search_form">
+                            <input type="text" placeholder="Search" name="search_content" id="search_content">
+                        </form>
                     </div>
                     <div class="profile-image online" onclick="UserSettingToggle()">
                         <img src="images/${avatarImage}" alt="">
@@ -165,7 +167,7 @@
             </nav>
         
 
-            <div class="container">
+            <div class="container" id="container">
   
                 <div class="content-area">
 
@@ -186,7 +188,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div id="post_content_area">
                         <% 
                             List<Post> list = PostDAO.readAllPost();
                             
@@ -236,6 +238,7 @@
                             out.print("rong");
                             }
                        %>
+                    </div>
                 </div>
             </div>
                 
@@ -244,6 +247,8 @@
             </footer>
         </div>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        
         <script>
             function toggleForms(isShow) {            
                 var form = document.getElementById("newForm1");
@@ -294,6 +299,25 @@
                    // Đọc dữ liệu của tệp hình ảnh khi nó được chọn
                 reader.readAsDataURL(input.files[0]);
               }
+            
+            
+            //Xử lý ajax tìm bạn
+            $(document).on('submit','#search_form',function(event) {
+                event.preventDefault();
+                var searchtxt = $('#search_content').val();
+                
+                $.ajax({
+                    url: "/socialmedia_j2ee/SearchController",
+                    method: "POST",
+                    data:{
+                        searchContent: searchtxt
+                    },
+                    success: function(data){
+                        $("#container").html(data);
+                        $('#search_content').val("");
+                    }
+                });
+            });
             
         </script>
         <script src="<%=request.getContextPath()%>/templates/function.js"></script>

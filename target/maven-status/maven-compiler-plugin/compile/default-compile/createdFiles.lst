@@ -10,12 +10,14 @@ Controllers\SendEmailServlet.class
 Controllers\CommentController.class
 Utilities\FormatUtils.class
 Controllers\postController.class
+Controllers\SearchController.class
 Models\Profile.class
 Utilities\AvatarUtils.class
 Models\PostImage.class
 Controllers\FriendshipRequestController.class
 Controllers\HomeController.class
 Controllers\FriendListServlet.class
+Controllers\ShowPostController.class
 DAO\ProfileDAO.class
 DAO\PostCommentDAO.class
 Models\Friendship.class
@@ -23,5 +25,4 @@ Utilities\JpaUtils.class
 DAO\FriendshipDAO.class
 Controllers\SendEmailServlet$1.class
 Models\Reaction.class
-Controllers\ShowPostServlet.class
 DAO\ReactionDAO.class

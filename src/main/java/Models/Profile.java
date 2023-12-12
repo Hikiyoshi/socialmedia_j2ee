@@ -183,4 +183,9 @@ public class Profile {
         return firstname + " " + surname;
     }
 
+    public String toString(){
+        return "Username: " + username + " Surname: " + surname + " Firstname: " + firstname 
+                + " Password: " + password + " Gender: " + gender + " DateBirth: " + dateBirth;
+    }
+    
 }
