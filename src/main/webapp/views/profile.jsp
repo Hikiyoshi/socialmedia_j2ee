@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
-        <link rel="stylesheet" href="templates/commentcss.css">
+        <link rel="stylesheet" href="templates/comment.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>profile</title>
 
@@ -150,7 +150,7 @@
         
         <div class="modal-background">                
             <div class="profile-top">
-                <div class="profile-top">
+                <!--<div class="profile-top">-->
                     <div class="profile-avatar">
                         <img src="images/${avatarImage}" alt="" height="250" width="250">
                     </div>
@@ -168,7 +168,7 @@
                         <b>Giới thiệu:</b><br>
                         <p class="introduce">${introduction}</p>
                         </div>
-                    </div>
+                    <!--</div>-->
             </div>
 
                                 <div class="wrap-friend">

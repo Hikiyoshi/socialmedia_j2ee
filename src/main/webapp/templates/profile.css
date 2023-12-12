@@ -54,6 +54,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: center;
     height: 30%;
+    margin-top: 50%;
     /* background-color: rgb(255, 0, 255); */
 }
 .profile-user-name{
@@ -272,4 +273,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 12px;
     font-size: 100%;
     background: #fff; 
+}
+
+.profile-introduce{
+    flex-basis: 100%
 }
