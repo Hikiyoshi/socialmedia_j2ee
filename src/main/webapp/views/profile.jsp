@@ -130,7 +130,7 @@
                     </div>
                     <div class="profile-user-status" align="left">
                         <p><span class="number-post">0</span> Bài viết </p>
-                        <p><span class="number-follower"></span>2 Người theo dõi </p>
+                        <p><span class="number-follower">2</span> Người theo dõi </p>
                         <p  onclick="showFriend()"><span id="all-friend">3</span> Bạn bè </p>
                     </div>
                 </div>
