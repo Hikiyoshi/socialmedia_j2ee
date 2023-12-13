@@ -27,17 +27,6 @@ public class CommentController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String delComment = request.getParameter("delComment");
-        if(delComment != null){
-            if(PostCommentDAO.deletePostComment(delComment)){
-                System.out.println("Xoa binh luan thanh cong");
-            }
-            else{
-                System.out.println("Xoa binh luan that bai");
-            }
-            return;
-        }
-        
         String idPost = request.getParameter("idPost");
         
         if(idPost != null){

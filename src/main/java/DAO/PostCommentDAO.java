@@ -187,7 +187,7 @@ public class PostCommentDAO {
         try {
             em.getTransaction().begin();
             
-            String jpql = "SELECT pc FROM PostComment pc WHERE pc.idPost = :idPost ORDER BY pc.datecreated DESC";
+            String jpql = "SELECT pc FROM PostComment pc WHERE pc.idPost = :idPost";
             
             TypedQuery<PostComment> query = em.createQuery(jpql, PostComment.class);
             query.setParameter("idPost", idPost);

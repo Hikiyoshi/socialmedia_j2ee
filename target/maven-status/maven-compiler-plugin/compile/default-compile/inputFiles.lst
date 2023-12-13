@@ -3,7 +3,6 @@ C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\PostImg
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\FriendshipController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\ProfileController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\ProfileDAO.java
-C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\ReactionController.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\DAO\FriendshipDAO.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Utilities\FormatUtils.java
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers\SendEmailServlet.java
@@ -29,7 +28,11 @@ C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Controllers
 C:\Users\Admin\Documents\NetBeansProjects\social_media\src\main\java\Utilities\AvatarUtils.java
 =======
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Controllers\HomeController.java
+<<<<<<< HEAD
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Controllers\SearchController.java
+=======
+C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Controllers\ShowPostServlet.java
+>>>>>>> parent of a5d7ec2 (done comment and reaction)
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Controllers\FriendListServlet.java
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Utilities\AvatarUtils.java
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\DAO\PostCommentDAO.java
@@ -54,5 +57,9 @@ C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\jav
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Models\Reaction.java
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Controllers\FriendshipController.java
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\DAO\ProfileDAO.java
+<<<<<<< HEAD
 C:\Users\Admin\OneDrive\Documents\NetBeansProjects\socialmedia_j2ee\src\main\java\Controllers\ShowPostController.java
 >>>>>>> f775237afc29f80aa72e847694682719782eb363
+=======
+>>>>>>> 40032cb12d35101844c722999e09dde0da864c1e
+>>>>>>> parent of a5d7ec2 (done comment and reaction)

@@ -36,20 +36,14 @@
                         </form>
                     </div>
                         
-                    <div style="display: flex">
-                        <div class="date-comment">
-                            <c:set var="datecreatedComment" value="${cmt.datecreated}"></c:set>
-                            <%
-                                LocalDateTime tempDatecreate = (LocalDateTime) pageContext.getAttribute("datecreatedComment");
-                                String dateCreateComment = FormatUtils.FormatDateTime(tempDatecreate);
-                            %>
-                            <small><%=dateCreateComment%></small>
-                        </div>    
-                        <c:set var="CurrentUser" value="${sessionScope.user}"></c:set>
-                        <c:if test="${cmt.commented_profile.username == CurrentUser.username}">
-                            <div class="btn-del-comment" data-idcomment='${cmt.idComment}'><small>Xoá</small></div>    
-                        </c:if>      
-                    </div>            
+                    <div class="date-comment">
+                        <c:set var="datecreatedComment" value="${cmt.datecreated}"></c:set>
+                        <%
+                            LocalDateTime tempDatecreate = (LocalDateTime) pageContext.getAttribute("datecreatedComment");
+                            String dateCreateComment = FormatUtils.FormatDateTime(tempDatecreate);
+                        %>
+                        <small><%=dateCreateComment%></small>
+                    </div>    
                 </div>
                 
             </div>

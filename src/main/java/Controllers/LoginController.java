@@ -21,13 +21,6 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {    	
         response.setContentType("text/html;charset=UTF-8");
-        //Add forward to index if already login
-        HttpSession ss = request.getSession();
-        Profile profile =(Profile) ss.getAttribute("user");
-        if(profile != null){
-            response.sendRedirect("/socialmedia_j2ee/index");
-        }
-        
         String us = request.getParameter("username");
         String pw = request.getParameter("password");
         try {       
