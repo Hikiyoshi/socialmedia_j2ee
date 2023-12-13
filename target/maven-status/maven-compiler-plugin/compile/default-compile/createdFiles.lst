@@ -1,5 +1,6 @@
 Controllers\ProfileController.class
 Controllers\RegisterController.class
+Utilities\PasswordUtils.class
 DAO\PostDAO.class
 DAO\PostImgDAO.class
 Controllers\FriendshipController.class

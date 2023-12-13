@@ -27,6 +27,7 @@
         <script type="text/javascript" src="templates/profile.js?v=1"></script>
         <!--Thư viện jquerydialog-->
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="templates/profile.js"></script>
     </head>
     <body>
         <div id="dialog-confirm" title="Xác nhận" style="display: none">
@@ -113,8 +114,7 @@
         </nav>
                 
         <div class="container-profile" id="container-profile">
-
-            
+       
             <!--Comment-->
             <div id="Comment-Contain">
             </div>
@@ -132,6 +132,18 @@
                                 <b> Ảnh Hồ Sơ: </b>
                                 <img src="images/${avatarImage}" id="avatarPreview" height="100">                  
                                 <input name="avatarInput" id="avatarInput" type="file" accept="image/*" onchange="previewAvatar()">
+                            </li>
+                            
+                            <li id='hoso'>
+                                <input name="changePwChkbx" id="changePwChkbx" type="checkbox" value="Change Password" onclick="toggleChangePassword()">
+                                <label for="changePwChkbx"> Đổi mật khẩu </label><br>
+                                <div id="change-password" style="display:none;">
+                                        <b> Mật khẩu mới: </b>
+                                        <input name="newPassword" type="password" size="30" placeholder="Nhập mật khẩu mới...">
+                                        <br>
+                                        <b> Nhập lại mật khẩu mới: </b>
+                                        <input name="confirmPassword" type="password" size="30" placeholder="Nhập lại mật khẩu mới...">
+                                </div><br>
                             </li>
                                 
                             <li id="hoso">
@@ -158,7 +170,33 @@
                     </div>            
                 </div>
         
-        <div class="modal-background">                
+                       
+<!--        <div class="container-profile">
+			<p class="alert alert-danger" >${message}</p>
+        	<button class="btn-profile-edit" id="editButton" onclick="toggleProfileEditing(true)">Chỉnh sửa trang cá nhân</button><br>
+        	<div id="profile-editing" style="display:none;">
+                <form action="" method="post" enctype="multipart/form-data">
+                	<input name="username" type="hidden" value="${username}">
+	                <b> Ảnh Hồ Sơ: </b>
+	                <img src="images/${avatarImage}" id="avatarPreview" height="100">
+	                <input name="avatarInput" id="avatarInput" type="file" accept="image/png, image/jpg, image/jpeg, image/bmp" onchange="previewAvatar()">
+	                <br><br>
+
+	                
+	                
+	                <b> Tên: </b>
+	                <input name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
+	                <b> Họ: </b>
+	                <input name="surname" size="25" placeholder="Họ bạn là gì?" value="${surname}">
+	                <br>
+	                <b> Giới thiệu: </b>
+	                <textarea name="introduction" rows="5" cols="50" placeholder="Nói thêm về bản thân bạn...">${introduction}</textarea>
+	                <br>
+	                <button class="btn-profile-edit" name="saveButton" type="submit" value="save">Lưu</button>
+	                <button class="btn-profile-edit" onclick="toggleProfileEditing(false)">Hủy</button>
+				</form>
+            </div>-->
+        <div class="modal-background">     
             <div class="profile-top">
                 <!--<div class="profile-top">-->
                     <div class="profile-avatar">
@@ -199,7 +237,7 @@
                                             <a id="all-picture" href="#">Tất cả ảnh</a>
                                         </li>
 
-                </ul>
+                                    </ul>
                 
                 <div id="content" class="content">
                     <div id="load_posts"></div>

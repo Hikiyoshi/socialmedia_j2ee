@@ -52,6 +52,26 @@ private static EntityManager _manager;
 			JpaUtils.shutdown(_manager);
 		}
 	}
+	
+	public static boolean changePassword(String username, String password) {
+		_manager = JpaUtils.createManager();
+
+		try {		
+			Profile entity = _manager.find(Profile.class, username);
+			_manager.getTransaction().begin();
+			
+			entity.setPassword(password);
+
+			_manager.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			_manager.getTransaction().rollback();
+			e.printStackTrace();
+			return false;
+		} finally {
+			JpaUtils.shutdown(_manager);
+		}
+	}
 
 	public static boolean deleteProfile(String username) {
 		_manager = JpaUtils.createManager();

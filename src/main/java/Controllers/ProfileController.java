@@ -10,6 +10,7 @@ import java.io.IOException;
 import DAO.ProfileDAO;
 import Models.Profile;
 import Utilities.AvatarUtils;
+import Utilities.PasswordUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -52,8 +53,7 @@ public class ProfileController extends HttpServlet {
 	protected void updateProfile(HttpServletRequest request) throws ServletException, IOException {
 		Profile p = getCurrentProfile(request);
 		
-		String avatarFileName = AvatarUtils.writeAvatarToDisk(request, p);
-		
+		String avatarFileName = AvatarUtils.writeAvatarToDisk(request, p);	
 		String firstName = request.getParameter("firstName");
 		String surname = request.getParameter("surname");
 		String introduction = request.getParameter("introduction");
@@ -62,6 +62,30 @@ public class ProfileController extends HttpServlet {
 		p.setSurname(surname);
 		p.setImgAvatar(avatarFileName);
 		p.setIntroduction(introduction);
+		
+		boolean changePassword = request.getParameter("changePwChkbx") != null;
+		if (changePassword) {
+			String newPassword = request.getParameter("newPassword").trim();
+			
+			if (PasswordUtils.isValid(newPassword)) {
+				String confirmPassword = request.getParameter("confirmPassword").trim();
+				
+				if (confirmPassword.equals(newPassword)) {
+					ProfileDAO.changePassword(p.getUsername(), newPassword);
+					request.setAttribute("message", "Đổi mật khẩu THÀNH CÔNG!");
+				}
+				else
+					request.setAttribute("message", "Đổi mật khẩu THẤT BẠI! Mật khẩu nhập lại không trùng khớp.");
+			}
+			else {
+				request.setAttribute("message", "Mật khẩu không hợp lệ, hãy đảm bảo mật khẩu thỏa các yêu cầu sau: "
+											  + "có ít nhất 8 ký tự, "
+											  + "chứa ít nhất 1 chữ số, "
+											  + "chứa ít nhất 1 chữ cái thường, "
+											  + "chứa ít nhất 1 chữ cái hoa, "
+											  + "chứa ít nhất 1 ký tự đặc biệt.");
+			}
+		}
 		
 		ProfileDAO.updateProfile(p);
 	}
@@ -89,6 +113,7 @@ public class ProfileController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		processRequest(request, response);
+		request.setAttribute("message", "");
 		System.out.println("doGet called.");
 	}
 
