@@ -24,9 +24,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .dark-theme {
-    --body-color: #0a0a0a;
-    --nav-color: #000;
-    --bg-color: #000;
+    --body-color: #2b2929;
+    --nav-color: #625a5a;
+    --bg-color: #ccc8c8;
 }
 
 body {
@@ -812,4 +812,9 @@ img.coverImage {
 
 .name-profile a:hover{
     text-decoration: underline;
+}
+@media (prefers-color-scheme: dark-mode-on) {
+    user-setting-showup-toggle{
+        
+    }
 }

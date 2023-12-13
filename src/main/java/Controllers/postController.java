@@ -41,18 +41,33 @@ public class postController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String content = request.getParameter("content");
-		String username = request.getParameter("username");
-
-		LocalDateTime currentDateTime = LocalDateTime.now();
-		
-		Post post = new Post();
-		post.setUsername(username);
-		post.setContent(content);
-		post.setDateCreated(currentDateTime);
-
-		PostDAO.createPost(post);
-		
-		response.sendRedirect("/socialmedia_j2ee/index");
+		File dir = new File(request.getServletContext().getRealPath("/images"));
+        if(!dir.exists()) { // tạo nếu chưa tồn tại
+        dir.mkdirs();
+}
+        String content = request.getParameter("content");
+        String username = request.getParameter("username");
+         // Lấy hình ảnh từ trường input file
+         Part filePart = request.getPart("image");
+        File file = new File(dir, filePart.getSubmittedFileName());
+        filePart.write(file.getAbsolutePath());
+        
+         LocalDateTime currentDateTime = LocalDateTime.now();
+         Post post = new Post();
+         post.setUsername(username);
+        post.setContent(content);
+        PostImage pi = new PostImage();
+        
+       post.setDateCreated(currentDateTime);
+         request.setAttribute("post", post);
+          request.setAttribute("imageStream", file);
+          
+          PostDAO.createPost(post);
+          pi.setIdPost(post.getIdPost());
+          pi.setImg(file.getName());
+          PostDAO.createImage(pi);
+//         Post p  = new Post("1","3",LocalDate.now());
+         request.getRequestDispatcher("/views/index.jsp").forward(request, response);
+    
 	}
 }

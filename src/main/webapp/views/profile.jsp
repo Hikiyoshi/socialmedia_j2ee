@@ -28,7 +28,7 @@
         
     </head>
     <body>
-        <nav class="navbar">
+        <nav class="navbar index">
             <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
                 <ul class="navlogo">
                     <li class="circle"><img class="icon" src="images/notification_1.png"></li>
@@ -59,6 +59,7 @@
                 </div>
 
             </div>
+                
             <div class="user-settings">
                 <div class="profile-darkButton">
                     <div class="user-profile">
@@ -68,9 +69,11 @@
                             <a href="#">See your profile</a>
                         </div>
                     </div>
+                            
                     <div id="dark-button" onclick="darkModeON()">
                         <span></span>
                     </div>
+                            
                 </div>
                 <hr>
                 <div class="user-profile">
@@ -353,5 +356,6 @@
             });
         </script>
         <script src="templates/postcomment.js"></script>
+        <script src="templates/function.js"></script>
     </body>
 </html>

@@ -86,13 +86,13 @@
             </div>
         </div>
         <div id="wrapper-main">
+            
             <nav class="navbar index">
                 <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
                     <ul class="navlogo">
                         <li class="circle"><img class="icon" src="/socialmedia_j2ee/images/notification_1.png"></li>
                         <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="/socialmedia_j2ee/images/friends_1.png"></li>
                         <li class="circle"><img class="icon" src="/socialmedia_j2ee/images/messenger.png"></li>
-
 
                     </ul>
 
@@ -116,6 +116,7 @@
                             <input type="text" placeholder="Search" name="search_content" id="search_content">
                         </form>
                     </div>
+                    
                     <div class="profile-image online" onclick="UserSettingToggle()">
                         <img src="images/${avatarImage}" alt="">
                     </div>
