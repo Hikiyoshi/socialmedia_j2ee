@@ -91,6 +91,15 @@ function toggleProfileEditing(state) {
   	}
 };
 
+function toggleChangePassword() {
+	var div = document.getElementById("change-password");
+	
+	if (div.style.display == "block")
+		div.style.display = "none";
+	else
+		div.style.display = "block";
+};
+
 function previewAvatar() {
 	const file = document.getElementById("avatarInput").files[0];
 	if (file) {

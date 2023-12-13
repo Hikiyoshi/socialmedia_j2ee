@@ -22,7 +22,7 @@
 		}
 	</style>
 	<script type="text/javascript" src="templates/function.js"></script>
-    <script type="text/javascript" src="templates/profile.js?v=1"></script>
+    <script type="text/javascript" src="templates/profile.js"></script>
     </head>
     <body>
         <nav class="navbar">
@@ -100,6 +100,7 @@
         </nav>
 
         <div class="container-profile">
+			<p class="alert alert-danger" >${message}</p>
         	<button class="btn-profile-edit" id="editButton" onclick="toggleProfileEditing(true)">Chỉnh sửa trang cá nhân</button><br>
         	<div id="profile-editing" style="display:none;">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -107,7 +108,18 @@
 	                <b> Ảnh Hồ Sơ: </b>
 	                <img src="images/${avatarImage}" id="avatarPreview" height="100">
 	                <input name="avatarInput" id="avatarInput" type="file" accept="image/png, image/jpg, image/jpeg, image/bmp" onchange="previewAvatar()">
-	                <br>
+	                <br><br>
+
+	                <input name="changePwChkbx" id="changePwChkbx" type="checkbox" value="Change Password" onclick="toggleChangePassword()">
+	                <label for="changePwChkbx"> Đổi mật khẩu </label><br>
+	                <div id="change-password" style="display:none;">
+		                <b> Mật khẩu mới: </b>
+		                <input name="newPassword" type="password" size="30" placeholder="Nhập mật khẩu mới...">
+		                <br>
+		                <b> Nhập lại mật khẩu mới: </b>
+		                <input name="confirmPassword" type="password" size="30" placeholder="Nhập lại mật khẩu mới...">
+	                </div><br>
+	                
 	                <b> Tên: </b>
 	                <input name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
 	                <b> Họ: </b>
