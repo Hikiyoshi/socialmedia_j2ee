@@ -29,6 +29,8 @@
     color: red;
     float: right;
     font-size: 25px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .box-comment{
@@ -108,4 +110,13 @@
     margin-right: -60px;
     border-radius: 8px;
     background-color: beige; 
+}
+
+.btn-del-comment{
+    margin-left: 8px; 
+    cursor: pointer
+}
+
+.btn-del-comment:hover{
+    color: red;
 }

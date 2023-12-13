@@ -813,3 +813,36 @@ img.coverImage {
 .name-profile a:hover{
     text-decoration: underline;
 }
+
+.ui-dialog-titlebar {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .ui-dialog-title {
+    font-weight: bold;
+  }
+
+  .ui-dialog-content {
+    background-color: #f1f1f1;
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .ui-dialog-buttonset {
+    text-align: right;
+  }
+
+  .ui-dialog-buttonset button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .ui-dialog-buttonset button:hover {
+    background-color: #555;
+  }

@@ -25,4 +25,5 @@ Utilities\JpaUtils.class
 DAO\FriendshipDAO.class
 Controllers\SendEmailServlet$1.class
 Models\Reaction.class
+Controllers\ReactionController.class
 DAO\ReactionDAO.class

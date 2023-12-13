@@ -25,9 +25,13 @@
 	</style>
 	<script type="text/javascript" src="templates/function.js"></script>
         <script type="text/javascript" src="templates/profile.js?v=1"></script>
-        
+        <!--Thư viện jquerydialog-->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body>
+        <div id="dialog-confirm" title="Xác nhận" style="display: none">
+            <p>Bạn có chắc chắn muốn xoá bình luận này?</p>
+        </div>
         <nav class="navbar">
             <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
                 <ul class="navlogo">
@@ -350,8 +354,87 @@
                         }
                     });
                 });
+//                Chỉnh sửa bài viết
+                $(document).on('click', '.btn-del-comment', function(){
+                    var idComment = $(this).data('idcomment');
+                    $("#dialog-confirm").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Yes": function() {
+                                $.ajax({
+                                    url: "/socialmedia_j2ee/comment",
+                                    method: "POST",
+                                    data:{
+                                        delComment: idComment
+                                    },
+                                    success: function(data){
+                                        load_data_comments(idpost);
+                                    }
+                                });
+                                $(this).dialog("close");
+                            },
+                            "No": function() {
+                                // Xử lý khi nhấn No
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
+                
+                //Nút like bài viết
+                var idPostLike;
+                //Delete Like Function
+                $(document).on('click', '.btn_like_post',function(){
+                    var btnLike = $(this);
+                    idPostLike = $(this).data('idpostlike');
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/reaction",
+                        method: "POST",
+                        data:{
+                            action: "unlike",
+                            idPostLike: idPostLike,
+                            userLike: "<%=currentUsername%>"
+                        },
+                        success: function(){
+                            var imgLike = btnLike.find("img").first();
+                            imgLike.attr("src","images/like.png");
+                            btnLike.addClass("btn_unlike_post");
+                            btnLike.removeClass("btn_like_post");
+                        }
+                    });
+                });
+                
+                //Create Like Function
+                $(document).on('click', '.btn_unlike_post',function(){
+                    var btnUnlike = $(this);
+                    idPostLike = $(this).data('idpostlike');
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/reaction",
+                        method: "POST",
+                        data:{
+                            action: "like",
+                            idPostLike: idPostLike,
+                            userLike: "<%=currentUsername%>"
+                        },
+                        success: function(){
+                            var imgLike = btnUnlike.find("img").first();
+                            imgLike.attr("src","images/like-blue.png");
+                            btnUnlike.addClass("btn_like_post");
+                            btnUnlike.removeClass("btn_unlike_post");
+                        }
+                    });
+                });
+                
             });
         </script>
         <script src="templates/postcomment.js"></script>
+        <!--Thư viện thêm dialog-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </body>
 </html>
