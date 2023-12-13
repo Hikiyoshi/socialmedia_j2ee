@@ -10,6 +10,7 @@ Controllers\RegisterController.class
 DAO\PostDAO.class
 DAO\PostImgDAO.class
 DAO\ProfileDAO.class
+Controllers\FriendshipController.class
 Controllers\LoginController.class
 DAO\PostCommentDAO.class
 Models\Friendship.class
