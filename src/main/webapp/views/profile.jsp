@@ -33,6 +33,7 @@
             <p>Bạn có chắc chắn muốn xoá bình luận này?</p>
         </div>
         <nav class="navbar">
+        <nav class="navbar index">
             <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
                 <ul class="navlogo">
                     <li class="circle"><img class="icon" src="images/notification_1.png"></li>
@@ -63,6 +64,7 @@
                 </div>
 
             </div>
+                
             <div class="user-settings">
                 <div class="profile-darkButton">
                     <div class="user-profile">
@@ -72,9 +74,11 @@
                             <a href="#">See your profile</a>
                         </div>
                     </div>
+                            
                     <div id="dark-button" onclick="darkModeON()">
                         <span></span>
                     </div>
+                            
                 </div>
                 <hr>
                 <div class="user-profile">
@@ -436,5 +440,6 @@
         <!--Thư viện thêm dialog-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="templates/function.js"></script>
     </body>
 </html>

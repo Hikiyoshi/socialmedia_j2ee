@@ -24,9 +24,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .dark-theme {
-    --body-color: #0a0a0a;
-    --nav-color: #000;
-    --bg-color: #000;
+    --body-color: #2b2929;
+    --nav-color: #625a5a;
+    --bg-color: #ccc8c8;
 }
 
 body {
@@ -814,6 +814,7 @@ img.coverImage {
     text-decoration: underline;
 }
 
+
 .ui-dialog-titlebar {
     background-color: #333;
     color: #fff;
@@ -846,3 +847,10 @@ img.coverImage {
   .ui-dialog-buttonset button:hover {
     background-color: #555;
   }
+
+@media (prefers-color-scheme: dark-mode-on) {
+    user-setting-showup-toggle{
+        
+    }
+}
+
