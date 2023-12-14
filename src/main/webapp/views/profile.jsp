@@ -8,9 +8,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/profile.css">
+        <link rel="stylesheet" href="templates/main.css">
+        <link rel="stylesheet" href="templates/profile.css">
         <link rel="stylesheet" href="templates/comment.css">
+        <link rel="stylesheet" href="templates/post.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,14 +25,13 @@
 			margin-top: 20px;
 		}
 	</style>
-	<script type="text/javascript" src="templates/function.js"></script>
-        <script type="text/javascript" src="templates/profile.js?v=1"></script>
+        
         <!--Thư viện jquerydialog-->
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="templates/profile.js"></script>
     </head>
     <body>
-        <div class="wrap-friend">
+        <div class="wrap-friend" style="display: none">
                                         <div style="height: 500px;
                  position: absolute;
                  width: 60%;
@@ -42,13 +42,35 @@
                  z-index: 999;
                  left: 20%;
                  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
-                                            <div
+                                            <div class="wrap-friend"
                                                 style="display: flex; justify-content: space-between; align-items: center">
                                                 <h3>Bạn bè</h3>
-                                                <button style="font-size: 40px;
-                            background-color: transparent;
-                            cursor: pointer;
-                            border: none;" onclick="showFriend(false)">x</button>
+                                                <button id="btn-close-friend" onclick="closeFriend()">x</button>
+                                        <div class="wrap-info">
+                                            <% List<Profile> usersFriend = (List<Profile>)
+                                            request.getAttribute("friends");
+                                            String pages=
+                                            request.getAttribute("currentPage").toString();
+                                            String limits=
+                                            request.getAttribute("perPage").toString();
+                                            if (usersFriend != null) {
+                                            for (Profile u : usersFriend) {
+                                                                // Sử dụng đối tượng User ở đây
+                                                                String username = u.getUsername();
+                                                                String surname = u.getSurname();
+                                                                String firstname = u.getFirstname();
+                                                                String imgavatar = u.getImgAvatar();
+                                                                %>
+                                            <div class="info-item">
+
+                                                <img class="avatar-friend" src="images/<%= imgavatar%>">
+
+                                                                    <div>
+                                                                        <%=firstname + " " + surname %>
+                                                                    </div>
+                                            </div>
+                                                                <% } } %>
+                                        </div>
                                             </div>
                                             <div
                                                 style="width: 100%; height: 400px; background-color: blue; overflow: auto">
@@ -230,10 +252,10 @@
             
         	<button class="btn-profile-edit" id="editButton" onclick="toggleProfileEditing(true)">Chỉnh sửa trang cá nhân</button><br>
         	
-                <% Object p=session.getAttribute("user"); String
-                    userName=request.getParameter("username"); if (p !=null && p instanceof
+                <% Object p=session.getAttribute("user"); 
+                String userName=request.getParameter("username"); if (p !=null && p instanceof
                                                 Profile) { Profile user=(Profile) p; // Sử dụng giá trị user String
-                                                username=user.getUsername(); System.out.print(username +"|" +
+                                                String username=user.getUsername(); System.out.print(username +"|" +
                                                 userName+ "|" ); if(username.equals(userName)){ %>
                 <div id="profile-editing" style="position: fixed; z-index: 20;display: none; width: 50%; height: 1000px; top: 35%; left: 23.4%">
                     <div id="newForm" style="display: block; margin: 10px 0; padding: 10px 100px; background-color: #fff; border-width: 1px; border-style: solid; border-color: #000; border-radius: 3%">
@@ -335,40 +357,6 @@
                         </div>
                     <!--</div>-->
             </div>
-
-                                <div class="wrap-friend">
-                                    <div class="all-friend-show">
-                                        <button id="btn-close-friend" onclick="closeFriend()">x</button>
-                                        <div class="wrap-info">
-                                            <% List<Profile> users = (List<Profile>)
-                                            request.getAttribute("friends");
-                                            String pages=
-                                            request.getAttribute("currentPage").toString();
-                                            String limits=
-                                            request.getAttribute("perPage").toString();
-                                            if (users != null) {
-                                            for (Profile user : users) {
-                                                                // Sử dụng đối tượng User ở đây
-                                                                String username = user.getUsername();
-                                                                String surname = user.getSurname();
-                                                                String firstname = user.getFirstname();
-                                                                String imgavatar = user.getImgAvatar();
-                                                                %>
-                                            <div class="info-item">
-
-                                                <img class="avatar-friend" src="images/<%= imgavatar%>">
-
-                                                                    <div>
-                                                                        <%=firstname + " " + surname %>
-                                                                    </div>
-                                            </div>
-                                                                <% } } %>
-                                        </div>
-
-                                    </div>
-
-                                 </div>
-
                                 
                                 <div class="profile-mid">
                                     <ul class="profile-navtab">
@@ -385,8 +373,7 @@
                 <div id="content" class="content">
                     <div id="load_posts"></div>
                     <div id="load_message"></div>
-                </div>
-                <!--<div id="content">
+                    //Duong
                     <div class="user-all-post" id="load_posts">
                         <div class="post-item" ></div>
                         <div id="#load_message"></div>
@@ -397,7 +384,7 @@
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV_UksJyUT1y4AbEpE5fAEbzYHmsk8JzsNKA&usqp=CAU"
                              alt="">
                     </div>
-                </div>-->
+                </div>
 
             </div>
             
@@ -564,3 +551,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="templates/function.js"></script>
+        <script src="templates/profile.js"></script>
+        <script type="text/javascript" src="templates/profile.js?v=1"></script>
+    </body>
+</html>
