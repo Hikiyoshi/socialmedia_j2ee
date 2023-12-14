@@ -32,11 +32,12 @@ public class Reaction {
     @Column(name = "username")
     private String username;
     
-    @Column(name = "content")
-    private String content;
-    
     @Column(name = "datecreated")
     private LocalDateTime datecreated;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "username", insertable=false, updatable=false)
+    private Profile reactUsername;
     
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "username", insertable=false, updatable=false)
@@ -70,37 +71,7 @@ public class Reaction {
 		this.username = username;
 	}
 
-	public String getContent() {
-		return content;
+	public Profile getReactUsername() {
+		return reactUsername;
 	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public LocalDateTime getDatecreated() {
-		return datecreated;
-	}
-
-	public void setDatecreated(LocalDateTime datecreated) {
-		this.datecreated = datecreated;
-	}
-
-//	public Profile getReactUsername() {
-//		return reactUsername;
-//	}
-//
-//	public void setReactUsername(Profile reactUsername) {
-//		this.reactUsername = reactUsername;
-//	}
-//
-//	public Post getReactPost() {
-//		return reactPost;
-//	}
-//
-//	public void setReactPost(Post reactPost) {
-//		this.reactPost = reactPost;
-//	}
-    
-    
 }
