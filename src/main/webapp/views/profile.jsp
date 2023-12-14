@@ -104,15 +104,15 @@
                      grid-template-columns: 1fr 1fr;
                      gap: 10px;">
                     <%                   
-                    List<Profile> usersFriend = (List<Profile>) request.getAttribute("friends");
+                    List<Profile> users = (List<Profile>) request.getAttribute("friends");
                     if (users != null) {
-                        for (Profile user : usersFriend) {
+                        for (Profile user : users) {
                         
                            // Sử dụng đối tượng User ở đây
-                           String username = usersFriend.getUsername();
-                           String surname = usersFriend.getSurname();
-                           String firstname = usersFriend.getFirstname();
-                           String imgavatar = usersFriend.getImgAvatar();
+                           String username = user.getUsername();
+                           String surname = user.getSurname();
+                           String firstname = user.getFirstname();
+                           String imgavatar = user.getImgAvatar();
                     %>
                     <div style="padding-left: 10px; padding-top: 10px">
                         <form method="post" action="/socialmedia_j2ee/friend">
@@ -217,7 +217,6 @@
                     <div id="newForm" style="display: block; margin: 10px 0; padding: 10px 100px; background-color: #fff; border-width: 1px; border-style: solid; border-color: #000; border-radius: 3%">
                         <form action="" method="post" enctype="multipart/form-data" class="profile-form">
                             <input name="username" type="hidden" value="${username}">
-                            <% } } %>    
                             <li id="hoso">
                                 <b> Ảnh Hồ Sơ: </b>
                                 <img src="images/${avatarImage}" id="avatarPreview" height="100">                  
