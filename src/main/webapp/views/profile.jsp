@@ -46,10 +46,14 @@
 	<script type="text/javascript" src="templates/function.js"></script>
         <script type="text/javascript" src="templates/profile.js?v=1"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <!--Thư viện jquerydialog-->
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="templates/profile.js"></script>
     
+=======
+        
+>>>>>>> parent of a5d7ec2 (done comment and reaction)
 =======
         
 >>>>>>> parent of a5d7ec2 (done comment and reaction)
@@ -508,10 +512,13 @@
         </script>
         <script src="templates/postcomment.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <!--Thư viện thêm dialog-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="templates/function.js"></script>
+=======
+>>>>>>> parent of a5d7ec2 (done comment and reaction)
 =======
 >>>>>>> parent of a5d7ec2 (done comment and reaction)
     </body>

@@ -32,6 +32,12 @@ public class Reaction {
     @Column(name = "username")
     private String username;
     
+<<<<<<< HEAD
+=======
+    @Column(name = "content")
+    private String content;
+    
+>>>>>>> parent of a5d7ec2 (done comment and reaction)
     @Column(name = "datecreated")
     private LocalDateTime datecreated;
     
@@ -71,7 +77,40 @@ public class Reaction {
 		this.username = username;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public LocalDateTime getDatecreated() {
+		return datecreated;
+	}
+
+	public void setDatecreated(LocalDateTime datecreated) {
+		this.datecreated = datecreated;
+	}
+
 	public Profile getReactUsername() {
 		return reactUsername;
 	}
+<<<<<<< HEAD
+=======
+
+	public void setReactUsername(Profile reactUsername) {
+		this.reactUsername = reactUsername;
+	}
+
+	public Post getReactPost() {
+		return reactPost;
+	}
+
+	public void setReactPost(Post reactPost) {
+		this.reactPost = reactPost;
+	}
+    
+    
+>>>>>>> parent of a5d7ec2 (done comment and reaction)
 }
