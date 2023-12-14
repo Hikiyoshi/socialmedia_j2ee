@@ -44,9 +44,9 @@ public class Post {
     @Column(name="datecreated")
     private LocalDateTime dateCreated;
     
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "username" , insertable = false , updatable = false)
-//    private Profile profile_uploaded;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "username" , insertable = false , updatable = false)
+    private Profile profile_uploaded;
     
     @OneToMany(mappedBy = "commented_post", fetch = FetchType.LAZY)
     private List<PostComment> post_comment = new ArrayList<>();

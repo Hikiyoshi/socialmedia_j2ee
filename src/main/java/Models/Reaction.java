@@ -32,26 +32,13 @@ public class Reaction {
     @Column(name = "username")
     private String username;
     
-<<<<<<< HEAD
-=======
-    @Column(name = "content")
-    private String content;
-    
->>>>>>> parent of a5d7ec2 (done comment and reaction)
-    @Column(name = "datecreated")
-    private LocalDateTime datecreated;
-    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", insertable=false, updatable=false)
     private Profile reactUsername;
     
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "username", insertable=false, updatable=false)
-//    private Profile reactUsername;
-//    
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "idPost", insertable=false, updatable=false)
-//    private Post reactPost;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPost", insertable=false, updatable=false)
+    private Post reactPost;
 
 	public int getIdReact() {
 		return idReact;
@@ -76,28 +63,10 @@ public class Reaction {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public LocalDateTime getDatecreated() {
-		return datecreated;
-	}
-
-	public void setDatecreated(LocalDateTime datecreated) {
-		this.datecreated = datecreated;
-	}
-
+        
 	public Profile getReactUsername() {
 		return reactUsername;
 	}
-<<<<<<< HEAD
-=======
 
 	public void setReactUsername(Profile reactUsername) {
 		this.reactUsername = reactUsername;
@@ -111,6 +80,4 @@ public class Reaction {
 		this.reactPost = reactPost;
 	}
     
-    
->>>>>>> parent of a5d7ec2 (done comment and reaction)
 }

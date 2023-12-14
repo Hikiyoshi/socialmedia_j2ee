@@ -3,7 +3,6 @@ package DAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import Models.Reaction;
 import Utilities.JpaUtils;
 import jakarta.persistence.EntityManager;
@@ -41,8 +40,6 @@ public class ReactionDAO {
 			
 			entity.setUsername(updatedReaction.getUsername());
 			entity.setIdPost(updatedReaction.getIdPost());
-			entity.setContent(updatedReaction.getContent());
-			entity.setDatecreated(updatedReaction.getDatecreated());
 
 			_manager.getTransaction().commit();
 			return true;
@@ -128,20 +125,18 @@ public class ReactionDAO {
 		return reaction;
 	}
 	
-<<<<<<< HEAD
-=======
-	public static List<Reaction> selectUpUntil(Date endDate) {
-		_manager = JpaUtils.createManager();
-		List<Reaction> reactions = new ArrayList<>();
-		
-		try {
+        public static boolean checkLike(String idPost, String username){
+            _manager = JpaUtils.createManager();
+            List<Reaction> reactions = new ArrayList<>();
+            
+            try {
 			_manager.getTransaction().begin();
 			
-			String jpql = "SELECT r FROM Reaction r WHERE r.datecreated <= :endDate";
+			String jpql = "SELECT r FROM Reaction r WHERE r.idPost = :idPost and r.username = :username";
 			
-			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);
-			query.setParameter("endDate", endDate, TemporalType.DATE);
-			
+			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);	
+                        query.setParameter("idPost", idPost);
+                        query.setParameter("username", username);
 			reactions = query.getResultList();
 			
 			_manager.getTransaction().commit();			
@@ -155,23 +150,22 @@ public class ReactionDAO {
 		finally {
 			JpaUtils.shutdown(_manager);			
 		}
-		
-		return reactions;
-	}
-	
-	public static List<Reaction> selectBetweenTwoDates(Date startDate, Date endDate) {
-		_manager = JpaUtils.createManager();
-		List<Reaction> reactions = new ArrayList<>();
-		
-		try {
+            
+            return !reactions.isEmpty();
+        }
+        
+        public static List<Reaction> getLike(String idPost, String username){
+            _manager = JpaUtils.createManager();
+            List<Reaction> reactions = new ArrayList<>();
+            
+            try {
 			_manager.getTransaction().begin();
 			
-			String jpql = "SELECT r FROM Reaction r WHERE r.datecreated BETWEEN :startDate AND :endDate";
+			String jpql = "SELECT r FROM Reaction r WHERE r.idPost = :idPost and r.username = :username";
 			
-			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);
-			query.setParameter("startDate", startDate, TemporalType.DATE);
-			query.setParameter("endDate", endDate, TemporalType.DATE);
-			
+			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);	
+                        query.setParameter("idPost", idPost);
+                        query.setParameter("username", username);
 			reactions = query.getResultList();
 			
 			_manager.getTransaction().commit();			
@@ -185,8 +179,7 @@ public class ReactionDAO {
 		finally {
 			JpaUtils.shutdown(_manager);			
 		}
-		
-		return reactions;
-	}
->>>>>>> parent of a5d7ec2 (done comment and reaction)
+            
+            return reactions;
+        }
 }
