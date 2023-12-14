@@ -187,5 +187,4 @@ public class Profile {
         return "Username: " + username + " Surname: " + surname + " Firstname: " + firstname 
                 + " Password: " + password + " Gender: " + gender + " DateBirth: " + dateBirth;
     }
-    
 }
