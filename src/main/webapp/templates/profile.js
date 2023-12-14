@@ -42,9 +42,6 @@ var darkBtn = document.getElementById("dark-button");
 var LoadMoreBackground = document.querySelector(".btn-LoadMore");
 var friendRequests = document.querySelector(".friend-requests");
 var wrapFriend = document.querySelector(".wrap-friend");
-function showFriend() {
-  wrapFriend.style.display = "block";
-}
 
 function closeFriend() {
   wrapFriend.style.display = "none";

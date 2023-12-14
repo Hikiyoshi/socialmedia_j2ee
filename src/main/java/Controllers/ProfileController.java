@@ -66,9 +66,6 @@ public class ProfileController extends HttpServlet {
                             loadDataFriendRequest(request, response, p2);
                             loadDataIsFriend(request, response, p2);
                         }
-
-                        loadDataFriend(request, response, p);
-                        loadDataFriendRequest(request, response, p);
                         
                         request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
 	}
