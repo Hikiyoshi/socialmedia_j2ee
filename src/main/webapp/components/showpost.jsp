@@ -30,15 +30,24 @@
                         <small><%=dateCreatePost%></small>
                     </div>
                 </div>
-                <div class="Chọn">
-                    <a href=""><i class="fas fa-ellipsis-v"></i></a>
+                <div class="choose-function-post" onclick="PostToggle(event);">
+                    <i class="fas fa-ellipsis-v"></i>
+                    
+                    <c:set var="currentProfile" value="${sessionScope.user}"></c:set>
+                    <c:if test="${p.profile_uploaded.username == currentProfile.username}"></c:if>
+                    <div class="function-post">
+                        <div class="edit-post" data-idpost='${p.idPost}'><small>Chỉnh sửa</small></div>
+                        <div class="remove-post" data-idpost='${p.idPost}'><small>Xoá</small></div>
+                    </div>
                 </div>
             </div>
 
             <div class="status-field">
-                <p>${p.content}
-                    <!--<a href="#">#This_Post_is_Better!!!!</a>--> 
-                </p>
+                
+                <form class="frm-update-post" method="POST">
+                    <textarea class="text-update-post" disabled="true">${p.content}</textarea>
+                </form>
+                
                 <div>
                     <c:forEach items="${p.post_img}" var="postImg">
                         <img src="images/${postImg.img}" alt=""></div>

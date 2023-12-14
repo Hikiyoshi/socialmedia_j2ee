@@ -32,7 +32,7 @@
     </head>
     <body>
         <div id="dialog-confirm" title="Xác nhận xoá" style="display: none">
-            <p>Bạn có chắc chắn xoá bình luận này?</p>
+            <p>Bạn có chắc chắn tiếp tục xoá ?</p>
         </div>
         
         <div class="wrap-friend" style="display: none">
@@ -607,6 +607,54 @@
                         }
                     });
                 });
+                
+                
+                //Xoá bài viết
+                $(document).on('click','.remove-post',function (){
+                    var idPostDel = $(this).data('idpost');
+                    
+                    $("#dialog-confirm").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Yes": function() {
+                                
+                                $.ajax({
+                                    url: "/socialmedia_j2ee/ShowPost",
+                                    method: "POST",
+                                    data:{
+                                        IdPost: idPostDel,
+                                        action: "del"
+                                    },
+                                    success: function(data){
+                                        $('#load_posts').html("");
+                                        start = -1;
+                                        action = 'inactive';
+                                    }
+                                });
+                                
+                                $(this).dialog("close");
+                            },
+                            "No": function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
+                
+                //Chỉnh sửa bài viết
+                var idPostEdit;
+                $(document).on('click','.edit-post',function(){
+                    idPostEdit = $(this).data('idpost');
+                    
+                    var getStatusField = $(this).parent().parent().parent().parent();
+                    var getFormEdit = getStatusField.children(".status-field").children(".frm-update-post");
+                    var textAreaEdit = getFormEdit.find('.text-update-post');
+                    textAreaEdit.attr('disabled', false);
+                });
+                
             });
             
             function showFriend(isShow) {

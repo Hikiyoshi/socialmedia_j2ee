@@ -852,3 +852,33 @@ img.coverImage {
         
     }
 }
+
+.choose-function-post{
+    position: relative;
+    cursor: pointer;
+}
+
+.function-post{
+    display: none;
+}
+
+.function-post-showup-toggle{
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    min-width: 160px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.function-post-showup-toggle div:hover{
+    background-color: #636362;
+    color: #fff;
+}
+
+.frm-update-post textarea{
+    border: none;
+    resize: none;
+    background-color: #fff;
+}

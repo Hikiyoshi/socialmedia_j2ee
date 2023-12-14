@@ -28,6 +28,25 @@ public class ShowPostController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        String action = request.getParameter("action");
+        String idPost = request.getParameter("IdPost");
+        System.out.println(">>"+action+idPost);
+        if(action != null && !action.isBlank() && idPost != null){
+            switch (action) {
+                case "del":
+                    if(PostDAO.deletePost(idPost)){
+                        System.out.println("Xoa Bai Viet Thanh Cong");
+                        }
+                    else{
+                        System.out.println("Xoa Bai Viet That Bai");
+                    }
+                    break;
+                case "":
+                    
+                    break;
+            }
+        }
+        
         String postUsername = request.getParameter("username");
         String startStr = request.getParameter("startpage");
         int starPage = 0;
@@ -37,7 +56,7 @@ public class ShowPostController extends HttpServlet {
         }
         
         if(postUsername != null){
-            List<Post> listPost = PostDAO.findByUsernamePages(postUsername, starPage, 2);
+            List<Post> listPost = PostDAO.findByUsernamePages(postUsername, starPage, 3);
             request.setAttribute("ListPost", listPost);
             
             request.getRequestDispatcher("/components/showpost.jsp").forward(request, response);

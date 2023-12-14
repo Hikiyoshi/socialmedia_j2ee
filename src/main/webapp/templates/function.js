@@ -31,3 +31,8 @@ function LoadMoreToggle(){
 function FriendRequestToggle() {
     friendRequests.classList.toggle("friend-request-showup-toggle");
 }
+
+function PostToggle(){
+    var postFunctionBtn = event.currentTarget.querySelector('.function-post');
+    postFunctionBtn.classList.toggle('function-post-showup-toggle');
+}
