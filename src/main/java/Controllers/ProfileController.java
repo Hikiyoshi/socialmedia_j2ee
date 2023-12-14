@@ -44,6 +44,7 @@ public class ProfileController extends HttpServlet {
 			request.setAttribute("surname", p.getSurname());
 			request.setAttribute("fullName", p.getFullname());
 			request.setAttribute("introduction", p.getIntroduction());
+                        request.setAttribute("currentProfile", p);
                         
                         //getMaxpages for showPost
                         int maxPages = PostDAO.countMaxPagefindByUsernamePages(p.getUsername(), 2);

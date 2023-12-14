@@ -61,7 +61,7 @@ public class Profile {
     @OneToMany(mappedBy = "profile_acpect_friendships", fetch = FetchType.LAZY)
     private List<Friendship> acpect_friendships = new ArrayList<>();
 
-    @OneToMany(mappedBy = "profile_uploaded", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "profile_uploaded", fetch = FetchType.EAGER)
     private List<Post> profile_post = new ArrayList<>();
 
     @OneToMany(mappedBy = "reactUsername", fetch = FetchType.LAZY)

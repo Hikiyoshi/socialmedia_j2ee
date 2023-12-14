@@ -31,6 +31,10 @@
     <script type="text/javascript" src="templates/profile.js"></script>
     </head>
     <body>
+        <div id="dialog-confirm" title="Xác nhận xoá" style="display: none">
+            <p>Bạn có chắc chắn xoá bình luận này?</p>
+        </div>
+        
         <div class="wrap-friend" style="display: none">
                                         <div style="height: 500px;
                  position: absolute;
@@ -341,9 +345,12 @@
                                                                 <h2 class="profile-user-name"><b>${fullName}</b></h2>
                                                             </div>
                         <div class="profile-user-status" align="left">
-                            <p><span class="number-post">0</span> Bài viết </p>
-                            <p><span class="number-follower"></span>2 Người theo dõi
-                            </p>
+                            <c:set var="list_post_of_Profile" value="${currentProfile.profile_post}"></c:set>
+                            <c:set var="count" value="0"/>
+                            <c:forEach items="${list_post_of_Profile}" var="item" varStatus="status">
+                                <c:set var="count" value="${status.count}"/>
+                            </c:forEach>
+                            <p><span class="number-post"><c:out value="${count}"/></span> Bài viết </p>
                             <% String countFriend="0" ; if (users !=null) {
                                 countFriend=users.size() +""; } %>
                             <p onclick="showFriend(true)"><span id="all-friend">
@@ -528,8 +535,78 @@
                 });
                 
                 //Xử lý xoá comment
+                $(document).on('click','.btn_del_comment',function(){
+                    var idComment = $(this).data("idcomment");
+                    
+                    $("#dialog-confirm").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Yes": function() {
+                                $.ajax({
+                                    url: "/socialmedia_j2ee/comment",
+                                    method: "POST",
+                                    data:{
+                                        delIdCmt: idComment
+                                    },
+                                    success: function(data){
+                                        load_data_comments(idpost);
+                                    }
+                                });
+                                $(this).dialog("close");
+                            },
+                            "No": function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
                 
                 //Xử lý reaction
+                //Btn-like to unlike
+                $(document).on('click','.btn_like_post',function (){
+                    var idPostLike = $(this).data('idpost');
+                    var btn_like_post = $(this);
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/reaction",
+                        method:"POST",
+                        data:{
+                            idPostLike: idPostLike,
+                            userLike: "<%=currentUsername%>",
+                            action: "unlike"
+                        },
+                        success: function(data){
+                            var imglike = btn_like_post.find("img").first();
+                            imglike.attr("src","images/like.png");
+                            btn_like_post.addClass('btn_unlike_post');
+                            btn_like_post.removeClass('btn_like_post');
+                        }
+                    });
+                });
+//                Btn-Unlike to like
+                $(document).on('click','.btn_unlike_post',function (){
+                    var idPostLike = $(this).data('idpost');
+                    var btn_unlike_post = $(this);
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/reaction",
+                        method:"POST",
+                        data:{
+                            idPostLike: idPostLike,
+                            userLike: "<%=currentUsername%>",
+                            action: "like"
+                        },
+                        success: function(data){
+                            var imglike = btn_unlike_post.find("img").first();
+                            imglike.attr("src","images/like-blue.png");
+                            btn_unlike_post.addClass('btn_like_post');
+                            btn_unlike_post.removeClass('btn_unlike_post');
+                        }
+                    });
+                });
             });
             
             function showFriend(isShow) {
