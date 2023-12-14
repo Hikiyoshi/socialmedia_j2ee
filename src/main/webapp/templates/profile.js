@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-
 document.addEventListener("DOMContentLoaded", function () {
   var allPost = document.getElementById("all-post"); //lấy id nút Bài viết
   var userAllPost = document.querySelector(".user-all-post");
@@ -64,11 +63,7 @@ function darkModeON() {
 function LoadMoreToggle() {
   LoadMoreBackground.classList.toggle("loadMoreToggle");
 }
-//function FriendRequestToggle(){
-//
-//    friendRequest.classList.toggle("friend-request-showup-toggle");
-//
-//};
+
 function FriendRequestToggle() {
   friendRequests.classList.toggle("friend-request-showup-toggle");
 }

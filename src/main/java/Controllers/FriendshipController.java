@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,15 +30,24 @@ public class FriendshipController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         try {
             String action = request.getParameter("btnFriend");
+            HttpSession session = request.getSession();
+            Profile p = (Profile) session.getAttribute("user");
             if (null != action) {
                 switch (action) {
 //                    case "Search":
 //                        doSearch(request, response);
 //                        break;
-                    case "Delete":
-                        doDeleteFriend(request, response);
+                    case "Xóa lời mời":
+                        doDeleteFriend(request, response,p,0);
+                        break;
+                    case "Kết bạn":
+                        doAddFriend(request, response, p);
+                        break;
+                    case "Xóa bạn bè":
+                        doDeleteFriend(request, response,p,1);
                         break;
                     default:
                         loadData(request, response);
@@ -65,8 +75,7 @@ public class FriendshipController extends HttpServlet {
 //        req.setAttribute("friends", list);
 //        req.getRequestDispatcher("/views/friend.jsp").forward(req, resp);
 //    }
-
-    private void doDeleteFriend(HttpServletRequest req, HttpServletResponse resp)
+    private void doAddFriend(HttpServletRequest req, HttpServletResponse resp, Profile p)
             throws ServletException, IOException {
         String method = req.getMethod();
         if (method.equalsIgnoreCase("POST")) {
@@ -75,14 +84,38 @@ public class FriendshipController extends HttpServlet {
                 req.setAttribute("message", "Lỗi!");
             } else {
                 try {
-                    String message = FriendshipDAO.deleteFriendShip(username, "honggam", 1);
+                    String message = FriendshipDAO.createFriendShip( p.getUsername(),username);
                     req.setAttribute("message", message);
                 } catch (Exception e) {
                     req.setAttribute("message", "Lỗi!");
                 }
             }
         }
-       loadData(req, resp);
+        loadData(req, resp);
+        String previousPage = req.getHeader("referer");
+        resp.sendRedirect(previousPage);
+    }
+    //Nếu state =1 thì có nghĩ là xóa bạn bè, nếu bằng 0 thì có nghĩ là xóa lời mời kết bạn
+    private void doDeleteFriend(HttpServletRequest req, HttpServletResponse resp, Profile p,int state)
+            throws ServletException, IOException {
+        String method = req.getMethod();
+        if (method.equalsIgnoreCase("POST")) {
+            String username = req.getParameter("username");
+            if (username == null || username.isEmpty() || "".equals(username.trim())) {
+                req.setAttribute("message", "Lỗi!");
+            } else {
+                try {
+                    String message = FriendshipDAO.deleteFriendShip(username, p.getUsername(), state);
+                    req.setAttribute("message", message);
+                } catch (Exception e) {
+                    req.setAttribute("message", "Lỗi!");
+                }
+            }
+        }
+        loadData(req, resp);
+//        resp.sendRedirect("/socialmedia_j2ee/profile?username=" + p.getUsername());
+        String previousPage = req.getHeader("referer");
+        resp.sendRedirect(previousPage);
     }
 
     @Override
@@ -109,14 +142,14 @@ public class FriendshipController extends HttpServlet {
             page = "1";
             limit = "10";
         }
-        String path= req.getRequestURI();
+        String path = req.getRequestURI();
         req.setAttribute("path", path);
         List<Profile> users = FriendshipDAO.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), "honggam");
         pagination(req, resp, users, page, limit);
         req.setAttribute("friends", users);
 //        String newUrl = req.getRequestURL() + "?q="+q+"&page=" + page + "&limit=" + limit;
 //        resp.sendRedirect(newUrl);
-        req.getRequestDispatcher("/views/profile.jsp").forward(req, resp);
+
     }
 
     public Map<String, Object> pagination(HttpServletRequest request, HttpServletResponse response, List<Profile> users, String page, String limit) {

@@ -45,7 +45,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     float: left;
     background-color: aquamarine;
     
-
 }
 .profile-avatar img{
     width: 150px;
@@ -58,7 +57,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .profile-right-block{
     flex-basis: 60%;
- background-color: #1161ee;
+    background-color: #1161ee;
     display: block;
 }
 .profile-user-settings{
@@ -68,13 +67,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     justify-content: end;
     height: 30%;
     margin-top: 50%;
-    flex-wrap: wrap;
-    /* background-color: rgb(255, 0, 255); */
+     background-color: rgb(255, 0, 255); 
 }
 .profile-user-name{
     margin-top: 0px;
     margin-right: 10px;
-
+    background-color: #1876f2;
+    height: 30px;
+    /* background-color: #ff7f50; */
+    font-family: 'Karla', sans-serif;
+}
+.profile-user-name h1{
+   margin-top: 0px;   
+   flex-wrap: wrap;
+}
 
 .btn-profile-edit{
     float: right;
@@ -83,7 +89,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 30px;
     padding: 0 20px;
     border-radius: 8px;
-/*     background-color: blue; */
+     background-color: blue;
 }
 .btn-profile-edit:hover{
     cursor: pointer;

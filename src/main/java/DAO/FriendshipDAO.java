@@ -28,10 +28,12 @@ public class FriendshipDAO {
 //        for (Profile o : listsFriend) {
 //            System.out.println("email: " + o.getEmail());
 //        }
-        List<Profile> listsNotFriend = getListRequestFriendship(3, 10, "honggam");
-        for (Profile o1 : listsNotFriend) {
-            System.out.println("email: " + o1.getEmail());
-        }
+//        List<Profile> listsNotFriend = getListRequestFriendship(3, 10, "honggam");
+//        for (Profile o1 : listsNotFriend) {
+//            System.out.println("email: " + o1.getEmail());
+//        }
+        double result1 = isFriendRequest("honggam", "user12", true);
+        System.out.println(">>>>>>" + result1);
 //        boolean result = deleteFriendShip("duongdat", "honggam", 1);
 //        System.out.println(""+result);
 //        List<Profile> listSearch = searchFriendShip(1, 10, "a", "honggam", 0);
@@ -118,6 +120,35 @@ public class FriendshipDAO {
         }
     }
 
+    public static double isFriendRequest(String userrequest, String useraccept, boolean isSend) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("social_media");
+        EntityManager em = emf.createEntityManager();
+        double result = 0;
+        try {
+            em.getTransaction().begin();
+             String jpql = "SELECT COUNT(o) FROM Friendship o WHERE o.userrequest=:useraccept AND o.useraccept=:userrequest AND o.state=0";
+            if(isSend){
+                jpql="SELECT COUNT(o) FROM Friendship o WHERE o.userrequest=:userrequest AND o.useraccept=:useraccept AND o.state=0";
+            }
+
+            TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+            query.setParameter("userrequest", userrequest);
+            query.setParameter("useraccept", useraccept);
+
+            Long count = query.getSingleResult();
+            System.out.println("Count: " + count);
+
+            result = query.getSingleResult();
+            System.out.println(">>>" + result);
+            em.getTransaction().commit();
+            System.out.println("Xuất tất cả danh sách bạn bè1 thành công!");
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("Xuất tất cả danh sách bạn bè1 thất bại!");
+        }
+        return result;
+    }
+
     //lấy ra danh sách lời mời kết bạn truyền state = 0 (có phân trang giới hạn là 10)
     public static List<Profile> getListRequestFriendship(int page, int limit, String userName) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("social_media");
@@ -132,7 +163,7 @@ public class FriendshipDAO {
             query.setParameter("userName", userName);
 //            query.setFirstResult((page - 1) * limit);
 //            query.setMaxResults(limit);
-            
+
             String countjpql = "SELECT COUNT(o) FROM Friendship o WHERE o.useraccept=:userName AND o.state=0";
 
             TypedQuery<Long> countQuery = em.createQuery(countjpql, Long.class);
@@ -140,7 +171,7 @@ public class FriendshipDAO {
 
             Long totalCount = countQuery.getSingleResult();
             totalPages = (int) Math.ceil((double) totalCount / limit);
-            
+
             List<Friendship> list = query.getResultList();
             for (Friendship o : list) {
                 if (o.getUseraccept().equals(userName)) {
@@ -173,7 +204,7 @@ public class FriendshipDAO {
             query.setParameter("userName", userName);
 //            query.setFirstResult((page - 1) * limit);
 //            query.setMaxResults(limit);
-            
+
             String countjpql = "SELECT COUNT(o) FROM Friendship o WHERE (o.userrequest=:userName OR o.useraccept=:userName) AND o.state=1";
 
             TypedQuery<Long> countQuery = em.createQuery(countjpql, Long.class);
@@ -216,7 +247,7 @@ public class FriendshipDAO {
             query.setParameter("state", state);
             query.setFirstResult((page - 1) * limit);
             query.setMaxResults(limit);
-            
+
             String countjpql = "SELECT COUNT(o) FROM Friendship o, Profile p WHERE (p.surname LIKE CONCAT('%', :q, '%') OR p.firstname LIKE CONCAT('%', :q, '%')) AND p.username !=:userName AND p.username= o.userrequest AND o.state = :state";
 
             TypedQuery<Long> countQuery = em.createQuery(countjpql, Long.class);
