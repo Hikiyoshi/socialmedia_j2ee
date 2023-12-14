@@ -128,62 +128,62 @@ public class ReactionDAO {
 		return reaction;
 	}
 	
-	public static List<Reaction> selectUpUntil(Date endDate) {
-		_manager = JpaUtils.createManager();
-		List<Reaction> reactions = new ArrayList<>();
-		
-		try {
-			_manager.getTransaction().begin();
-			
-			String jpql = "SELECT r FROM Reaction r WHERE r.datecreated <= :endDate";
-			
-			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);
-			query.setParameter("endDate", endDate, TemporalType.DATE);
-			
-			reactions = query.getResultList();
-			
-			_manager.getTransaction().commit();			
-			System.out.println("Transaction completed successfully!");		
-		}
-		catch (Exception e) {
-			_manager.getTransaction().rollback();
-			System.out.println("Failed to commit the transaction! Roll-back to the previous state.");
-			e.printStackTrace();
-		}
-		finally {
-			JpaUtils.shutdown(_manager);			
-		}
-		
-		return reactions;
-	}
-	
-	public static List<Reaction> selectBetweenTwoDates(Date startDate, Date endDate) {
-		_manager = JpaUtils.createManager();
-		List<Reaction> reactions = new ArrayList<>();
-		
-		try {
-			_manager.getTransaction().begin();
-			
-			String jpql = "SELECT r FROM Reaction r WHERE r.datecreated BETWEEN :startDate AND :endDate";
-			
-			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);
-			query.setParameter("startDate", startDate, TemporalType.DATE);
-			query.setParameter("endDate", endDate, TemporalType.DATE);
-			
-			reactions = query.getResultList();
-			
-			_manager.getTransaction().commit();			
-			System.out.println("Transaction completed successfully!");		
-		}
-		catch (Exception e) {
-			_manager.getTransaction().rollback();
-			System.out.println("Failed to commit the transaction! Roll-back to the previous state.");
-			e.printStackTrace();
-		}
-		finally {
-			JpaUtils.shutdown(_manager);			
-		}
-		
-		return reactions;
-	}
+//	public static List<Reaction> selectUpUntil(Date endDate) {
+//		_manager = JpaUtils.createManager();
+//		List<Reaction> reactions = new ArrayList<>();
+//		
+//		try {
+//			_manager.getTransaction().begin();
+//			
+//			String jpql = "SELECT r FROM Reaction r WHERE r.datecreated <= :endDate";
+//			
+//			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);
+//			query.setParameter("endDate", endDate, TemporalType.DATE);
+//			
+//			reactions = query.getResultList();
+//			
+//			_manager.getTransaction().commit();			
+//			System.out.println("Transaction completed successfully!");		
+//		}
+//		catch (Exception e) {
+//			_manager.getTransaction().rollback();
+//			System.out.println("Failed to commit the transaction! Roll-back to the previous state.");
+//			e.printStackTrace();
+//		}
+//		finally {
+//			JpaUtils.shutdown(_manager);			
+//		}
+//		
+//		return reactions;
+//	}
+//	
+//	public static List<Reaction> selectBetweenTwoDates(Date startDate, Date endDate) {
+//		_manager = JpaUtils.createManager();
+//		List<Reaction> reactions = new ArrayList<>();
+//		
+//		try {
+//			_manager.getTransaction().begin();
+//			
+//			String jpql = "SELECT r FROM Reaction r WHERE r.datecreated BETWEEN :startDate AND :endDate";
+//			
+//			TypedQuery<Reaction> query = _manager.createQuery(jpql, Reaction.class);
+//			query.setParameter("startDate", startDate, TemporalType.DATE);
+//			query.setParameter("endDate", endDate, TemporalType.DATE);
+//			
+//			reactions = query.getResultList();
+//			
+//			_manager.getTransaction().commit();			
+//			System.out.println("Transaction completed successfully!");		
+//		}
+//		catch (Exception e) {
+//			_manager.getTransaction().rollback();
+//			System.out.println("Failed to commit the transaction! Roll-back to the previous state.");
+//			e.printStackTrace();
+//		}
+//		finally {
+//			JpaUtils.shutdown(_manager);			
+//		}
+//		
+//		return reactions;
+//	}
 }

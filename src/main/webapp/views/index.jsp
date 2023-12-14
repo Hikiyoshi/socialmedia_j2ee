@@ -99,13 +99,43 @@
 
                 </div>
 
-                <div class="friend-requests">
+                <div class="friend-requests" style="overflow: auto">
                     <div class="request">
-                        <img src="/socialmedia_j2ee/images/friend.png">
-                        <p>kết bạn</p>
-                        <p>kết bạn</p>
-                        <p>kết bạn</p>
-                        <p>ket ban</p>
+                      <%
+                    List<Profile> userRequests = (List<Profile>) request.getAttribute("friendRequests");
+                    String pageRequests= request.getAttribute("currentPage").toString();
+                    String limitRequests= request.getAttribute("perPage").toString();
+                    if (userRequests != null) {
+                        for (Profile user : userRequests) {
+                           // Sử dụng đối tượng User ở đây
+                           String usernameRequest = user.getUsername();
+                           String surnameRequest = user.getSurname();
+                           String firstnameRequest = user.getFirstname();
+                           String imgavatarRequest = user.getImgAvatar();
+                        %>
+                        <div style="">
+                            <form method="post" action="/socialmedia_j2ee/friend/request">
+                                <div style="display: flex;">
+                                    <img src="images/<%= imgavatarRequest %>" style="width: 64px; height: 64px"/>
+                                    <div>
+                                        <div >
+                                            <%= firstnameRequest %> <%= surnameRequest %>                 
+                                        </div>                        
+                                        <div >
+                                            <input type="hidden" name="username" value="<%= usernameRequest %>">
+                                            <input type="hidden" name="page" value="<%= pageRequests %>">
+                                            <input type="hidden" name="limit" value="<%= limitRequests %>">
+                                            <input type="submit" name="btnFriendRequest" value="Confirm">
+                                            <input type="submit" name="btnFriendRequest" value="Delete" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <%
+                                }
+                            }
+                        %>
                     </div>
                 </div>
 
@@ -122,7 +152,7 @@
                     </div>
 
                 </div>
-                <div class="user-settings">
+                    <div class="user-settings" style="z-index: 100">
                     <div class="profile-darkButton">
                         <div class="user-profile">
                             <img src="images/${avatarImage}" alt="">

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+=======
+>>>>>>> 8de8443cd6e57e4478ad7c2e2e44d7c66d62683a
 <!--
     Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
     

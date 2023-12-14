@@ -44,9 +44,9 @@ public class Post {
     @Column(name="datecreated")
     private LocalDateTime dateCreated;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "username" , insertable = false , updatable = false)
-    private Profile profile_uploaded;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "username" , insertable = false , updatable = false)
+//    private Profile profile_uploaded;
     
     @OneToMany(mappedBy = "commented_post", fetch = FetchType.LAZY)
     private List<PostComment> post_comment = new ArrayList<>();
@@ -89,13 +89,13 @@ public class Post {
         this.dateCreated = dateCreated;
     }
     
-    public List<Reaction> getReactions() {
-		return reactions;
-	}
-
-	public void setReactions(List<Reaction> reactions) {
-		this.reactions = reactions;
-	}
+//    public List<Reaction> getReactions() {
+//		return reactions;
+//	}
+//
+//	public void setReactions(List<Reaction> reactions) {
+//		this.reactions = reactions;
+//	}
 
     public Post( String username, String content, LocalDateTime dateCreated) {
 
@@ -113,12 +113,12 @@ public class Post {
         return "idPost: " + this.idPost + " username: " + this.username + " content: " + this.content + " datecreated: " + this.dateCreated;
     }
     
-    public Profile getProfile_uploaded() {
-        return this.profile_uploaded;
-    }
-
-    public void setContent(Profile profile_uploaded) {
-        this.profile_uploaded = profile_uploaded;
-    }
+//    public Profile getProfile_uploaded() {
+//        return this.profile_uploaded;
+//    }
+//
+//    public void setContent(Profile profile_uploaded) {
+//        this.profile_uploaded = profile_uploaded;
+//    }
     
 }

@@ -58,7 +58,6 @@ public class FriendshipRequestController extends HttpServlet {
 //            loadData(req, resp);
 //        }
 //    }
-
     private void doDeleteAccept(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String method = req.getMethod();
@@ -122,14 +121,15 @@ public class FriendshipRequestController extends HttpServlet {
             page = "1";
             limit = "10";
         }
-        String path= req.getRequestURI();
+        String path = req.getRequestURI();
         req.setAttribute("path", path);
         List<Profile> users = FriendshipDAO.searchFriendShip(Integer.parseInt(page), Integer.parseInt(limit), "", "honggam", 0);
         pagination(req, resp, users, page, limit);
         req.setAttribute("friendRequests", users);
 //        String newUrl = req.getRequestURL() + "?q="+q+"&page=" + page + "&limit=" + limit;
 //        resp.sendRedirect(newUrl);
-        req.getRequestDispatcher("/views/friendrequest.jsp").forward(req, resp);
+        String previousPage = req.getHeader("referer");
+        resp.sendRedirect(previousPage);
     }
 
     public Map<String, Object> pagination(HttpServletRequest request, HttpServletResponse response, List<Profile> users, String page, String limit) {
