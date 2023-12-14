@@ -216,7 +216,6 @@
 <<<<<<< HEAD
             </div>
         </nav>
-        </nav>
                 
         <div class="container-profile" id="container-profile">
        
