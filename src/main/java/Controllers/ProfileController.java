@@ -31,7 +31,9 @@ public class ProfileController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         Profile p = getCurrentProfile(request);
+        Profile p2 = (Profile) request.getSession().getAttribute("user");
 
         if (p != null) {
             String avatarImage = AvatarUtils.verifyAvatarDeployment(request, p.getImgAvatar());
@@ -42,11 +44,23 @@ public class ProfileController extends HttpServlet {
             request.setAttribute("surname", p.getSurname());
             request.setAttribute("fullName", p.getFullname());
             request.setAttribute("introduction", p.getIntroduction());
+            
+            String result = "" + FriendshipDAO.isFriendRequest(p2.getUsername(), p.getUsername(),true);
+            String result1 = "" + FriendshipDAO.isFriendRequest(p2.getUsername(), p.getUsername(),false);
+            request.setAttribute("isSendRequest", result);
+            request.setAttribute("isAcceptRequest", result1);
+            
+            if (p.getUsername().equals(p2.getUsername())) {
+                loadDataFriend(request, response, p2);
+            } else {
+                loadDataFriend(request, response, p);
+            }
+            loadDataFriendRequest(request, response, p2);
+            loadDataIsFriend(request, response, p2);
         }
-        loadDataFriend(request, response, p);
-        loadDataFriendRequest(request, response, p);
         request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
     }
+
     public void loadDataFriendRequest(HttpServletRequest req, HttpServletResponse resp, Profile p) throws ServletException, IOException {
         String page = req.getParameter("page");
         String limit = req.getParameter("limit");
@@ -65,7 +79,7 @@ public class ProfileController extends HttpServlet {
             page = "1";
             limit = "10";
         }
-        String path= req.getRequestURI();
+        String path = req.getRequestURI();
         req.setAttribute("path", path);
         List<Profile> users = FriendshipDAO.searchFriendShip(Integer.parseInt(page), Integer.parseInt(limit), "", p.getUsername(), 0);
         pagination(req, resp, users, page, limit);
@@ -95,6 +109,32 @@ public class ProfileController extends HttpServlet {
         List<Profile> users = FriendshipDAO.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), p.getUsername());
         pagination(req, resp, users, page, limit);
         req.setAttribute("friends", users);
+//        req.getRequestDispatcher("/views/friend.jsp").forward(req, resp);
+    }
+
+    public void loadDataIsFriend(HttpServletRequest req, HttpServletResponse resp, Profile p) throws ServletException, IOException {
+        String page = req.getParameter("page");
+        String limit = req.getParameter("limit");
+//        String q = req.getParameter("q");
+        try {
+//            if (q == null) {
+//                q = "";
+//            }
+            if (page == null || page.isEmpty() || "".equals(page.trim()) || Integer.parseInt(page) > totalPages) {
+                page = "1";
+            }
+            if (limit == null || limit.isEmpty() || "".equals(limit.trim()) || Integer.parseInt(limit) > totalPages) {
+                limit = "10";
+            }
+        } catch (NumberFormatException e) {
+            page = "1";
+            limit = "10";
+        }
+        String path = req.getRequestURI();
+        req.setAttribute("path", path);
+        List<Profile> users = FriendshipDAO.getListFriendship(Integer.parseInt(page), Integer.parseInt(limit), p.getUsername());
+        pagination(req, resp, users, page, limit);
+        req.setAttribute("isFriends", users);
 //        req.getRequestDispatcher("/views/friend.jsp").forward(req, resp);
     }
 

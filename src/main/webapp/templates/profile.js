@@ -2,25 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-var allPicture = document.getElementById('all-picture');
+document.addEventListener('DOMContentLoaded', function () {
+    var allPost = document.getElementById('all-post');      //lấy id nút Bài viết
+    var userAllPost = document.querySelector(".user-all-post");
+    
+    var allPicture = document.getElementById('all-picture'); //lấy id nút Tất cả ảnh
+    var userAllPicture = document.querySelector(".user-all-picture"); 
+    
+    if (allPicture && userAllPicture && userAllPost && userAllPost) {
+        allPicture.addEventListener('click', function () {
+            userAllPicture.style.display = 'flex';
+            userAllPost.style.display = 'none';
+        });
+        
+        allPost.addEventListener('click',function(){
 
-var userAllPicture = document.querySelector(".user-all-picture");
-allPicture.addEventListener('click',function(){
-    
-    
-        // Nếu đang ẩn, hiển thị nó bằng cách đặt "display" thành "block"
-        userAllPicture.style.display = 'flex';
-        userAllPost.style.display = 'none';
-      
-});
 
-var allPost = document.getElementById('all-post');
-var userAllPost = document.querySelector(".user-all-post");
-allPost.addEventListener('click',function(){
-    
-  
-        userAllPost.style.display = 'block';
-        userAllPicture.style.display = 'none';
+            userAllPost.style.display = 'block';
+            userAllPicture.style.display = 'none';
+        });
+    } else {
+        console.error("One or more elements not found in the DOM.");
+    }
 });
 
 function selectListItem(element) {
@@ -59,11 +62,11 @@ function LoadMoreToggle(){
     LoadMoreBackground.classList.toggle("loadMoreToggle");
 };
 
-//function FriendRequestToggle(){
-//     
-//    friendRequest.classList.toggle("friend-request-showup-toggle");
-//   
-//};
+function FriendRequestToggle(){
+     
+    friendRequests.classList.toggle("friend-request-showup-toggle");
+   
+};
 function FriendRequestToggle() {
     friendRequests.classList.toggle("friend-request-showup-toggle");
 };

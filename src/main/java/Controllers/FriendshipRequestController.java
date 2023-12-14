@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,18 +28,21 @@ public class FriendshipRequestController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         try {
             String action = request.getParameter("btnFriendRequest");
+            HttpSession session = request.getSession();
+            Profile p = (Profile) session.getAttribute("user");
             if (null != action) {
                 switch (action) {
 //                    case "Search":
 //                        doSearch(request, response);
 //                        break;
-                    case "Confirm":
-                        doConfirmAccept(request, response);
+                    case "Chấp nhận lời mời":
+                        doConfirmAccept(request, response,p);
                         break;
-                    case "Delete":
-                        doDeleteAccept(request, response);
+                    case "Từ chối":
+                        doDeleteAccept(request, response, p);
                         break;
                     default:
                         loadData(request, response);
@@ -58,7 +62,7 @@ public class FriendshipRequestController extends HttpServlet {
 //            loadData(req, resp);
 //        }
 //    }
-    private void doDeleteAccept(HttpServletRequest req, HttpServletResponse resp)
+    private void doDeleteAccept(HttpServletRequest req, HttpServletResponse resp, Profile p)
             throws ServletException, IOException {
         String method = req.getMethod();
         if (method.equalsIgnoreCase("POST")) {
@@ -67,7 +71,7 @@ public class FriendshipRequestController extends HttpServlet {
                 req.setAttribute("message", "Lỗi!");
             } else {
                 try {
-                    String message = FriendshipDAO.deleteFriendShip(username, "honggam", 0);
+                    String message = FriendshipDAO.deleteFriendShip(username, p.getUsername(), 0);
                     req.setAttribute("message", message);
                 } catch (Exception e) {
                     req.setAttribute("message", "Lỗi!");
@@ -77,7 +81,7 @@ public class FriendshipRequestController extends HttpServlet {
         loadData(req, resp);
     }
 
-    private void doConfirmAccept(HttpServletRequest req, HttpServletResponse resp)
+    private void doConfirmAccept(HttpServletRequest req, HttpServletResponse resp, Profile p)
             throws ServletException, IOException {
         String method = req.getMethod();
         if (method.equalsIgnoreCase("POST")) {
@@ -86,7 +90,7 @@ public class FriendshipRequestController extends HttpServlet {
                 req.setAttribute("message", "Lỗi!");
             } else {
                 try {
-                    String message = FriendshipDAO.acceptFriendShip(username, "honggam");
+                    String message = FriendshipDAO.acceptFriendShip(username, p.getUsername());
                     req.setAttribute("message", message);
                 } catch (Exception e) {
                     req.setAttribute("message", "Lỗi!");
