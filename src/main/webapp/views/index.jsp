@@ -21,10 +21,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/main.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/post.css">
+        <link rel="stylesheet" href="templates/comment.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://kit.fontawesome.com/ef7e2b893b.js" crossorigin="anonymous"></script>
         <title>social</title>
     </head>
     <body>
+        
+        <div id="dialog-confirm" title="Xác nhận xoá" style="display: none">
+            <p>Bạn có chắc chắn tiếp tục xoá ?</p>
+        </div>
         
         <%    
           String username =null;
@@ -199,7 +205,9 @@
         
 
             <div class="container" id="container">
-  
+                
+                <div id="Comment-Contain"></div>
+                
                 <div class="content-area">
 
                     <div class="write-post-container" id="existingForm">
@@ -219,7 +227,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="post_content_area">
+                    <div id="load_posts">
                         <% 
                             List<Post> list = PostDAO.readAllPost();
                             
@@ -270,6 +278,7 @@
                             }
                        %>
                     </div>
+                    <div id="load_message"></div>
                 </div>
             </div>
                 
@@ -350,7 +359,244 @@
                 });
             });
             
+
+            $(document).ready(function(){
+                //Xử lý bài viết
+                var max = '<%= request.getAttribute("maxPage") %>';console.log(max);
+                var start = 0;
+                var action = 'inactive';
+                function load_data_post(start){
+                    $.ajax({
+                       url: "/socialmedia_j2ee/ShowPost",
+                       metod: "GET",
+                       data: {
+                           startpage: start,
+                           username: "${username}",
+                           action: "index"
+                       },
+                       success: function (data) {
+                        $('#load_posts').append(data);
+                        
+                        if(data.toString().trim() === ''){
+                            $('#load_message').html("<button>You Read All Post</button>");
+                            action = 'active';
+                        }
+                        else{
+                            $('#load_message').html("<button>Please Wait</button>");
+                            action = 'inactive';
+                        }console.log(data);
+                    }
+                    });
+                }
+                
+                if(action === 'inactive'){
+                    $('#load_posts').html("");
+                    action = 'active';
+                    load_data_post(start);
+                }
+                $(window).scroll(function(){
+                    if($(window).scrollTop() + $(window).height() > $("#load_posts").height() && action === 'inactive')
+                    {
+                        action = 'active';
+                        start = start + 1;console.log(start);
+                        if(start <= max){
+                            setTimeout(function(){
+                                load_data_post(start); 
+                            }, 500);
+                        }
+                    }
+                });
+                
+                //                    Xử lý Hiển thị bình luận
+                <%
+                    Profile currentUser = (Profile)session.getAttribute("user");
+                    String currentUsername = currentUser.getUsername();
+                %>
+                        
+                function load_data_comments(idpost){
+                    $.ajax({
+                        url: "/socialmedia_j2ee/comment",
+                        method: "POST",
+                        data:{
+                            idPost: idpost
+                        },
+                        success: function(data){
+                            $("#Comment-Contain").html(data);console.log(data);
+                        }
+                    });
+                }
+                
+                var idpost;
+                $(document).on('click', '.btn_show_comments', function() {
+                    idpost = $(this).data('idpost');
+                    
+                    load_data_comments(idpost);
+                    
+                    $("#Comment-Contain").toggle();
+                });
+                
+                $(document).on('click', '#close-comment', function() {
+                    $("#Comment-Contain").toggle();
+                    $("#Comment-Contain").html("");
+                    idpost = "";
+                });
+                
+//                    Xử lý Đăng bình luận
+                $(document).on('submit', '#WriteComment',function(event) {
+                    //Ngăn không cho submit form reload trang
+                    event.preventDefault();
+                    
+                    var userComment = "<%=currentUsername%>";
+                    var content = $(".content_write_comment").val();
+                    
+                    if(content === ""){
+                        alert("Phải nhập bình luận ");
+                        return;
+                    }
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/comment",
+                        method: "POST",
+                        data:{
+                            idPost: idpost,
+                            userComment: userComment,
+                            add: "true",
+                            content: content
+                        },
+                        success: function(data){
+                            $(".content_write_comment").val("");
+                            load_data_comments(idpost);
+                        }
+                    });
+                });
+                
+                //Xử lý xoá comment
+                $(document).on('click','.btn_del_comment',function(){
+                    var idComment = $(this).data("idcomment");
+                    
+                    $("#dialog-confirm").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Yes": function() {
+                                $.ajax({
+                                    url: "/socialmedia_j2ee/comment",
+                                    method: "POST",
+                                    data:{
+                                        delIdCmt: idComment
+                                    },
+                                    success: function(data){
+                                        load_data_comments(idpost);
+                                    }
+                                });
+                                $(this).dialog("close");
+                            },
+                            "No": function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
+                
+                //Xử lý reaction
+                //Btn-like to unlike
+                $(document).on('click','.btn_like_post',function (){
+                    var idPostLike = $(this).data('idpost');
+                    var btn_like_post = $(this);
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/reaction",
+                        method:"POST",
+                        data:{
+                            idPostLike: idPostLike,
+                            userLike: "<%=currentUsername%>",
+                            action: "unlike"
+                        },
+                        success: function(data){
+                            var imglike = btn_like_post.find("img").first();
+                            imglike.attr("src","images/like.png");
+                            btn_like_post.addClass('btn_unlike_post');
+                            btn_like_post.removeClass('btn_like_post');
+                        }
+                    });
+                });
+//                Btn-Unlike to like
+                $(document).on('click','.btn_unlike_post',function (){
+                    var idPostLike = $(this).data('idpost');
+                    var btn_unlike_post = $(this);
+                    
+                    $.ajax({
+                        url: "/socialmedia_j2ee/reaction",
+                        method:"POST",
+                        data:{
+                            idPostLike: idPostLike,
+                            userLike: "<%=currentUsername%>",
+                            action: "like"
+                        },
+                        success: function(data){
+                            var imglike = btn_unlike_post.find("img").first();
+                            imglike.attr("src","images/like-blue.png");
+                            btn_unlike_post.addClass('btn_like_post');
+                            btn_unlike_post.removeClass('btn_unlike_post');
+                        }
+                    });
+                });
+                
+                
+                //Xoá bài viết
+                $(document).on('click','.remove-post',function (){
+                    var idPostDel = $(this).data('idpost');
+                    
+                    $("#dialog-confirm").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Yes": function() {
+                                
+                                $.ajax({
+                                    url: "/socialmedia_j2ee/ShowPost",
+                                    method: "POST",
+                                    data:{
+                                        IdPost: idPostDel,
+                                        action: "del"
+                                    },
+                                    success: function(data){
+                                        $('#load_posts').html("");
+                                        start = -1;
+                                        action = 'inactive';
+                                    }
+                                });
+                                
+                                $(this).dialog("close");
+                            },
+                            "No": function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
+                
+                //Chỉnh sửa bài viết
+                var idPostEdit;
+                $(document).on('click','.edit-post',function(){
+                    idPostEdit = $(this).data('idpost');
+                    
+                    var getStatusField = $(this).parent().parent().parent().parent();
+                    var getFormEdit = getStatusField.children(".status-field").children(".frm-update-post");
+                    var textAreaEdit = getFormEdit.find('.text-update-post');
+                    textAreaEdit.attr('disabled', false);
+                });
+                
+            });
+            
         </script>
         <script src="<%=request.getContextPath()%>/templates/function.js"></script>
+        <!--Thư viện thêm dialog-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </body>
 </html>

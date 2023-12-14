@@ -325,5 +325,71 @@ public class PostDAO {
     	
     	return allPosts;
     }
-
+    
+    public static List<Post> findFriendsandMyPost(String username,int page, int limit){
+        EntityManager em = JpaUtils.createManager();
+        List<Post> list = new ArrayList<>();
+        
+            try {
+                em.getTransaction().begin();
+                
+                String sqpl = "SELECT p " +
+                "FROM Post p " +
+                "LEFT JOIN Friendship friendship ON p.username = friendship.userrequest OR p.username = friendship.useraccept " +
+                "WHERE ((friendship.userrequest = :userId OR friendship.useraccept = :userId) AND friendship.state=1) OR p.username = :userId " +
+                "GROUP BY p.idPost " +
+                "ORDER BY p.dateCreated DESC";
+                
+                TypedQuery<Post> query = em.createQuery(sqpl, Post.class);
+                query.setParameter("userId", username);
+                
+                //with page is the number of first position in list post, start with 0
+                //limit is the max number of post which we wanna read 
+                query.setFirstResult(page*limit);
+                query.setMaxResults(limit);
+                
+                list = query.getResultList();
+                
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                em.getTransaction().rollback();
+                System.out.println("Tim that bai");
+            } finally {
+                JpaUtils.shutdown(em);
+            }
+        
+        return list;
+    }
+    
+    public static int CountMaxFriendsandMyPost(String username,int limit){
+        EntityManager em = JpaUtils.createManager();
+        int result = 0;
+        
+            try {
+                em.getTransaction().begin();
+                
+                String sqpl = "SELECT COUNT(*) " +
+                    "FROM Post post " +
+                    "LEFT JOIN Friendship friendship ON post.username = friendship.userrequest OR post.username = friendship.useraccept " +
+                    "WHERE ((friendship.userrequest = :userId OR friendship.useraccept = :userId) AND friendship.state = 1) " +
+                    "OR post.username = :userId";
+                
+                TypedQuery<Long> query = em.createQuery(sqpl, Long.class);
+                query.setParameter("userId", username);
+                
+                Long TotalAmuont = query.getSingleResult();
+                result = (int) Math.ceil((double)TotalAmuont/limit);
+                System.out.println(TotalAmuont);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                em.getTransaction().rollback();
+                System.out.println("Tim that bai");
+            } finally {
+                JpaUtils.shutdown(em);
+            }
+        
+        return result;
+    }
 }

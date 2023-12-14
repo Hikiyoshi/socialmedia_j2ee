@@ -30,16 +30,16 @@
                         <small><%=dateCreatePost%></small>
                     </div>
                 </div>
-                <div class="choose-function-post" onclick="PostToggle(event);">
-                    <i class="fas fa-ellipsis-v"></i>
-                    
-                    <c:set var="currentProfile" value="${sessionScope.user}"></c:set>
-                    <c:if test="${p.profile_uploaded.username == currentProfile.username}"></c:if>
-                    <div class="function-post">
-                        <div class="edit-post" data-idpost='${p.idPost}'><small>Chỉnh sửa</small></div>
-                        <div class="remove-post" data-idpost='${p.idPost}'><small>Xoá</small></div>
+                
+                <c:set var="currentProfile" value="${sessionScope.user}"></c:set>
+                <c:if test="${p.profile_uploaded.username == currentProfile.username}">
+                    <div class="choose-function-post" onclick="PostToggle(event);">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <div class="function-post">
+                            <div class="remove-post" data-idpost='${p.idPost}'><small>Xoá</small></div>
+                        </div>
                     </div>
-                </div>
+                </c:if> 
             </div>
 
             <div class="status-field">

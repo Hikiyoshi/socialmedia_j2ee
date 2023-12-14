@@ -52,6 +52,10 @@ public class HomeController extends HttpServlet {
             request.setAttribute("fullName", p.getFullname());
             loadDataFriendRequest(request, response, p);
             //merge from DD
+            
+            //getMaxpages for showPost
+            int maxPages = PostDAO.CountMaxFriendsandMyPost(p.getUsername(), 3);
+            request.setAttribute("maxPage", maxPages);
             request.getRequestDispatcher("/views/index.jsp").forward(request, response);
         }
     }

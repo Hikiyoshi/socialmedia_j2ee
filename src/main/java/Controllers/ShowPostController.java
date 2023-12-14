@@ -30,22 +30,6 @@ public class ShowPostController extends HttpServlet {
         
         String action = request.getParameter("action");
         String idPost = request.getParameter("IdPost");
-        System.out.println(">>"+action+idPost);
-        if(action != null && !action.isBlank() && idPost != null){
-            switch (action) {
-                case "del":
-                    if(PostDAO.deletePost(idPost)){
-                        System.out.println("Xoa Bai Viet Thanh Cong");
-                        }
-                    else{
-                        System.out.println("Xoa Bai Viet That Bai");
-                    }
-                    break;
-                case "":
-                    
-                    break;
-            }
-        }
         
         String postUsername = request.getParameter("username");
         String startStr = request.getParameter("startpage");
@@ -55,13 +39,36 @@ public class ShowPostController extends HttpServlet {
             starPage = Integer.parseInt(startStr);
         }
         
-        if(postUsername != null){
-            List<Post> listPost = PostDAO.findByUsernamePages(postUsername, starPage, 3);
-            request.setAttribute("ListPost", listPost);
-            
-            request.getRequestDispatcher("/components/showpost.jsp").forward(request, response);
+        System.out.println(">>"+action+idPost);
+        if(action != null && !action.isBlank()){
+            switch (action) {
+                case "del":
+                    if(PostDAO.deletePost(idPost)){
+                        System.out.println("Xoa Bai Viet Thanh Cong");
+                        }
+                    else{
+                        System.out.println("Xoa Bai Viet That Bai");
+                    }
+                    break;
+                case "index":
+                    if(postUsername != null){
+                        List<Post> listPost = PostDAO.findFriendsandMyPost(postUsername, starPage, 3);
+                        request.setAttribute("ListPost", listPost);
+
+                        request.getRequestDispatcher("/components/showpost.jsp").forward(request, response);
+                    }
+                    break;
+                case "profile":
+                    if(postUsername != null){
+                        List<Post> listPost = PostDAO.findByUsernamePages(postUsername, starPage, 3);
+                        request.setAttribute("ListPost", listPost);
+
+                        request.getRequestDispatcher("/components/showpost.jsp").forward(request, response);
+                    }
+                    break;
+                
+            }
         }
-        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

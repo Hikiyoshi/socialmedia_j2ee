@@ -419,7 +419,8 @@
                        metod: "GET",
                        data: {
                            startpage: start,
-                           username: "${username}"
+                           username: "${username}",
+                           action : "profile"
                        },
                        success: function (data) {
                         $('#load_posts').append(data);
@@ -448,7 +449,7 @@
                         if(start <= max){
                             setTimeout(function(){
                                 load_data_post(start); 
-                            }, 1000);
+                            }, 500);
                         }
                     }
                 });
