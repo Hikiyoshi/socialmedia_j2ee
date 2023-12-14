@@ -26,22 +26,24 @@ public class RegisterController extends HttpServlet {
             String password = request.getParameter("password");
             String surname = request.getParameter("surname");
             String firstname = request.getParameter("firstname");
-            String imgAvatar = request.getParameter("imgAvatar");
+            String imgAvatar = "avatar-default.png";
             String dateBirth = request.getParameter("date");
             String genderString = request.getParameter("gender");
             String phoneNumber = request.getParameter("phoneNumber");
             String email = request.getParameter("email");
-            
+            SendEmailServlet sm = new SendEmailServlet();
             Profile p = ProfileDAO.selectByUsername(username);
-            if(p == null){
+            System.out.println(phoneNumber + "day la so dien thoai");
+            if (phoneNumber.equals("") || username.equals("") || password.equals("") || surname.equals("") || firstname.equals("") || dateBirth.equals("") || genderString.equals("") || email.equals("")){
+                request.setAttribute("message","Không được để trông thông tin");
+                request.getRequestDispatcher("/views/register.jsp").forward(request, response);
+            }
+            else if(p == null){
                 try {
                
                     java.sql.Date dateBirt = java.sql.Date.valueOf(dateBirth);
-
-             
+        
                     int gender = Integer.parseInt(genderString);
-
-               
                     Profile profile = new Profile();
                     profile.setUsername(username);
                     profile.setPassword(password);
@@ -52,7 +54,7 @@ public class RegisterController extends HttpServlet {
                     profile.setGender(gender);
                     profile.setPhonenumber(phoneNumber);
                     profile.setEmail(email);
-                
+                    
                     ProfileDAO profileDAO = new ProfileDAO();
                     profileDAO.createProfile(profile);              
                 } catch (Exception e) {
@@ -60,7 +62,8 @@ public class RegisterController extends HttpServlet {
                     System.out.println("Loi: " + e);
                 }
                 response.sendRedirect(request.getContextPath() + "/views/login.jsp");
-            }else {
+            }
+            else {
                 request.setAttribute("message","Tài khoản đã tồn tại");
                 request.getRequestDispatcher("/views/register.jsp").forward(request, response);
             }       

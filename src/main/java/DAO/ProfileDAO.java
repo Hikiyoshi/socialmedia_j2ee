@@ -41,7 +41,7 @@ private static EntityManager _manager;
 			entity.setSurname(updatedProfile.getSurname());
 			entity.setImgAvatar(updatedProfile.getImgAvatar());
 			entity.setIntroduction(updatedProfile.getIntroduction());
-
+                        entity.setPassword(updatedProfile.getPassword());
 			_manager.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
@@ -52,6 +52,10 @@ private static EntityManager _manager;
 			JpaUtils.shutdown(_manager);
 		}
 	}
+        
+        
+        
+        
 
 	public static boolean deleteProfile(String username) {
 		_manager = JpaUtils.createManager();

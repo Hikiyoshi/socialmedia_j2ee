@@ -23,49 +23,52 @@ import lombok.Data;
 @Entity
 @Table(name = "profile")
 public class Profile {
+
     @Id
     @Column(name = "username")
     private String username;
-    
+
     @Column(name = "password")
     private String password;
-    
+
     @Column(name = "surname")
     private String surname;
-    
+
     @Column(name = "firstname")
     private String firstname;
-    
+
     @Column(name = "imgAvatar")
     private String imgAvatar;
-    
+
     @Column(name = "dateBirth")
     private Date dateBirth;
-    
+
     @Column(name = "gender")
     private int gender;
-    
+
     @Column(name = "phoneNumber")
     private String phonenumber;
-    
+
     @Column(name = "email")
     private String email;
-    
+
     @Column(name = "introduction")
     private String introduction;
-    
+
+   
+
     @OneToMany(mappedBy = "profile_request_friendships", fetch = FetchType.LAZY)
     private List<Friendship> request_friendships = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "profile_acpect_friendships", fetch = FetchType.LAZY)
     private List<Friendship> acpect_friendships = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "profile_uploaded", fetch = FetchType.LAZY)
     private List<Post> profile_post = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "reactUsername", fetch = FetchType.LAZY)
     private List<Reaction> reactions = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "profile_commented", fetch = FetchType.LAZY)
     private List<PostComment> profile_commented = new ArrayList<>();
 
@@ -124,7 +127,7 @@ public class Profile {
     public void setGender(int gender) {
         this.gender = gender;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -132,49 +135,51 @@ public class Profile {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String getIntroduction() {
-		return introduction;
-	}
+        return introduction;
+    }
 
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
-	}
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 
-	public String getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
-    
+
+  
+
     public List<Friendship> getRequest_friendships() {
-		return request_friendships;
-	}
+        return request_friendships;
+    }
 
-	public void setRequest_friendships(List<Friendship> request_friendships) {
-		this.request_friendships = request_friendships;
-	}
+    public void setRequest_friendships(List<Friendship> request_friendships) {
+        this.request_friendships = request_friendships;
+    }
 
-	public List<Friendship> getAcpect_friendships() {
-		return acpect_friendships;
-	}
+    public List<Friendship> getAcpect_friendships() {
+        return acpect_friendships;
+    }
 
-	public void setAcpect_friendships(List<Friendship> acpect_friendships) {
-		this.acpect_friendships = acpect_friendships;
-	}
+    public void setAcpect_friendships(List<Friendship> acpect_friendships) {
+        this.acpect_friendships = acpect_friendships;
+    }
 
-	public List<Reaction> getReactions() {
-		return reactions;
-	}
+    public List<Reaction> getReactions() {
+        return reactions;
+    }
 
-	public void setReactions(List<Reaction> reactions) {
-		this.reactions = reactions;
-	}
-	
-	public String getFullname() {
-		return firstname + " " + surname;
-	}
+    public void setReactions(List<Reaction> reactions) {
+        this.reactions = reactions;
+    }
+
+    public String getFullname() {
+        return firstname + " " + surname;
+    }
+
 }
-

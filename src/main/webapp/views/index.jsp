@@ -158,7 +158,7 @@
 
                     <div class="settings-links">
                         <img src="/socialmedia_j2ee/images/logout.png" alt="" class="settings-icon">
-                        <a href="#">Logout <img src="images/arrow.png" alt=""></a>
+                        <a href="logout">Logout <img src="images/arrow.png" alt=""></a>
                     </div>
 
                 </div>
