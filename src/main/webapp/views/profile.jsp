@@ -99,7 +99,7 @@
         </style>
 
         <div id="Comment-Contain"></div>
-
+        
         <div id="dialog-confirm" title="Xác nhận xoá" style="display: none">
             <p>Bạn có chắc chắn tiếp tục xoá ?</p>
         </div>
@@ -241,9 +241,6 @@
 <img src="images/${avatarImage}" id="avatarPreview" height="100">
 <input name="avatarInput" id="avatarInput" type="file" accept="image/png, image/jpg, image/jpeg, image/bmp" onchange="previewAvatar()">
 <br><br>
-
-
-
 <b> Tên: </b>
 <input name="firstName" size="25" placeholder="Tên bạn là gì?" value="${firstName}">
 <b> Họ: </b>
@@ -255,7 +252,7 @@
 <button class="btn-profile-edit" name="saveButton" type="submit" value="save">Lưu</button>
 <button class="btn-profile-edit" onclick="toggleProfileEditing(false)">Hủy</button>
 </form>
-</div>-->
+</div>-->         
             <div class="container-profile" id="container-profile">
                 <div class="modal-background">
                     <div class="profile-top">
