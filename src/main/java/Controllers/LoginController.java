@@ -21,15 +21,15 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {    	
         response.setContentType("text/html;charset=UTF-8");
-        String us = request.getParameter("username");
-        String pw = request.getParameter("password");
-        try {      
+        String us = request.getParameter("your_name");
+        String pw = request.getParameter("your_pass");
+        try {       
+            
             Profile p = ProfileDAO.selectByUsername(us);
             if (p != null && p.getPassword().equals(pw)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", p);
                 request.setAttribute("user", p);
-                
                 response.sendRedirect("/socialmedia_j2ee/index");
                 //request.getRequestDispatcher("/index").forward(request, response);
             } else {

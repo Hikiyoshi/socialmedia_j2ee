@@ -1,6 +1,9 @@
 package Controllers;
 
+
 import cc.kkon.jwt.Jwts;
+import DAO.ProfileDAO;
+import Models.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -20,62 +23,71 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.Random;
 
-import Models.Profile;
-import DAO.ProfileDAO;
-
-@WebServlet(urlPatterns = {"/SendEmailServlet"})
+@WebServlet(urlPatterns = {"/sendemail"})
 public class SendEmailServlet extends HttpServlet {
 
+    static public String OTP;
+    
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user = request.getParameter("username");
+        String username = request.getParameter("user");
+        if (username.equals("")) {
+            response.getWriter().write("Không được để trống");
+        } else {
+            try {
+                if (ProfileDAO.selectByUsername(username) != null) {
+                    Profile p = ProfileDAO.selectByUsername(username);
+                    String email = p.getEmail();
+                    sendOTP(request, response, email);
+                } else {
+                    response.getWriter().write("Tên đăng nhâp không tồn tại");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Lỗi: " + e);
+            }
+        }
+    }
+
+    public void sendOTP(HttpServletRequest req, HttpServletResponse resp, String email) throws IOException {
+
         try {
-            Profile p = ProfileDAO.selectByUsername(user);
-            if (p != null) {
-                String email = p.getEmail();
-                String password = p.getPassword();
-                sendEmail(email, password);
-                request.getRequestDispatcher("/views/login.jsp").forward(request, response);
-            }
-            else{
-                request.setAttribute("error", "Tài khoản không tồn tại!");
-                request.getRequestDispatcher("/views/forgotpass.jsp").forward(request, response);
-            }
+
+            OTP = getRandom();
+            System.out.println(OTP);
+            String from = "ShopBanSachNhom9@gmail.com";
+            String pass = "bxux rtqq uhso hjzi";
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            Authenticator auth = new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(from, pass);
+                }
+            };
+            Session session = Session.getInstance(props, auth);
+            MimeMessage msg = new MimeMessage(session);
+            msg.addHeader("Content-type", "text/HTML;charset=UTF-8");
+            msg.setFrom(from);
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            msg.setSubject("OTP lấy lại mật khẩu");
+            msg.setSentDate(new Date());
+            msg.setText("Mã OTP : " + OTP, "UTF-8");
+            resp.setContentType("text/plain");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write("Mã OTP đã được gửi đến " + email);
+            Transport.send(msg);
         } catch (Exception e) {
-            System.out.println("Loi: " + e);
+            e.printStackTrace();
         }
     }
 
-    private void sendEmail(String toEmail, String getpass) {
-        final String username = "trandinhtoan2610@gmail.com"; // Thay bằng địa chỉ email của bạn
-        final String password = "jdjnxdygippcsotg"; // Thay bằng mật khẩu của bạn
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            message.setSubject("Lấy lại mật khẩu");
-            message.setText("Your pass: " + getpass);
-
-            Transport.send(message);
-
-            System.out.println("Email sent successfully!");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+    public String getRandom() {
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+        return String.format("%06d", number);
     }
-
 }

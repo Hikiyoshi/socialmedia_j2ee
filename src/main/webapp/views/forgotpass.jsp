@@ -1,59 +1,81 @@
-<%-- 
-    Document   : changepassword
-    Created on : Dec 8, 2023, 3:38:53 PM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Send Email</title>
-    <style>
-        .send-email{
-            padding: 40px 40px ;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0 auto;
-            border: 2px solid black;
-            background-image: url(https://scr.vn/wp-content/uploads/2020/07/%E1%BA%A2nh-n%E1%BB%81n-m%C3%A0u-xanh-da-tr%E1%BB%9Di.png);
-            background-repeat: repeat-x;
-            background-position: center;
-            border-radius: 10px;
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Quên mật khẩu</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/login.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/font.css">
+        <style>
+        .OTP:focus {
+             outline: none;
         }
+</style>
+    </head>
+    <body>
         
-        input[type="text"] {
-            width: 200px;
-            height: 30px;
-            font-size: 16px;
-            border-radius: 3px;
-          }
-          
-        input[type="submit"] {
-            width: 100px;
-            height: 30px;
-            font-size: 16px;
-            border-radius: 3px;
-            margin-left: 105px;
-            margin-top: 10px;
-          }
-          #lb{
-              font-size: 20px;
-          }
-    </style>
-</head>
-<body>
-    <form action="/socialmedia_j2ee/SendEmailServlet" method="post">
-        <div class="send-email">
-        <label id="lb" for="toEmail">Tài khoản: </label>
-        <input type="text" name="username" required><br>
-        <div>
-            <p class="alert alert-danger" >${error}</p>
+        <div class="main">
+            <section class="sign-in">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="/socialmedia_j2ee/images/signin-image.jpg" alt="sing up image"></figure>
+                            <a href="/socialmedia_j2ee/views/login.jsp" class="signup-image-link">Login now!</a>
+                        </div>
+
+                        <div class="signin-form">
+                            <h2 class="form-title">Forgot password</h2>
+                            <form action="/socialmedia_j2ee/ForgotPassController" method="POST" class="register-form" id="login-form">
+                                <div class="form-group" style=" ">
+                                    <p id = "result" style="font-size: 13px; color: red;">${error}</p>
+                                    <label for="your_name"></label>
+                                    <input type="text" name="username" id="username" placeholder="User Name"/>
+                                    <div class="OTP" id="generateOTP" style="cursor: pointer; position: relative; left: 10px">Send OTP</div> 
+                                    
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="your_pass"></label>
+                                    <input type="password" name="password-new" id="your_pass" placeholder="Password"/>
+                                    <p style="font-size: 13px; color: red;"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_pass"></label>
+                                    <input type="password" name="password-re" id="your_pass" placeholder="Re-Password"/>
+                                    <p style="font-size: 13px; color: red;">${message}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_pass"></label>
+                                    <input type="text" name="otp" id="your_pass" placeholder="Confirm OTP"/>
+                                </div>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Confirm"/>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-        <input type="submit" value="Send Email">
-        </div>
-    </form>
-</body>
+       
+    <script src="/socialmedia_j2ee/templates/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#generateOTP").click(function() {
+                var user = $("#username").val();
+                $.ajax({
+                    url: "/socialmedia_j2ee/sendemail",
+                    type: "POST",
+                    data: { user: user, action: "generateOTP" },
+                    success: function(response) {
+                        $("#result").html(response);
+                    }
+                });
+            });
+        });
+    </script>
+    </body>
 </html>

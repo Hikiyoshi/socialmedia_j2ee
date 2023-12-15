@@ -65,6 +65,7 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
+        
         <dependency>
             <groupId>cc.kkon</groupId>
             <artifactId>jwt-hmac-sm3</artifactId>
@@ -77,6 +78,7 @@
             <version>1.6.2</version>
             <type>jar</type>
         </dependency>
+        
     </dependencies>
 
     <build>

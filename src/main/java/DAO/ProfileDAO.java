@@ -41,7 +41,7 @@ private static EntityManager _manager;
 			entity.setSurname(updatedProfile.getSurname());
 			entity.setImgAvatar(updatedProfile.getImgAvatar());
 			entity.setIntroduction(updatedProfile.getIntroduction());
-
+                        entity.setPassword(updatedProfile.getPassword());
 			_manager.getTransaction().commit();
 			return true;
 		} catch (Exception e) {

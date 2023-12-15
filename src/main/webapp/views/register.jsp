@@ -7,133 +7,80 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký</title>
-    <link rel="stylesheet" href="css/sign_up.css">
-    <style>
-        
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-form {
-    background-color: rgba(255, 255, 255, 0.8); /* Màu nền với độ trong suốt */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-}
-
-h2 {
-    text-align: center;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #45a049;
-}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Đăng ký</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/login.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/font.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/font_.css">
+    </head>
+    <body>
+        <div class="main">
+            <section class="signup">
+                <div class="container">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <h2 class="form-title">Sign up
+                            <p class="alert alert-danger" style="color: red" >${message}</p>
+                            </h2>
+                            
+                           
+                    
+                            <form action="/socialmedia_j2ee/register" method="POST" class="register-form" id="register-form">
+                                <div class="form-group">
+                                    <label for="name"></label>
+                                    <input type="text" name="username" id="username" placeholder="User name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"></label>
+                                    <input type="email" name="email" id="email" placeholder="Your Email"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass"></label>
+                                    <input type="password" name="password" id="pass" placeholder="Password"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="re-pass"></label>
+                                    <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="surname"></label>
+                                    <input type="text" name="surname" id="surname" placeholder="Surname"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fistname"></label>
+                                    <input type="text" name="firstname" id="fistname" placeholder="Fistname"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="datebirth"></label>
+                                    <input type="date" name="date" id="datebirth" placeholder="Datebirth"/>
+                                </div>
 
 
-.signup-link {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
-}
+                                <div class="form-group">
+                                    <label for="phonenumeber"></label>
+                                    <input type="number" name="phoneNumber" id="phonenumeber" placeholder="Phone numeber"/>
+                                </div>
+                                <div class="form-group" style="display: flex; justify-content: space-between;  margin-bottom: 10px;">
+                                    <label  for="gender" style="left: 90px; top: 10px">Male</label>
+                                    <input type="radio" name="gender" class="gender" value="0" style ="margin-right: 50px;"/>
+                                    <label  for="gender" style="left: 240px; top: 10px">Female</label>
+                                    <input type="radio" name="gender" class="gender" value="1" style ="margin-right: 50px;"/>
+                                </div>
 
-.signup-link a {
-    color: #4caf50;
-    text-decoration: none;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-.alert-danger {
-    color: red;
-    
-}
-.alert {
-    position: relative;
-    font-weight: 100; 
-    font-size: 14px;
-}
-    </style>
-</head>
-<body>
-    <form action="/socialmedia_j2ee/register" method="post">
-        <h2>Đăng ký</h2>
-        
-        <input type="text" id="username" name="username" placeholder="Tài khoản" required >
-        
-        <div>
-        <p class="alert alert-danger" >${message}</p>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="signup-image">
+                            <figure><img src="/socialmedia_j2ee/images/signup-image.jpg" alt="sing up image"></figure>
+                            <a href="/socialmedia_j2ee/views/login.jsp" class="signup-image-link">I am already member</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
-
-        <input type="text" id="surname" name="surname" placeholder="Tên" required>
-
-        <input type="text" id="firstname" name="firstname" placeholder="Họ" required>
-
-        <input type="date" id="date" name="date" placeholder="Ngày sinh" required>
-
-        
-        <select id="gender" name="gender" required>
-            <option value="0">Male</option>
-            <option value="1">Female</option>           
-        </select>
-      
-        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="\d{10}" placeholder="Số điện thoại" required>
-      
-        <input type="email" id="email" name="email" placeholder="Email" required>
-
-        <button type="submit">Đăng ký</button>
-        <div class="signup-link">
-            Có tài khoản rồi? <a href="index">Đăng nhập ngay</a>
-        </div>
-    </form>
-</body>
+    </body>
 </html>

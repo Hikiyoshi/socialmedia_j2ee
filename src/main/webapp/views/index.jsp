@@ -175,7 +175,7 @@
             </div>
                 
             <footer id="footer">
-                <p>&copy; Copyright 2021 - Socialbook All Rights Reserved</p>
+                <p>&copy; Copyright 2023 - Socialbook All Rights Reserved</p>
             </footer>
         </div>
 

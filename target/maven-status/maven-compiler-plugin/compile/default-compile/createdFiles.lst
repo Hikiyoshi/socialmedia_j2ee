@@ -8,6 +8,7 @@ Controllers\LoginController.class
 Models\Post.class
 Models\PostComment.class
 Controllers\SendEmailServlet.class
+Controllers\ForgotPassController.class
 Controllers\CommentController.class
 Utilities\FormatUtils.class
 Controllers\postController.class
@@ -22,6 +23,7 @@ Controllers\ShowPostController.class
 DAO\ProfileDAO.class
 DAO\PostCommentDAO.class
 Models\Friendship.class
+Controllers\LogoutController.class
 Utilities\JpaUtils.class
 DAO\FriendshipDAO.class
 Controllers\SendEmailServlet$1.class
