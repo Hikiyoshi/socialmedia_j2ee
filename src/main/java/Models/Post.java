@@ -54,7 +54,7 @@ public class Post {
     @OneToMany(mappedBy = "img_post", fetch = FetchType.EAGER)
     private List<PostImage> post_img = new ArrayList<>();
 
-    @OneToMany(mappedBy = "reactPost", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "reactPost", fetch = FetchType.EAGER)
     private List<Reaction> reactions = new ArrayList<>();
     
     public int getIdPost() {

@@ -64,6 +64,10 @@ public class FriendshipDAO {
             em.getTransaction().rollback();
             return "Gửi lời mời kết bạn thất bại!";
         }
+        finally{
+            em.close();
+            emf.close();
+        }
     }
 
     //chấp nhận lời mời kết bạn (useraccept: mình là người nhận)
@@ -93,6 +97,10 @@ public class FriendshipDAO {
             em.getTransaction().rollback();
             return "Chấp nhận lời mời kết bạn thất bại!";
         }
+        finally{
+            em.close();
+            emf.close();
+        }
     }
 
     //Hủy kết bạn truyền state = 1 hoặc xóa lời mời kết bạn truyền state = 0
@@ -117,6 +125,10 @@ public class FriendshipDAO {
         } catch (Exception e) {
             em.getTransaction().rollback();
             return "Xóa thất bại!";
+        }
+        finally{
+            em.close();
+            emf.close();
         }
     }
 
@@ -145,6 +157,10 @@ public class FriendshipDAO {
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Xuất tất cả danh sách bạn bè1 thất bại!");
+        }
+        finally{
+            em.close();
+            emf.close();
         }
         return result;
     }
@@ -187,6 +203,10 @@ public class FriendshipDAO {
             em.getTransaction().rollback();
             System.out.println("Xuất tất cả danh sách bạn bè1 thất bại!");
         }
+        finally{
+            em.close();
+            emf.close();
+        }
         return listProfile;
     }
 
@@ -228,6 +248,10 @@ public class FriendshipDAO {
             em.getTransaction().rollback();
             System.out.println("Xuất tất cả danh sách bạn bè2 thất bại!");
         }
+        finally{
+            em.close();
+            emf.close();
+        }
         return listProfile;
     }
 
@@ -267,6 +291,10 @@ public class FriendshipDAO {
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Xuất tất cả danh sách bạn bè3 thất bại!");
+        }
+        finally{
+            em.close();
+            emf.close();
         }
         return listProfile;
     }
