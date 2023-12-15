@@ -10,7 +10,7 @@
 
 <div class="head-Comment">
     <div id="close-comment">x</div><br>
-    <h2>Bình luận</h2>
+    <h2 style="margin-top: -1%">Bình luận</h2>
     <hr>
 </div>
 <div id="container-comment-scroll">
@@ -37,7 +37,7 @@
                     </div>
                         
                     <div style="display: flex">
-                        <div class="date-comment">
+                        <div class="date-comment" style="margin-top: 5%">
                         <c:set var="datecreatedComment" value="${cmt.datecreated}"></c:set>
                         <%
                             LocalDateTime tempDatecreate = (LocalDateTime) pageContext.getAttribute("datecreatedComment");
@@ -52,11 +52,12 @@
                             String CurrentUsername = p.getUsername();
                         %>
                         <c:set var="currentUser" value="<%=CurrentUsername%>"></c:set>
-                        <c:if test="${cmt.commented_profile.username == currentUser}">
-                            <div class="btn_del_comment" data-idcomment="${cmt.idComment}"><small>Xoá</small></div>
-                        </c:if>
+                        
                     </div>  
                 </div>
+                        <c:if test="${cmt.commented_profile.username == currentUser}">
+                            <div class="btn_del_comment" style="margin-top: 18%" data-idcomment="${cmt.idComment}"><small>Xoá</small></div>
+                        </c:if>
                 
             </div>
         </c:forEach>
@@ -77,7 +78,7 @@
         </c:if>
     </div>
     <form action="" method="POST" id="WriteComment">
-        <textarea cols="55" rows="2" placeholder="Viết bình luận..." class="content_write_comment"></textarea>
+        <textarea cols="54" rows="2" placeholder="Viết bình luận..." class="content_write_comment"></textarea>
         <input type="submit"/>
     </form>
 </div>

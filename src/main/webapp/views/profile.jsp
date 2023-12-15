@@ -45,6 +45,11 @@
         </script>
 
         <style>
+            #myForm{
+                position: absolute;
+                z-index: 100;
+                bottom: 0px;
+            }
             .modal-friend {
                 height: 500px;
                 position: absolute;
@@ -160,8 +165,8 @@
 
             <div id="profile-editing"
                  style="position: fixed; z-index: 20;display: none; width: 50%; height: 1000px; top: 35%; left: 23.4%">
-                <div id="newForm"
-                     style="display: block; margin: 10px 0; padding: 10px 100px; background-color: #fff; border-width: 1px; border-style: solid; border-color: #000; border-radius: 3%">
+                <div id="newForm">
+           
                     <form action="" method="post"
                           enctype="multipart/form-data"
                           class="profile-form">
@@ -219,11 +224,15 @@
                         </li>
 
                         <li id="hoso">
-                            <button class="btn-profile-edit"
+                            <div id="btn-edit" style="display: flex">
+                            <button class="btn-edit-profile" id="btn1"
                                     name="saveButton" type="submit"
                                     value="save">Lưu</button>
-                            <button class="btn-profile-edit"
-                                    onclick="toggleProfileEditing(false)">Hủy</button>
+                            
+                            <button class="btn-edit-profile" id="btn2"
+                                    onclick="toggleProfileEditing(false)">Hủy</button> 
+                            </div>            
+                            
                         </li>
 
                     </form>
@@ -353,18 +362,12 @@
                         <% } } } } %>
                         <!--</div>-->
                     </div>
-                    <hr>
+                 
                     <div class="profile-mid">
                         <ul class="profile-navtab">
                             <li class="profile-nav-item"
                                 onclick="selectListItem(this)">
                                 <a id="all-post" href="#">Bài viết</a>
-                            </li>
-
-                            <li class="profile-nav-item"
-                                onclick="selectListItem(this)">
-                                <a id="all-picture" href="#">Tất cả
-                                    ảnh</a>
                             </li>
 
                         </ul>

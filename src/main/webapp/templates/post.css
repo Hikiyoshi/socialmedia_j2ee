@@ -1,23 +1,5 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-#newForm{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(#00C6FF, #0078FF);
-  width: 500px;
-  height: auto;
-  overflow: hidden;
-  background: #fff;
-  border-radius: 10px;
-  transition: height 0.2s ease;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}
 
 ::selection{
   color: #fff;
@@ -98,12 +80,19 @@ form :where(textarea, button){
   width: 100%;
   outline: none;
   border: none;
+  cursor: pointer;
 }
+form :where(button){
+  width: 50%;
+  outline: none;
+  border: none;
+}
+
 form textarea{
   resize: none;
   font-size: 18px;
   margin-top: 30px;
-  min-height: 100px;
+  height: 50px;
 }
 form textarea::placeholder{
   color: #858585;

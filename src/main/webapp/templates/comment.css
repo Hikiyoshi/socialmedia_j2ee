@@ -12,12 +12,13 @@
 }
 
 #container-comment-scroll{
-    height: 305px;
+    height: 333px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 .head-Comment{
     text-align: center;
+    height: 65px;
     background: #e7d677;
     color: black;
     justify-content: center;
@@ -26,8 +27,10 @@
 }
 
 #close-comment{
+    font-weight: bold;
     color: red;
     float: right;
+    margin-right: 2%;
     font-size: 25px;
 }
 
@@ -71,6 +74,7 @@
 
 #comment{
     display: flex;
+    height: 150px;
     background: white;
     border-radius: 7px;
     margin: 5px;
@@ -93,6 +97,7 @@
 }
 #comment .content_write_comment{
     font-size: 18px;
+    
     border: none;
     resize: none;
     outline: none;
@@ -100,11 +105,19 @@
 #WriteComment input[type=submit]{
     width: 120px;
     height: 40px;
-    margin:auto;
-    margin-left: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: -60px;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-top: 18%;
+    margin-right: -27%;
     border-radius: 8px;
-    background-color: beige; 
+    background-color: #e7d677; 
+    
+}
+#WriteComment input[type=submit]:hover {
+    cursor: pointer;
+    
+}
+#WriteComment input[type=submit]:active{
+    opacity: 0.5;  
+    filter: alpha(opacity=50);
 }

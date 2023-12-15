@@ -36,7 +36,7 @@
     }
     .button{
         padding: 4px 8px;
-        background-color: rgb(74,112,139);
+        background-color: #e7d677;
         border: none;
         color: white;
         border-radius: 4px;
@@ -47,7 +47,7 @@
     }
     .button-delete{
         padding: 4px 8px;
-        background-color: rgb(74,112,139);
+        background-color:#e7d677;
         border: none;
         color: white;
         border-radius: 4px;
@@ -58,18 +58,12 @@
     }
 </style>
 <nav class="navbar index">
-    <div class="nav-left"><img class="logo" src="images/logo_1.png" alt="">
+    <div class="nav-left"><a href="http://localhost:8080/socialmedia_j2ee/index"><img class="logo"  src="images/logo_1.png" alt=""></a>
         <ul class="navlogo">
-            <li class="circle"><img class="icon" src="/socialmedia_j2ee/images/notification_1.png"></li>
             <li class="circle" onclick="FriendRequestToggle()"><img class="icon" src="/socialmedia_j2ee/images/friends_1.png"></li>
-            <li class="circle"><img class="icon" src="/socialmedia_j2ee/images/messenger.png"></li>
-
-
         </ul>
 
-
     </div>
-
     <div class="friend-requests" style="overflow: auto">
         <div class="request">
             <%
@@ -96,7 +90,7 @@
                                 <input type="hidden" name="username" value="<%= usernameRequest %>">
                                 <input type="hidden" name="page" value="<%= pageRequests %>">
                                 <input type="hidden" name="limit" value="<%= limitRequests %>">
-                                <input class="button" type="submit" name="btnFriendRequest" value="Chấp nhận lời mời">
+                                <input class="button" type="submit" name="btnFriendRequest" value="Chấp nhận">
                                 <input class="button-delete" type="submit" name="btnFriendRequest" value="Từ chối" >
                             </div>
                         </div>
@@ -144,7 +138,7 @@
             </div>
         </div>
         <hr>
-        
+
 
         <div class="settings-links">
             <img src="/socialmedia_j2ee/images/logout.png" alt="" class="settings-icon">
