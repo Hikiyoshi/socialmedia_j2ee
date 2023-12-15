@@ -39,9 +39,11 @@ public class ProfileController extends HttpServlet {
 
 		if (p != null) {
 			String avatarImage = AvatarUtils.verifyAvatarDeployment(request, p.getImgAvatar());
+                        String avatarImageLoginUser = AvatarUtils.verifyAvatarDeployment(request, p2.getImgAvatar());
+                        request.setAttribute("avatarImage", avatarImageLoginUser);
 			
 			request.setAttribute("username", p.getUsername());
-			request.setAttribute("avatarImage", avatarImage);
+			request.setAttribute("avatarImageProfile", avatarImage);
 			request.setAttribute("firstName", p.getFirstname());
 			request.setAttribute("surname", p.getSurname());
 			request.setAttribute("fullName", p.getFullname());

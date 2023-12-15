@@ -113,7 +113,9 @@
     <div class="nav-right">
         <div class="search-box">
             <img src="/socialmedia_j2ee/images/search.png" alt="">
-            <input type="text" placeholder="Search">
+            <form id="search_form">
+                <input type="text" placeholder="Search" id="search_content">
+            </form>
         </div>
         <div class="profile-image online" onclick="UserSettingToggle()">
             <img src="images/${avatarImage}" alt="">
@@ -159,7 +161,7 @@
 
         <div class="settings-links">
             <img src="/socialmedia_j2ee/images/logout.png" alt="" class="settings-icon">
-            <a href="#">Logout <img src="images/arrow.png" alt=""></a>
+            <a href="logout">Logout <img src="images/arrow.png" alt=""></a>
         </div>
 
     </div>
