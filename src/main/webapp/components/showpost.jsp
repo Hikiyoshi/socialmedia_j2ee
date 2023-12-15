@@ -49,32 +49,31 @@
                     <c:forEach items="${p.post_img}" var="postImg">
                         <img src="images/${postImg.img}" alt=""></div>
                     </c:forEach>
+            
                 </div>
-            </div>
+                <div class="post-reaction">
+                    <div class="activity-icons">
 
-            <div class="post-reaction">
-                <div class="activity-icons">
-                    
-                    <!--Check Like of Post-->
-                    <c:set value="${p.idPost}" var="idPostLike"></c:set>
-                    <%
-                        Profile profile = (Profile) session.getAttribute("user");
-                        String username = profile.getUsername();
-                        int idp = (int) pageContext.getAttribute("idPostLike");
+                        <!--Check Like of Post-->
+                        <c:set value="${p.idPost}" var="idPostLike"></c:set>
+                        <%
+                            Profile profile = (Profile) session.getAttribute("user");
+                            String username = profile.getUsername();
+                            int idp = (int) pageContext.getAttribute("idPostLike");
                         
-                        boolean checkLiked = ReactionDAO.checkLike(String.valueOf(idp),username);
-                    %>
-                    
-                    <c:if test="<%=checkLiked%>">
-                        <div class="btn_like_post" data-idpost='${p.idPost}'><img src="images/like-blue.png" alt=""></div>
-                    </c:if>
-                    <c:if test="<%=!checkLiked%>">
-                        <div class="btn_unlike_post" data-idpost='${p.idPost}'><img src="images/like.png" alt=""></div>
-                    </c:if>
-                    
-                    <div class="btn_show_comments" data-idpost='${p.idPost}'><img src="images/comments.png" alt=""></div>
+                            boolean checkLiked = ReactionDAO.checkLike(String.valueOf(idp),username);
+                        %>
+
+                        <c:if test="<%=checkLiked%>">
+                            <div class="btn_like_post" data-idpost='${p.idPost}'><img src="images/like-blue.png" alt=""></div>
+                            </c:if>
+                            <c:if test="<%=!checkLiked%>">
+                            <div class="btn_unlike_post" data-idpost='${p.idPost}'><img src="images/like.png" alt=""></div>
+                            </c:if>
+                        <div class="btn_show_comments" data-idpost='${p.idPost}'><img src="images/comments.png" alt=""></div>
+                    </div>
                 </div>
-            </div>
         </div>
+        
     </c:forEach>
 </c:if>

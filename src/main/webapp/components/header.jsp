@@ -142,24 +142,11 @@
             </div>
         </div>
         <hr>
-        <div class="settings-links">
-            <img src="/socialmedia_j2ee/images/setting.png" alt="" class="settings-icon">
-            <a href="#">Settings & Privary <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
-        </div>
-
-        <div class="settings-links">
-            <img src="/socialmedia_j2ee/images/help.png" alt="" class="settings-icon">
-            <a href="#">Help & Support <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
-        </div>
-
-        <div class="settings-links">
-            <img src="/socialmedia_j2ee/images/Display.png" alt="" class="settings-icon">
-            <a href="#">Display & Accessibility <img src="/socialmedia_j2ee/images/arrow.png" alt=""></a>
-        </div>
+        
 
         <div class="settings-links">
             <img src="/socialmedia_j2ee/images/logout.png" alt="" class="settings-icon">
-            <a href="#">Logout <img src="images/arrow.png" alt=""></a>
+            <a href="logout">Logout <img src="images/arrow.png" alt=""></a>
         </div>
 
     </div>
