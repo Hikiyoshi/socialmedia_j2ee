@@ -7,11 +7,12 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-    function submitForm2(username) {
+    function submitForm2(username1) {
 
-        var form = document.getElementById("myForm");
-        form.action = "/socialmedia_j2ee/profile?username=" + username;
+        var form = document.createElement("form");
+        form.action = "/socialmedia_j2ee/profile?username=" + username1;
         form.method = "post";
         document.body.appendChild(form);
         form.submit();
@@ -79,7 +80,7 @@
                  String imgavatarRequest = user.getImgAvatar();
             %>
             <div style="padding-left: 10px; padding-top: 10px">
-                <form method="post" action="/socialmedia_j2ee/friend/request" id="myForm">                  
+                <form method="post" action="/socialmedia_j2ee/friend/request">                  
                     <div style="display: flex;">
                         <img src="images/<%= imgavatarRequest %>" class="avatar" onclick="submitForm2('<%= usernameRequest %>')"/>
                         <div>
@@ -122,7 +123,12 @@
                 <img src="images/${avatarImage}" alt="">
                 <div>
                     <p> ${fullname}</p>
-                    <a href="/socialmedia_j2ee/profile?username=${username}">See your profile</a>
+                    <%
+                       System.out.println("checkhaiduong");
+                       Profile currentUser = (Profile)session.getAttribute("user");
+                       String currentUsername = currentUser.getUsername();
+                    %>
+                    <a href="/socialmedia_j2ee/profile?username=<%= currentUsername %>">See your profile</a>
                 </div>
             </div>
             <div id="dark-button" onclick="darkModeON()">

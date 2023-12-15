@@ -341,7 +341,7 @@
                               id="myForm">
                             <input type="hidden" name="username" value="<%= userAction %>">
                             <input class="button" type="submit" name="btnFriendRequest"
-                                   value="Chấp nhận lời mời">
+                                   value="Chấp nhận">
                             <input class="button-delete" type="submit" name="btnFriendRequest"
                                    value="Từ chối">
                         </form>

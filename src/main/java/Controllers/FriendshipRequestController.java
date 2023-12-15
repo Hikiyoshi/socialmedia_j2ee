@@ -38,7 +38,7 @@ public class FriendshipRequestController extends HttpServlet {
 //                    case "Search":
 //                        doSearch(request, response);
 //                        break;
-                    case "Chấp nhận lời mời":
+                    case "Chấp nhận":
                         doConfirmAccept(request, response,p);
                         break;
                     case "Từ chối":
