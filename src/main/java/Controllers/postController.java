@@ -47,27 +47,37 @@ public class postController extends HttpServlet {
 }
         String content = request.getParameter("content");
         String username = request.getParameter("username");
-         // Lấy hình ảnh từ trường input file
-         Part filePart = request.getPart("image");
-        File file = new File(dir, filePart.getSubmittedFileName());
-        filePart.write(file.getAbsolutePath());
         
-         LocalDateTime currentDateTime = LocalDateTime.now();
-         Post post = new Post();
-         post.setUsername(username);
-        post.setContent(content);
-        PostImage pi = new PostImage();
+        LocalDateTime currentDateTime = LocalDateTime.now();
+          Post post = new Post();
+          post.setUsername(username);
+          post.setContent(content);
         
-       post.setDateCreated(currentDateTime);
-         request.setAttribute("post", post);
-          request.setAttribute("imageStream", file);
+        
+          post.setDateCreated(currentDateTime);
+          request.setAttribute("post", post);
+          
           
           PostDAO.createPost(post);
-          pi.setIdPost(post.getIdPost());
-          pi.setImg(file.getName());
-          PostDAO.createImage(pi);
+          
+          // Lấy hình ảnh từ trường input file
+         Part filePart = request.getPart("image");
+         if(filePart != null && filePart.getSize() > 0){
+             
+            File file = new File(dir, filePart.getSubmittedFileName());
+            filePart.write(file.getAbsolutePath());
+            
+            request.setAttribute("imageStream", file);
+            
+            PostImage pi = new PostImage();
+            pi.setIdPost(post.getIdPost());
+            pi.setImg(file.getName());
+            PostDAO.createImage(pi);
+            
+         }
+          
 //         Post p  = new Post("1","3",LocalDate.now());
-         request.getRequestDispatcher("/views/index.jsp").forward(request, response);
-    
+         //request.getRequestDispatcher("/").forward(request, response);
+         response.sendRedirect("/socialmedia_j2ee/index");
 	}
 }

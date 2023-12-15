@@ -372,10 +372,9 @@
                                                                         <div id="content" class="content">
                                                                             <div id="load_posts"></div>
                                                                             <div id="load_message"></div>
-                                                                            //Duong
                                                                             <div class="user-all-post" id="load_posts">
                                                                                 <div class="post-item"></div>
-                                                                                <div id="#load_message"></div>
+                                                                                <div id="load_message"></div>
                                                                             </div>
                                                                             <div class="user-all-picture">
                                                                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9QkIpNqACZvVETdaSJmg5VYJub4Mqq8aKJkRhFn-9ZLDObSAO05OPgyhDZ8S_gTDZDQ&usqp=CAU"

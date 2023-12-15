@@ -43,11 +43,8 @@
             </div>
 
             <div class="status-field">
-                
-                <form class="frm-update-post" method="POST">
-                    <textarea class="text-update-post" disabled="true">${p.content}</textarea>
-                </form>
-                
+                <p>${p.content}</p>
+            
                 <div>
                     <c:forEach items="${p.post_img}" var="postImg">
                         <img src="images/${postImg.img}" alt=""></div>
