@@ -79,7 +79,7 @@ public class HomeController extends HttpServlet {
         }
         String path= req.getRequestURI();
         req.setAttribute("path", path);
-        List<Profile> users = FriendshipDAO.searchFriendShip(Integer.parseInt(page), Integer.parseInt(limit), "", p.getUsername(), 0);
+        List<Profile> users = FriendshipDAO.getListRequestFriendship(Integer.parseInt(page), Integer.parseInt(limit), p.getUsername());
         pagination(req, resp, users, page, limit);
         req.setAttribute("friendRequests", users);
     }

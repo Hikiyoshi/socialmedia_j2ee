@@ -68,7 +68,7 @@ public class ProfileController extends HttpServlet {
                             loadDataFriendRequest(request, response, p2);
                             loadDataIsFriend(request, response, p2);
                         }
-                        
+                        System.out.println(">>>>>"+p2);
                         request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
 	}
 	
@@ -133,7 +133,7 @@ public class ProfileController extends HttpServlet {
         }
         String path = req.getRequestURI();
         req.setAttribute("path", path);
-        List<Profile> users = FriendshipDAO.searchFriendShip(Integer.parseInt(page), Integer.parseInt(limit), "", p.getUsername(), 0);
+        List<Profile> users = FriendshipDAO.getListRequestFriendship(Integer.parseInt(page), Integer.parseInt(limit), p.getUsername());
         pagination(req, resp, users, page, limit);
         req.setAttribute("friendRequests", users);
     }

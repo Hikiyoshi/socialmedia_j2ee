@@ -45,11 +45,11 @@ public class FriendshipRequestController extends HttpServlet {
                         doDeleteAccept(request, response, p);
                         break;
                     default:
-                        loadData(request, response);
+                        loadData(request, response, p);
                         break;
                 }
             } else {
-                loadData(request, response);
+                loadData(request, response, p);
             }
         } catch (ServletException | IOException e) {
         }
@@ -78,7 +78,7 @@ public class FriendshipRequestController extends HttpServlet {
                 }
             }
         }
-        loadData(req, resp);
+        loadData(req, resp, p);
     }
 
     private void doConfirmAccept(HttpServletRequest req, HttpServletResponse resp, Profile p)
@@ -98,7 +98,7 @@ public class FriendshipRequestController extends HttpServlet {
             }
 
         }
-        loadData(req, resp);
+        loadData(req, resp, p);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class FriendshipRequestController extends HttpServlet {
         processRequest(request, response);
     }
 
-    public void loadData(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void loadData(HttpServletRequest req, HttpServletResponse resp, Profile p) throws ServletException, IOException {
         String page = req.getParameter("page");
         String limit = req.getParameter("limit");
 //        String q = req.getParameter("q");
@@ -127,7 +127,7 @@ public class FriendshipRequestController extends HttpServlet {
         }
         String path = req.getRequestURI();
         req.setAttribute("path", path);
-        List<Profile> users = FriendshipDAO.searchFriendShip(Integer.parseInt(page), Integer.parseInt(limit), "", "honggam", 0);
+        List<Profile> users = FriendshipDAO.getListRequestFriendship(Integer.parseInt(page), Integer.parseInt(limit),p.getUsername());
         pagination(req, resp, users, page, limit);
         req.setAttribute("friendRequests", users);
 //        String newUrl = req.getRequestURL() + "?q="+q+"&page=" + page + "&limit=" + limit;
