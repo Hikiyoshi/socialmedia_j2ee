@@ -20,7 +20,7 @@
                 <div class="user-profile">
                     <img src="images/${p.profile_uploaded.imgAvatar}" alt="">
                     <div>
-                        <p> ${p.profile_uploaded.firstname} ${p.profile_uploaded.surname} </p>
+                        <p><a href="profile?username=${p.username}" style="text-decoration: none; color: black"> ${p.profile_uploaded.firstname} ${p.profile_uploaded.surname} </a></p>
                             <!--Xử lý format date cho post-->
                         <c:set var="datecreatedPost" value="${p.dateCreated}"></c:set>
                         <%

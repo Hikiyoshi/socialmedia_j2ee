@@ -8,7 +8,7 @@
         <c:set var="CurrentUser" value="${sessionScope.user}"></c:set>
         <c:forEach items="${ListSearch}" var="p">
             <c:if test="${p.username != CurrentUser.username}">
-                <div class="search-content-container">
+                <div class="search-content-container" style="border: 1px solid var(--nav-color)">
                     <div class="avatar-profile">
                         <img src="images/${p.imgAvatar}"  alt="" />
                     </div>
